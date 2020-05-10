@@ -1,0 +1,227 @@
+[
+  {
+    "_id": "5e667765fc13ae49c8000000",
+    "fullName": "Didi Nern",
+    "email": "dnern0@hostgator.com",
+    "password": "$2y$12$JFP/tKnEtz2i.kNeyguxP.RSQ2PWL.ZUjKBnmQSL01vj0byjngaVG",
+    "role": "user",
+    "photo": "userPhoto-1.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000001",
+    "fullName": "Langston Goter",
+    "email": "lgoter1@state.tx.us",
+    "password": "$2y$12$4JFSwYx2.PFdkjprYwF5F.RWldZeKUWNUZFTVcHHyO3/aRVpWItfy",
+    "role": "user",
+    "photo": "userPhoto-2.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000002",
+    "fullName": "Edi Sego",
+    "email": "esego2@who.int",
+    "password": "$2y$12$A3gTjwxD5S/Po97O0zXVKO3Jd.1qX3o.gpKAKwgqoRXdQ8XsFXzJ.",
+    "role": "admin",
+    "photo": "userPhoto-3.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000003",
+    "fullName": "Fina Rowlatt",
+    "email": "frowlatt3@uol.com.br",
+    "password": "$2y$12$TVMm.2nM79eSYHkX/mj3b.qvAfKxNaXLaMr/9tEYpE.ciL7sBxU6S",
+    "role": "lead-guide",
+    "photo": "userPhoto-4.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000004",
+    "fullName": "Enrichetta Dumphry",
+    "email": "edumphry4@delicious.com",
+    "password": "$2y$12$2DSSzBp7nkZM61dJdjYbmeCkyq0SYIkViXYYqacz0hiUTmHjfj2MC",
+    "role": "guide",
+    "photo": "userPhoto-5.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000005",
+    "fullName": "Latrina Dotterill",
+    "email": "ldotterill5@nhs.uk",
+    "password": "$2y$12$W/SXiajE8yIGvRmPPck5X.MXpYsb3qnGSA.neyVXVuf9Bq2b/Ox5q",
+    "role": "guide",
+    "photo": "userPhoto-6.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000006",
+    "fullName": "Derk Fancett",
+    "email": "dfancett6@sina.com.cn",
+    "password": "$2y$12$SPoR9w76rm/Bnmnjt7JLKOk026PPASjwOSRGHcC5fI4m0I/teTouO",
+    "role": "user",
+    "photo": "userPhoto-7.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000007",
+    "fullName": "Staffard Vahey",
+    "email": "svahey7@tripod.com",
+    "password": "$2y$12$kLrw94WBcFH8Rs2x6ceqzeedEDLPCpig8GRdUNU7ibUuigZxyhCQC",
+    "role": "user",
+    "photo": "userPhoto-8.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000008",
+    "fullName": "Taylor Waszczyk",
+    "email": "twaszczyk8@webnode.com",
+    "password": "$2y$12$N.ngLCqz86Q9eEQDzT6w5.rNwtPEk53ZBQXeQ85X32QTBL05dhiAm",
+    "role": "user",
+    "photo": "userPhoto-9.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000009",
+    "fullName": "Sallee Flippelli",
+    "email": "sflippelli9@slate.com",
+    "password": "$2y$12$TowTJam5JOvFHRZefeuo7uG01BcmOKim5eBz9NCOeZ8bqCOKmiNSy",
+    "role": "lead-guide",
+    "photo": "userPhoto-10.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c800000a",
+    "fullName": "Bliss Otter",
+    "email": "bottera@google.nl",
+    "password": "$2y$12$8mITb1tL6.zdmUyi.py9JOAI9.m9tDV1oEE64w9eT9L8ovAbmE7A2",
+    "role": "user",
+    "photo": "userPhoto-11.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c800000b",
+    "fullName": "Carine Brittle",
+    "email": "cbrittleb@tuttocitta.it",
+    "password": "$2y$12$BTy9gawtQhU8HSUIP5wfGePRxADdrqpLPoMG3Xgt4s/SxkafvHFf2",
+    "role": "guide",
+    "photo": "userPhoto-12.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c800000c",
+    "fullName": "Sibelle Stalman",
+    "email": "sstalmanc@boston.com",
+    "password": "$2y$12$jgcjXRQ8lcVrIGyhJ7tTO..Wq/g3CBI33cCFTEwmB.ft4D4kr8Iku",
+    "role": "admin",
+    "photo": "userPhoto-13.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c800000d",
+    "fullName": "Harrie Rowley",
+    "email": "hrowleyd@constantcontact.com",
+    "password": "$2y$12$SkKf.XhPTi8FBDliZFguR.CXXO7ZeWTFcLpsLyZjs.upMAvI6CrtS",
+    "role": "user",
+    "photo": "userPhoto-14.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c800000e",
+    "fullName": "Derril Pimlock",
+    "email": "dpimlocke@epa.gov",
+    "password": "$2y$12$O6BEGAY2sP6fkVcXNF.rUeXWL5dRxtBHdObuFadEM0u5y37PC30X6",
+    "role": "user",
+    "photo": "userPhoto-15.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c800000f",
+    "fullName": "Falito Drayn",
+    "email": "fdraynf@biglobe.ne.jp",
+    "password": "$2y$12$4fr07wsRuNCZtzvATUUy3et7hJ/kmqERLjDyBliXTQRAHdWtGQW3G",
+    "role": "guide",
+    "photo": "userPhoto-16.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000010",
+    "fullName": "Rochette Holleran",
+    "email": "rhollerang@dell.com",
+    "password": "$2y$12$AsZtEO.Rym/TIF.tZ6pFsehDBs0Z0lSxXDqkti279k9/i4rKIxNiu",
+    "role": "lead-guide",
+    "photo": "userPhoto-17.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000011",
+    "fullName": "Rorie Sherrin",
+    "email": "rsherrinh@rakuten.co.jp",
+    "password": "$2y$12$MPKf.Caqu3jnz68ko3ivmOik7dzxyRpUyG1lD7pcLSzogPMZQ2jHS",
+    "role": "guide",
+    "photo": "userPhoto-18.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000012",
+    "fullName": "Sella Cranmere",
+    "email": "scranmerei@cbsnews.com",
+    "password": "$2y$12$emf2irIG7jMXQ7JyRvkd1.gARwekXaxHKGnLVD1nKLAVfgr/5OhyC",
+    "role": "user",
+    "photo": "userPhoto-19.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000013",
+    "fullName": "Diandra Craxford",
+    "email": "dcraxfordj@phoca.cz",
+    "password": "$2y$12$KGXSlL/SRel4MJxavFy/9OKurCnUCXBa08ZZwfGFftL8RUKFaNsFO",
+    "role": "guide",
+    "photo": "userPhoto-20.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000014",
+    "fullName": "Raquel Varnes",
+    "email": "rvarnesk@cocolog-nifty.com",
+    "password": "$2y$12$GhBRWP80aJYBqB35.oUPK.BW5TPJyLeN48pzz53.UtnJpAJ7mom5y",
+    "role": "user",
+    "photo": "userPhoto-21.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000015",
+    "fullName": "Katya Chasteney",
+    "email": "kchasteneyl@gmpg.org",
+    "password": "$2y$12$oxt/DXB6sAN9sgodtQYo7uE/54/Vj4mXUssUk5bQxHOXVdAMd2pKW",
+    "role": "user",
+    "photo": "userPhoto-22.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000016",
+    "fullName": "Gerry Vakhlov",
+    "email": "gvakhlovm@networksolutions.com",
+    "password": "$2y$12$u7Bfkk5Fl6XRh9LrEs50Pe94xCxz5liJ8UWQy6QtCYItQv4A58Vwy",
+    "role": "guide",
+    "photo": "userPhoto-23.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000017",
+    "fullName": "Stavro Penelli",
+    "email": "spenellin@imageshack.us",
+    "password": "$2y$12$3juxke/d3EsFxU..VADJtO59mtaFCROvp64oWGP6fmnuftglFhXQ6",
+    "role": "user",
+    "photo": "userPhoto-24.jpg",
+    "active": true
+  },
+  {
+    "_id": "5e667765fc13ae49c8000018",
+    "fullName": "Emilee Divall",
+    "email": "edivallo@army.mil",
+    "password": "$2y$12$u5t6X7013b9syvrJufXw3u5by7oh2Prtb6em8RAOX2lCqp0Wv2RiS",
+    "role": "guide",
+    "photo": "userPhoto-25.jpg",
+    "active": true
+  }
+]
