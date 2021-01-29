@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
+const path = require('path');
 
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -17,7 +18,14 @@ const globalErrorController = require('./controllers/errorController');
 
 const app = express();
 
+//Set PUG VIEW ENGINE
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+
 // MIDDLEWARE
+
+// Serve static files
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Set HTTP security response headers
 app.use(helmet());
@@ -47,7 +55,12 @@ app.use(xss());
 // Protect against HTTP Parameter Pollution attacks
 app.use(hpp({ whitelist: ['duration', 'price', 'difficulty'] }));
 
+/********/
 // ROUTES
+/********/
+app.get('/', (req, res) => {
+  res.status(200).render('index');
+});
 
 //Define what routes you will be using and their respective route handlers
 app.use('/api/v1/tours', tourRouter);
