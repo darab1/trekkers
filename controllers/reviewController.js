@@ -1,6 +1,6 @@
-const Review = require("./../models/reviewModel");
+const Review = require('./../models/reviewModel');
 // const catchAsyncErrors = require("./../utilities/catchAsyncErrors");
-const controllerFactory = require("./../controllers/controllerFactory");
+const controllerFactory = require('./../controllers/controllerFactory');
 
 exports.populateTourAndUserFields = (req, res, next) => {
   if (!req.body.tour) req.body.tour = req.params.tourID;

@@ -1,21 +1,21 @@
-const dotenv = require("dotenv");
-const mongoose = require("mongoose");
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 
-process.on("uncaughtException", err => {
+process.on('uncaughtException', err => {
   console.log(`Error name: ${err.name}, Error message: ${err.message}`);
-  console.log("Uncaught Exception Error, shutting down the app...");
+  console.log('Uncaught Exception Error, shutting down the app...');
 
   process.exit(1);
 });
 
-const app = require("./app");
+const app = require('./app');
 
 // Read the environment variables from config.env
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: './config.env' });
 
 //Create a DB constant which contains the connection string to your database
 const DB = process.env.DATABASE_CONNECTION_STRING.replace(
-  "<PASSWORD>",
+  '<PASSWORD>',
   process.env.DATABASE_PASSWORD
 );
 
@@ -28,16 +28,16 @@ mongoose
     useCreateIndex: true,
     useFindAndModify: false
   })
-  .then(() => console.log("Connection with yetiTours DB was succesful"));
+  .then(() => console.log('Connection with yetiTours DB was succesful'));
 
 const port = process.env.PORT;
 const server = app.listen(port, () => {
   console.log(`Yeti Tours is running on port ${port}`);
 });
 
-process.on("unhandledRejection", err => {
+process.on('unhandledRejection', err => {
   console.log(`Error name: ${err.name}, Error message: ${err.message}`);
-  console.log("Unhandled Rejection Error, shutting down the app...");
+  console.log('Unhandled Rejection Error, shutting down the app...');
   server.close(() => {
     process.exit(1);
   });

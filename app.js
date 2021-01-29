@@ -1,17 +1,17 @@
-const express = require("express");
-const morgan = require("morgan");
-const rateLimit = require("express-rate-limit");
-const helmet = require("helmet");
-const mongoSanitize = require("express-mongo-sanitize");
-const xss = require("xss-clean");
-const hpp = require("hpp");
+const express = require('express');
+const morgan = require('morgan');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+const hpp = require('hpp');
 
-const tourRouter = require("./routes/tourRoutes");
-const userRouter = require("./routes/userRoutes");
-const reviewRouter = require("./routes/reviewRoutes");
+const tourRouter = require('./routes/tourRoutes');
+const userRouter = require('./routes/userRoutes');
+const reviewRouter = require('./routes/reviewRoutes');
 
-const AppError = require("./utilities/appError");
-const globalErrorController = require("./controllers/errorController");
+const AppError = require('./utilities/appError');
+const globalErrorController = require('./controllers/errorController');
 
 // Require the user routers
 
@@ -22,21 +22,21 @@ const app = express();
 // Set HTTP security response headers
 app.use(helmet());
 
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
 }
 
 // Limit the number of requests from the same IP
 const limiter = rateLimit({
   max: 500, // maximum requests that can be made from a cerain IP
   windowMs: 60 * 60 * 1000, // 1 hour is the window in which you can do these requests
-  message: "You made to many requests from this IP, please try again in an hour" // error message if you exceed this maximum number of requests in an hour
+  message: 'You made to many requests from this IP, please try again in an hour' // error message if you exceed this maximum number of requests in an hour
 });
 
-app.use("/api", limiter);
+app.use('/api', limiter);
 
 // Extract the entire body portion of an incoming request stream and expose it on req.body
-app.use(express.json({ limit: "10kb" }));
+app.use(express.json({ limit: '10kb' }));
 
 // Sanitize user-supplied data to prevent MongoDB Operaton Injection
 app.use(mongoSanitize());
@@ -45,17 +45,17 @@ app.use(mongoSanitize());
 app.use(xss());
 
 // Protect against HTTP Parameter Pollution attacks
-app.use(hpp({ whitelist: ["duration", "price", "difficulty"] }));
+app.use(hpp({ whitelist: ['duration', 'price', 'difficulty'] }));
 
 // ROUTES
 
 //Define what routes you will be using and their respective route handlers
-app.use("/api/v1/tours", tourRouter);
-app.use("/api/v1/users", userRouter);
-app.use("/api/v1/reviews", reviewRouter);
+app.use('/api/v1/tours', tourRouter);
+app.use('/api/v1/users', userRouter);
+app.use('/api/v1/reviews', reviewRouter);
 
 // Middleware for handling unhandled routes, instead of the html message shown in Postman
-app.all("*", (req, res, next) => {
+app.all('*', (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl}`, 404));
 });
 

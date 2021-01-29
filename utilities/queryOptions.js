@@ -7,7 +7,7 @@ class QueryOptions {
   filter() {
     const queryObj = { ...this.queryObject }; // create a hard copy of the query
 
-    const excludedQueryFields = ["sort", "limit", "page", "fields"];
+    const excludedQueryFields = ['sort', 'limit', 'page', 'fields'];
     excludedQueryFields.forEach(el => delete queryObj[el]);
 
     // Filtering using lte, lt, gte, gt operators
@@ -23,10 +23,10 @@ class QueryOptions {
     if (this.queryObject.sort) {
       console.log(this.queryObject);
 
-      const sortStr = this.queryObject.sort.split(",").join(" ");
+      const sortStr = this.queryObject.sort.split(',').join(' ');
       this.query = this.query.sort(sortStr);
     } else {
-      this.query = this.query.sort("price");
+      this.query = this.query.sort('price');
     }
 
     return this;
@@ -34,10 +34,10 @@ class QueryOptions {
 
   limitFields() {
     if (this.queryObject.fields) {
-      const fieldsStr = this.queryObject.fields.split(",").join(" ");
+      const fieldsStr = this.queryObject.fields.split(',').join(' ');
       this.query = this.query.select(fieldsStr);
     } else {
-      this.query = this.query.select("-__v");
+      this.query = this.query.select('-__v');
     }
 
     return this;

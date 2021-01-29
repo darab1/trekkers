@@ -1,40 +1,40 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const tourSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "A tour must have a name"],
+      required: [true, 'A tour must have a name'],
       unique: true,
       trim: true,
       maxlength: [
         100,
-        "The name of a tour must have equal or less than 100 characters"
+        'The name of a tour must have equal or less than 100 characters'
       ],
       minlength: [
         5,
-        "The name of a tour must have equal or more than 5 characters"
+        'The name of a tour must have equal or more than 5 characters'
       ]
     },
     durationInDays: {
       type: Number,
-      required: [true, "A tour must have a duration in days"]
+      required: [true, 'A tour must have a duration in days']
     },
     difficulty: {
       type: String,
-      required: [true, "A tour must have a difficulty"],
+      required: [true, 'A tour must have a difficulty'],
       enum: {
-        values: ["easy", "medium", "hard"],
-        message: "Acceptable difficulty values: easy, medium, hard"
+        values: ['easy', 'medium', 'hard'],
+        message: 'Acceptable difficulty values: easy, medium, hard'
       }
     },
     maxGroupSize: {
       type: Number,
-      required: [true, "A tour must have a max group size"]
+      required: [true, 'A tour must have a max group size']
     },
     price: {
       type: Number,
-      required: [true, "A tour must have a price"]
+      required: [true, 'A tour must have a price']
     },
     priceDiscount: {
       type: Number,
@@ -48,7 +48,7 @@ const tourSchema = new mongoose.Schema(
     summary: {
       type: String,
       trim: true,
-      required: [true, "A tour must have a summary"]
+      required: [true, 'A tour must have a summary']
     },
     description: {
       type: String,
@@ -57,8 +57,8 @@ const tourSchema = new mongoose.Schema(
     averageOfRatings: {
       type: Number,
       default: 4.0,
-      min: [1, "Ratings must have a value above 1.0"],
-      max: [5, "Ratings must have a value below 5.0"],
+      min: [1, 'Ratings must have a value above 1.0'],
+      max: [5, 'Ratings must have a value below 5.0'],
       set: value => Math.round(value * 10) / 10
     },
     numberOfRatings: {
@@ -67,12 +67,12 @@ const tourSchema = new mongoose.Schema(
     },
     coverImage: {
       type: String,
-      required: [true, "A tour must have a cover image"]
+      required: [true, 'A tour must have a cover image']
     },
     images: [String],
     startDates: {
       type: [Date],
-      required: [true, "A tour must have one start date or more "]
+      required: [true, 'A tour must have one start date or more ']
     },
     createdAt: {
       type: Date,
@@ -81,15 +81,15 @@ const tourSchema = new mongoose.Schema(
     guides: [
       {
         type: mongoose.Schema.ObjectId,
-        ref: "User"
+        ref: 'User'
       }
     ],
     //Define the Geospatial Data in GeoJSON format
     locationOfDeparture: {
       type: {
         type: String,
-        default: "Point",
-        enum: ["Point"]
+        default: 'Point',
+        enum: ['Point']
       },
       coordinates: [Number],
       name: String,
@@ -99,8 +99,8 @@ const tourSchema = new mongoose.Schema(
       {
         type: {
           type: String,
-          default: "Point",
-          enum: ["Point"]
+          default: 'Point',
+          enum: ['Point']
         },
         coordinates: [Number],
         name: String,
@@ -117,15 +117,15 @@ const tourSchema = new mongoose.Schema(
 
 //INDEXES
 tourSchema.index({ price: 1, averageOfRatings: -1 });
-tourSchema.index({ locationOfDeparture: "2dsphere" });
+tourSchema.index({ locationOfDeparture: '2dsphere' });
 // You don't have a slug in your tourSchema
 // tourSchema.index({ slug: 1 });
 
 // Create a virtual field called reviews on tour document
-tourSchema.virtual("reviews", {
-  ref: "Review",
-  foreignField: "tour",
-  localField: "_id"
+tourSchema.virtual('reviews', {
+  ref: 'Review',
+  foreignField: 'tour',
+  localField: '_id'
 });
 
 //****************** */
@@ -133,10 +133,10 @@ tourSchema.virtual("reviews", {
 //****************** */
 
 tourSchema.pre(/^find/, function(next) {
-  this.populate({ path: "guides", select: "-__v" });
+  this.populate({ path: 'guides', select: '-__v' });
   next();
 });
 
-const Tour = mongoose.model("Tour", tourSchema);
+const Tour = mongoose.model('Tour', tourSchema);
 
 module.exports = Tour;

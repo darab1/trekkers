@@ -1,7 +1,7 @@
 [
   {
     "_id": "5e6774f5fc13ae5d6f000064",
-    "name": "Gortsia - Petrostrouga - Oropedio Mouson - Mytikas",
+    "name": "Olympus Trekking",
     "difficulty": "medium",
     "durationInDays": 2,
     "price": 250,
@@ -56,7 +56,7 @@
   },
   {
     "_id": "5e68b129fc13ae5238000000",
-    "name": "Samarias Canyon - White Mountains - Aradenas Canyon - Sfakia",
+    "name": "Crete Trekking",
     "difficulty": "medium",
     "durationInDays": 4,
     "price": 500,
@@ -117,7 +117,7 @@
   },
   {
     "_id": "5e68c06efc13ae1a62000000",
-    "name": "Trekking at Pyrenees",
+    "name": "Pyrenees Trekking",
     "difficulty": "medium",
     "durationInDays": 5,
     "price": 1000,

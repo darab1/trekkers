@@ -1,18 +1,18 @@
-const mongoose = require("mongoose");
-const Tour = require("./tourModel");
+const mongoose = require('mongoose');
+const Tour = require('./tourModel');
 
 const reviewSchema = new mongoose.Schema(
   {
     review: {
       type: String,
-      minlength: [5, "A review must have a minimum length of 5 characters"],
-      maxlength: [1000, "A review must have a maximum of 500 characters"],
-      required: [true, "A review must not be empty"]
+      minlength: [5, 'A review must have a minimum length of 5 characters'],
+      maxlength: [1000, 'A review must have a maximum of 500 characters'],
+      required: [true, 'A review must not be empty']
     },
     rating: {
       type: Number,
-      min: [1, "A review rating starts at 1"],
-      max: [5, "A review rating ends at 5"],
+      min: [1, 'A review rating starts at 1'],
+      max: [5, 'A review rating ends at 5'],
       required: true
     },
     createdAt: {
@@ -21,13 +21,13 @@ const reviewSchema = new mongoose.Schema(
     },
     tour: {
       type: mongoose.Schema.ObjectId,
-      ref: "Tour",
-      required: [true, "A review must belong to a tour"]
+      ref: 'Tour',
+      required: [true, 'A review must belong to a tour']
     },
     user: {
       type: mongoose.Schema.ObjectId,
-      ref: "User",
-      required: [true, "A review must be written by a regular user"]
+      ref: 'User',
+      required: [true, 'A review must be written by a regular user']
     }
   },
   {
@@ -46,8 +46,8 @@ reviewSchema.index({ tour: 1, user: 1 }, { unique: true });
 
 reviewSchema.pre(/^find/, function(next) {
   this.populate({
-    path: "user",
-    select: "fullName"
+    path: 'user',
+    select: 'fullName'
   });
   next();
 });
@@ -60,9 +60,9 @@ reviewSchema.statics.calcAvgSumOfRatings = async function(tourID) {
     },
     {
       $group: {
-        _id: "$tour",
+        _id: '$tour',
         numOfRatings: { $sum: 1 },
-        avgOfRatings: { $avg: "$rating" }
+        avgOfRatings: { $avg: '$rating' }
       }
     }
   ]);
@@ -81,7 +81,7 @@ reviewSchema.statics.calcAvgSumOfRatings = async function(tourID) {
 };
 
 // Call calcAvgSumOfRatings when creating a new review
-reviewSchema.post("save", function() {
+reviewSchema.post('save', function() {
   this.constructor.calcAvgSumOfRatings(this.tour);
 });
 
@@ -91,6 +91,6 @@ reviewSchema.post(/^findOneAnd/, function(reviewDoc) {
   reviewDoc.constructor.calcAvgSumOfRatings(reviewDoc.tour);
 });
 
-const Review = mongoose.model("Review", reviewSchema);
+const Review = mongoose.model('Review', reviewSchema);
 
 module.exports = Review;

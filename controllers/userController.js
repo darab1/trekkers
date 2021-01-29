@@ -1,6 +1,6 @@
-const User = require("./../models/userModel");
-const catchAsyncErrors = require("./../utilities/catchAsyncErrors");
-const controllerFactory = require("./../controllers/controllerFactory");
+const User = require('./../models/userModel');
+const catchAsyncErrors = require('./../utilities/catchAsyncErrors');
+const controllerFactory = require('./../controllers/controllerFactory');
 
 const filterBodyObj = function(bodyObj, ...allowedFields) {
   const filteredObj = {};
@@ -32,7 +32,7 @@ exports.updateMyAccountData = catchAsyncErrors(async (req, res, next) => {
   // }
 
   // 2) Filter all the properties that the user cannot update
-  const filteredBodyObject = filterBodyObj(req.body, "fullName", "email");
+  const filteredBodyObject = filterBodyObj(req.body, 'fullName', 'email');
 
   // 3) Update user document
   const updatedUser = await User.findByIdAndUpdate(
@@ -42,8 +42,8 @@ exports.updateMyAccountData = catchAsyncErrors(async (req, res, next) => {
   );
 
   res.status(200).json({
-    status: "success",
-    message: "User account has been updated",
+    status: 'success',
+    message: 'User account has been updated',
     user: updatedUser
   });
 });
@@ -56,16 +56,16 @@ exports.deleteMyAccount = catchAsyncErrors(async (req, res, next) => {
   await User.findByIdAndUpdate(req.user._id, { active: false });
 
   res.status(204).json({
-    status: "Success",
-    message: "Account successfully deleted!",
+    status: 'Success',
+    message: 'Account successfully deleted!',
     data: null
   });
 });
 
 exports.createUser = async (req, res) => {
   res.status(500).json({
-    status: "Error!",
-    message: "This route is not yet defined"
+    status: 'Error!',
+    message: 'This route is not yet defined'
   });
 };
 

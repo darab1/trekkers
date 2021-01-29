@@ -1,40 +1,40 @@
-const mongoose = require("mongoose");
-const validator = require("validator");
-const bcrypt = require("bcryptjs");
-const crypto = require("crypto");
+const mongoose = require('mongoose');
+const validator = require('validator');
+const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 
 const userSchema = new mongoose.Schema({
   fullName: {
     type: String,
-    required: [true, "Please tell us your name"]
+    required: [true, 'Please tell us your name']
   },
   email: {
     type: String,
-    required: [true, "Please provide your email"],
+    required: [true, 'Please provide your email'],
     unique: true,
     lowercase: true,
-    validate: [validator.isEmail, "Please provide a valid email address"]
+    validate: [validator.isEmail, 'Please provide a valid email address']
   },
   role: {
     type: String,
-    enum: ["admin", "user", "lead-guide", "guide"],
-    default: "user"
+    enum: ['admin', 'user', 'lead-guide', 'guide'],
+    default: 'user'
   },
   password: {
     type: String,
-    required: [true, "Please provide a password"],
+    required: [true, 'Please provide a password'],
     minlength: 8,
     select: false
   },
   passwordConfirm: {
     type: String,
-    required: [true, "Please confirm your password"],
+    required: [true, 'Please confirm your password'],
     validate: {
       // This keyword only works on create and save!!!
       validator: function(value) {
         return value === this.password;
       },
-      message: "Passwords do not match"
+      message: 'Passwords do not match'
     }
   },
   passwordChangedAt: Date,
@@ -52,8 +52,8 @@ const userSchema = new mongoose.Schema({
 // PRE HOOKS/MIDDLEWARE
 //************************
 
-userSchema.pre("save", async function(next) {
-  if (!this.isModified("password")) return next();
+userSchema.pre('save', async function(next) {
+  if (!this.isModified('password')) return next();
 
   this.password = await bcrypt.hash(this.password, 12);
 
@@ -62,8 +62,8 @@ userSchema.pre("save", async function(next) {
 });
 
 // Add passwordChangedAt property to the new user document (this runs just before the document is saved in the DB)
-userSchema.pre("save", function(next) {
-  if (!this.isModified("password") || this.isNew) return next();
+userSchema.pre('save', function(next) {
+  if (!this.isModified('password') || this.isNew) return next();
   this.passwordChangedAt = Date.now() - 1000;
   next();
 });
@@ -104,12 +104,12 @@ userSchema.methods.isPassChangedAfterIssuedJWT = function(JWTIssuedAt) {
 //********************************************************************** */s
 // Generate 2 password reset tokens
 userSchema.methods.generatePasswordResetToken = function() {
-  const passwordResetToken = crypto.randomBytes(32).toString("hex");
+  const passwordResetToken = crypto.randomBytes(32).toString('hex');
 
   this.passwordResetTokenDB = crypto
-    .createHash("sha256")
+    .createHash('sha256')
     .update(passwordResetToken)
-    .digest("hex");
+    .digest('hex');
   console.log({ passwordResetToken }, this.passwordResetTokenDB);
 
   this.passwordResetTokenExpiresAt = Date.now() + 20 * 60 * 1000; // add 20 minutes to Date.now()
@@ -117,6 +117,6 @@ userSchema.methods.generatePasswordResetToken = function() {
   return passwordResetToken;
 };
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
