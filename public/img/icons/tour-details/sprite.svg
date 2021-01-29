@@ -1,0 +1,31 @@
+<svg width="0" height="0" class="hidden">
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="duration">
+    <title>clock</title>
+    <path d="M20.586 23.414L14 16.828V8h4v7.172l5.414 5.414zM16 0C7.163 0 0 7.163 0 16s7.163 16 16 16 16-7.163 16-16S24.837 0 16 0zm0 28C9.373 28 4 22.627 4 16S9.373 4 16 4s12 5.373 12 12-5.373 12-12 12z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 32" id="group">
+    <title>users</title>
+    <path d="M24 24.082v-1.649c2.203-1.241 4-4.337 4-7.432 0-4.971 0-9-6-9s-6 4.029-6 9c0 3.096 1.797 6.191 4 7.432v1.649C13.216 24.637 8 27.97 8 32h28c0-4.03-5.216-7.364-12-7.918z"></path>
+    <path d="M10.225 24.854c1.728-1.13 3.877-1.989 6.243-2.513a11.33 11.33 0 01-1.265-1.844c-.95-1.726-1.453-3.627-1.453-5.497 0-2.689 0-5.228.956-7.305.928-2.016 2.598-3.265 4.976-3.734C19.153 1.571 17.746 0 14 0 8 0 8 4.029 8 9c0 3.096 1.797 6.191 4 7.432v1.649c-6.784.555-12 3.888-12 7.918h8.719c.454-.403.956-.787 1.506-1.146z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="guide">
+    <title>user</title>
+    <path d="M18 22.082v-1.649c2.203-1.241 4-4.337 4-7.432 0-4.971 0-9-6-9s-6 4.029-6 9c0 3.096 1.797 6.191 4 7.432v1.649C7.216 22.637 2 25.97 2 30h28c0-4.03-5.216-7.364-12-7.918z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="location">
+    <title>location</title>
+    <path d="M16 0C10.477 0 6 4.477 6 10c0 10 10 22 10 22s10-12 10-22c0-5.523-4.477-10-10-10zm0 16a6 6 0 110-12 6 6 0 010 12z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="rating-star">
+    <title>star-full</title>
+    <path d="M32 12.408l-11.056-1.607L16 .783l-4.944 10.018L0 12.408l8 7.798-1.889 11.011L16 26.018l9.889 5.199L24 20.206l8-7.798z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="starting-date">
+    <title>calendar</title>
+    <path d="M10 12h4v4h-4zm6 0h4v4h-4zm6 0h4v4h-4zM4 24h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zm-6-6h4v4h-4zm6 0h4v4h-4zm6 0h4v4h-4zM4 18h4v4H4zM26 0v2h-4V0H8v2H4V0H0v32h30V0h-4zm2 30H2V8h26v22z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="difficulty">
+    <title>stats-bars2</title>
+    <path d="M9 12H3c-.55 0-1 .45-1 1v18c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V13c0-.55-.45-1-1-1zm0 18H3v-8h6v8zM19 8h-6c-.55 0-1 .45-1 1v22c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm0 22h-6V20h6v10zM29 4h-6c-.55 0-1 .45-1 1v26c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zm0 26h-6V18h6v12z"></path>
+  </symbol>
+</svg>

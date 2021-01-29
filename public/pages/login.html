@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--global font family-->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!--heading font family-->
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Trekkers - Log In</title>
+</head>
+
+<body>
+  <div class="container-login">
+    <!-------------------->
+    <!-- REVIEW SECTION -->
+    <!-------------------->
+    <header class="header">
+      <nav class="header__nav">
+        <svg class="header__logo">
+          <use xlink:href="../img/sprite.svg#logo-mountain"></use>
+        </svg>
+        <!--Styled like this so there won't be any whitespace-->
+        <div class="header__links">
+          <a href="index.html">
+            Home</a><a href="#">
+            Tours</a><a href="./pages/login.html">
+            Log In</a><a href="./pages/signup.html">
+            Sign Up</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-------------------->
+    <!-- LOG IN FORM SECTION -->
+    <!-------------------->
+    <section class="login">
+      <form class="login__form" action="">
+        <h3 class="login__heading">Log In</h3>
+        <div class="login__email-wrapper">
+          <label class="label label__email" for="email">
+            Email
+          </label>
+          <input class="input input__email" type="email" id="email" name="email" required>
+        </div>
+        <div class="login__password-wrapper">
+          <label class="label label__password" for="password">Password</label>
+          <input class="input input__password" type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn login__btn">
+          Log In
+        </button>
+        <a class="forgot-password">
+          Forgot Password?
+        </a>
+      </form>
+    </section>
+
+    <!-------------------->
+    <!-- FOOTER SECTION -->
+    <!-------------------->
+    <footer class="footer">
+      <nav class="footer__nav">
+        <div class="footer__logo-wrapper">
+          <svg class="footer__logo">
+            <use xlink:href="../img/sprite.svg#logo-mountain"></use>
+          </svg>
+          <h4 class="heading-logo">Trekkers</h4>
+        </div>
+        <!--Styled like this so there won't be any whitespace-->
+        <!-- <p class="copyright">
+          &copy; Copyright 2021 by Dimitris Arabatzis.
+        </p> -->
+        <div class="footer__links">
+          <a href="#">
+            Who we are</a><a href="#">
+            Find All Tours</a><a href="#">
+            Come work with us</a>
+        </div>
+      </nav>
+    </footer>
+  </div>
+</body>
+
+</html>

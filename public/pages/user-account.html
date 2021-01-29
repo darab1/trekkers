@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!--heading font family-->
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Trekkers - Tour</title>
+</head>
+
+<body>
+  <div class="container-user-account">
+    <!------------------>
+    <!--HEADER SECTION-->
+    <!------------------>
+    <header class="header">
+      <nav class="header__nav">
+        <svg class="header__logo">
+          <use xlink:href="../img/sprite.svg#logo-mountain"></use>
+        </svg>
+
+        <!--Styled like this so there won't be any whitespace-->
+        <div class="header__links">
+          <a href="#">
+            Home</a><a href="index.html">
+            Tours</a><a href="#">
+            Log In</a><a href="./pages/login.html">
+            Sign Up</a>
+        </div>
+      </nav>
+    </header>
+
+    <!------------------>
+    <!--MAIN SECTION-->
+    <!------------------>
+    <!--main conteainer-->
+    <main class="main">
+      <!--dashboard container-->
+      <div class="user-dashboard">
+        <!--nav conteainer-->
+        <nav class="user-dashboard__nav">
+          <h3 class="user-dashboard__heading">User Profile</h3>
+          <ul class="user-dashboard__nav-list">
+            <li class="user-dashboard__nav-list-item"><a
+                class="user-dashboard__nav-list-link user-dashboard__nav-active" href="#">
+                <svg class="user-dashboard__icon">
+                  <use xlink:href="../img/icons/user-account/sprite.svg#user"></use>
+                </svg>
+                User Info</a>
+            </li>
+            <li class="user-dashboard__nav-list-item"><a class="user-dashboard__nav-list-link" href="#">
+                <svg class="user-dashboard__icon">
+                  <use xlink:href="../img/icons/user-account/sprite.svg#heart"></use>
+                </svg>
+                Favorite Tours</a>
+            </li>
+            <li class="user-dashboard__nav-list-item"><a class="user-dashboard__nav-list-link" href="#">
+                <svg class="user-dashboard__icon">
+                  <use xlink:href="../img/icons/user-account/sprite.svg#calendar"></use>
+                </svg>
+                Bookings</a>
+            </li>
+            <li class="user-dashboard__nav-list-item"><a class="user-dashboard__nav-list-link" href="#">
+                <svg class="user-dashboard__icon">
+                  <use xlink:href="../img/icons/user-account/sprite.svg#rating"></use>
+                </svg>
+                Reviews</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="user-dashboard__content">
+          <div class="user-dashboard__form-wrapper">
+            <form class="form form__user-info" action="">
+              <div class="form__group form__group-photo">
+                <img class="form__user-photo" src="../img/guides/guide-3.jpg" alt="User avatar">
+                <h4 class="form__user-name">Karina Alexova</h4>
+                <input class="form__upload-photo" type="file" accept="image/*" id="avatar" name="avatar">
+                <label class="form__group-photo-label" for="avatar">Change profile photo</label>
+              </div>
+              <!--fullname-->
+              <div class="form__group form__group-fullname">
+                <label for="fullname" class="form__fullname-label">
+                  Fullname
+                </label>
+                <input type="text" id="fullname" name="fullname" required minlength="4" class="form__fullname-input">
+              </div>
+              <!--email-->
+              <div class="form__group form__group-email">
+                <label for="email" class="form__email-label">
+                  Email
+                </label>
+                <input type="email" id="email" name="email" class="form__email-input">
+              </div>
+              <!--Save changes button-->
+              <button type="submit" class="btn btn__save-changes">
+                Save Changes
+              </button>
+            </form>
+            <!--end of user-info form-->
+          </div>
+          <div class="hr-line">&nbsp;</div>
+          <!-- <hr class="hr-line"> -->
+          <!--Save Changed Password-->
+          <div class="user-dashboard__form-wrapper">
+            <form action="" class="form form__change-password">
+              <h3 class="form__heading">Change Password</h3>
+              <!--current password-->
+              <div class="form__group form__group-password-current">
+                <label for="password-current" class="form__password-current-label">
+                  Current Password
+                </label>
+                <input type="password" id="password-current" name="password-current"
+                  class="form__password-current-input">
+              </div>
+              <!--new password-->
+              <div class="form__group form__group-password-new">
+                <label for="password-new" class="form__password-new-label">
+                  New Password
+                </label>
+                <input type="password" id="password-new" name="password-new" class="form__password-new-input">
+              </div>
+              <!--confirm new password-->
+              <div class="form__group form__group-password-confirm">
+                <label for="password-confirm" class="form__password-confirm-label">
+                  Confirm New Password
+                </label>
+                <input type="password" id="password-confirm" name="password-confirm"
+                  class="form__password-confirm-input">
+              </div>
+              <!--save password button-->
+              <button type="submit" class="btn btn__save-password">
+                Save Password
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+      <!--user-dashboard end-->
+    </main>
+
+    <!------------------>
+    <!--FOOTER SECTION-->
+    <!------------------>
+    <footer class="footer">
+      <nav class="footer__nav">
+        <div class="footer__logo-wrapper">
+          <svg class="footer__logo">
+            <use xlink:href="../img/sprite.svg#logo-mountain"></use>
+          </svg>
+          <h4 class="heading-logo">Trekkers</h4>
+        </div>
+        <div class="footer__links">
+          <a href="#">
+            Who we are</a><a href="#">
+            Find All Tours</a><a href="#">
+            Come work with us</a>
+        </div>
+      </nav>
+    </footer>
+  </div>
+</body>
+
+</html>
