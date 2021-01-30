@@ -25,7 +25,7 @@ app.set('views', path.join(__dirname, 'views'));
 // MIDDLEWARE
 
 // Serve static files
-app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Set HTTP security response headers
 app.use(helmet());
