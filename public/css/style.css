@@ -26,7 +26,7 @@ a, a:link, a:visited {
   grid-template-columns: [full-start] 1fr [center-start] repeat(8, [col-start] minmax(min-content, 8.75rem) [col-end]) [center-end] 1fr [full-end]; }
   @media (max-width: 639px) {
     .container {
-      grid-template-rows: min-content 60vh repeat(4, min-content) 35vh min-content; } }
+      grid-template-rows: min-content 60vh repeat(4, min-content) 35vh min-content min-content; } }
 
 .container-login {
   display: grid;
@@ -185,7 +185,7 @@ a, a:link, a:visited {
       margin-left: 0; } }
 
 .hero {
-  background-image: linear-gradient(to bottom, rgba(88, 10, 148, 0.3), rgba(135, 25, 225, 0.4)), url("../../img/hero.jpg");
+  background-image: linear-gradient(to bottom, rgba(88, 10, 148, 0.3), rgba(135, 25, 225, 0.4)), url("../img/hero.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -370,6 +370,7 @@ a, a:link, a:visited {
     text-align: center; }
   .tours__card-wrapper {
     padding: 36px 36px;
+    padding-bottom: 18px;
     margin: 0 auto;
     width: 90%;
     display: grid;
@@ -378,6 +379,35 @@ a, a:link, a:visited {
     justify-content: center;
     column-gap: 36px;
     row-gap: 12px; }
+  .tours .btn__more {
+    display: inline-block;
+    width: 160px;
+    margin: 0 auto;
+    margin-bottom: 34px;
+    padding: 8px 10px;
+    background-color: #a469fc;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color .3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .tours .btn__more:hover {
+      background-color: #690cb0; }
+    .tours .btn__more:hover .btn__more-text {
+      margin-right: 16px; }
+  .tours .btn__more-text {
+    color: white;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
+    margin-right: 8px;
+    transition: all 0.3s ease-in-out; }
+  .tours .btn__more-icon {
+    fill: white;
+    height: 20px;
+    width: 20px; }
 
 .tour__card {
   display: grid;
@@ -407,7 +437,7 @@ a, a:link, a:visited {
   text-align: center;
   padding: 12px;
   background-color: #66d6ad;
-  color: #450570;
+  color: #690cb0;
   font-weight: 700;
   transform: translateY(50%); }
 
@@ -445,7 +475,7 @@ a, a:link, a:visited {
   grid-row: 7 / 8;
   grid-column: full-start / full-end;
   background-color: #7d7d7d;
-  background-image: linear-gradient(to right, rgba(88, 10, 148, 0.3), rgba(135, 25, 225, 0.4)), url("../../img/review2.jpg");
+  background-image: linear-gradient(to right, rgba(88, 10, 148, 0.3), rgba(135, 25, 225, 0.4)), url("../img/review2.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -522,7 +552,7 @@ a, a:link, a:visited {
 .guide__name {
   color: #7a0ecd;
   margin-bottom: 12px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700; }
 
 .guide__type {

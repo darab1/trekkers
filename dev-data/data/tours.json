@@ -180,7 +180,7 @@
   },
   {
     "_id": "5e68c879fc13ae1a6200000a",
-    "name": "Road Trip To Iceland",
+    "name": "Iceland Trekking",
     "difficulty": "medium",
     "durationInDays": 5,
     "price": 1500,
@@ -247,7 +247,7 @@
   },
   {
     "_id": "5e6910b8fc13ae7eba000000",
-    "name": "Mount Elbrus Ascent",
+    "name": "Elbrus Trekking",
     "difficulty": "hard",
     "durationInDays": 5,
     "price": 2000,

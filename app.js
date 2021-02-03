@@ -10,6 +10,7 @@ const path = require('path');
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
+const viewRouter = require('./routes/viewRoutes');
 
 const AppError = require('./utilities/appError');
 const globalErrorController = require('./controllers/errorController');
@@ -58,11 +59,9 @@ app.use(hpp({ whitelist: ['duration', 'price', 'difficulty'] }));
 /********/
 // ROUTES
 /********/
-app.get('/', (req, res) => {
-  res.status(200).render('index');
-});
 
 //Define what routes you will be using and their respective route handlers
+app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);

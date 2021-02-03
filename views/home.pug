@@ -1,0 +1,178 @@
+extends index
+
+block variables
+  - var containerClassName='container'
+
+block content
+  //- HERO SECTION
+  section.hero
+    .hero-wrapper
+      h1.hero__heading.heading-1
+        | Let&apos;s 
+        br
+        |  Explore 
+        br
+        |  Beautiful Destinations
+      p.hero__text
+        | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus voluptate quos atque commodi tempora
+        | blanditiis.
+        | Quaerat voluptatum reprehenderit, id voluptatibus minus.
+        | Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      a.btn.hero__btn(href='#')
+        | Go Explore
+  
+  //- ABOUT SECTION
+  section.about
+    .about-wrapper
+      h2.about__heading.heading-2
+        | About Us
+      p.about__text
+        | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam molestias ipsum, est, suscipit consequatur
+        | laborum quia repudiandae, sed sint mollitia adipisci eaque. Eius ipsa, deleniti beatae quis, sunt natus
+        | debitis,
+        | totam velit maiores fugiat explicabo non molestias voluptatem. Expedita, in assumenda inventore officia,
+        | culpa
+        | obcaecati ullam minus corporis eos vitae quas? Aliquam doloribus ab, vero odit
+
+  //- FEATURE SECTION
+  section.features.padding-lr
+    .features-wrapper
+      .feature
+        svg.feature__icon
+          use(xlink:href='img/icons/features/sprite.svg#destination')
+        h3.feature__heading Beautiful Destinations
+        p.feature__text
+          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos a accusantium assumenda
+          | obcaecati tempora velit aspernatur quaerat aliquam odit cupiditate facilis ipsa dicta, ab ea vel, asperiores
+          | quis, totam dolorem.
+      .feature
+        svg.feature__icon
+          use(xlink:href='img/icons/features/sprite.svg#guide')
+        h3.feature__heading A Team Of Experts
+        p.feature__text
+          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos a accusantium assumenda
+          | obcaecati tempora velit aspernatur quaerat aliquam odit cupiditate facilis ipsa dicta, ab ea vel, asperiores
+          | quis, totam dolorem.
+      .feature
+        svg.feature__icon
+          use(xlink:href='img/icons/features/sprite.svg#condition')
+        h3.feature__heading In Every condition
+        p.feature__text
+          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos a accusantium assumenda
+          | obcaecati tempora velit aspernatur quaerat aliquam odit cupiditate facilis ipsa dicta, ab ea vel, asperiores
+          | quis, totam dolorem.
+    //- End of wrapper
+
+  //- GALLERY SECTION  
+  section.gallery
+    figure.gallery__item.gallery__item--1.darken
+      img.gallery__img(src='img/gallery-home/gallery-1.jpg' alt='Gallery image 1')
+    figure.gallery__item.gallery__item--2.darken
+      img.gallery__img(src='img/gallery-home/gallery-2.jpg' alt='Gallery image 2')
+    figure.gallery__item.gallery__item--3.darken
+      img.gallery__img(src='img/gallery-home/gallery-3.jpg' alt='Gallery image 3')
+    figure.gallery__item.gallery__item--4.darken
+      img.gallery__img(src='img/gallery-home/gallery-4.jpg' alt='Gallery image 4')
+    figure.gallery__item.gallery__item--5.darken
+      img.gallery__img(src='img/gallery-home/gallery-5.jpg' alt='Gallery image 5')
+    figure.gallery__item.gallery__item--6.darken
+      img.gallery__img(src='img/gallery-home/gallery-6.jpg' alt='Gallery image 6')
+
+  //- TOUR SECTION    
+  section.tours.padding-lr
+    h2.tours__heading Some Of Our Tours
+    .tours__card-wrapper
+
+      each tour in tours
+        .tour__card
+          img.tour__img(src='./img/tour-cards/olympus.jpg' alt=`${tour.name}`)
+          h4.tour__name= tour.name
+          .tour__difficulty
+            svg.tour__icon
+              use(xlink:href='img/icons/tour-cards/sprite.svg#difficulty')
+            p medium
+          .tour__duration
+            svg.tour__icon
+              use(xlink:href='img/icons/tour-cards/sprite.svg#duration')
+            p 2 days
+          .tour__max-size
+            svg.tour__icon
+              use(xlink:href='img/icons/tour-cards/sprite.svg#person')
+            p 10 people
+          .tour__price
+            svg.tour__icon
+              use(xlink:href='img/icons/tour-cards/sprite.svg#price')
+            p 250 &euro;
+          a.btn.tour__btn(href='') Details
+      //- .tour__card
+      //-   img.tour__img(src='./img/tour-cards/crete.jpg' alt='Crete Landscape')
+      //-   h4.tour__name Crete Trekking
+      //-   .tour__difficulty
+      //-     svg.tour__icon
+      //-       use(xlink:href='img/icons/tour-cards/sprite.svg#difficulty')
+      //-     p medium
+      //-   .tour__duration
+      //-     svg.tour__icon
+      //-       use(xlink:href='img/icons/tour-cards/sprite.svg#duration')
+      //-     p 4 days
+      //-   .tour__max-size
+      //-     svg.tour__icon
+      //-       use(xlink:href='img/icons/tour-cards/sprite.svg#person')
+      //-     p 8 people
+      //-   .tour__price
+      //-     svg.tour__icon
+      //-       use(xlink:href='img/icons/tour-cards/sprite.svg#price')
+      //-     p 500 &euro;
+      //-   a.btn.tour__btn(href='') Details
+      //- .tour__card
+      //-   img.tour__img(src='./img/tour-cards/pyrenees.jpg' alt='Pyrenees Mountains')
+      //-   h4.tour__name Pyrenees Trekking
+      //-   .tour__difficulty
+      //-     svg.tour__icon
+      //-       use(xlink:href='img/icons/tour-cards/sprite.svg#difficulty')
+      //-     p medium
+      //-   .tour__duration
+      //-     svg.tour__icon
+      //-       use(xlink:href='img/icons/tour-cards/sprite.svg#duration')
+      //-     p 5 days
+      //-   .tour__max-size
+      //-     svg.tour__icon
+      //-       use(xlink:href='img/icons/tour-cards/sprite.svg#person')
+      //-     p 9 people
+      //-   .tour__price
+      //-     svg.tour__icon
+      //-       use(xlink:href='img/icons/tour-cards/sprite.svg#price')
+      //-     p 1000 &euro;
+      //-   a.btn.tour__btn(href='') Details
+    a.btn.btn__more
+      span.btn__more-text More Tours
+      svg.btn__more-icon
+        use(xlink:href='./img/icons/arrows/sprite.svg#arrow-thin')
+
+  //- REVIEW SECTION
+  section.review.padding-lr
+    .review-wrapper
+      blockquote.review__quote
+        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat est tempora
+        | corporis minima dolor! Debitis atque fuga, iste nam est consequatur corrupti - 
+        span Marianne
+
+  //- GUIDES SECTION
+  section.guides.padding-lr
+    h2.guides__heading Some Of Our Guides
+    .guides__card-wrapper
+      .guide__card
+        img.guide__img(src='./img/guides/guide-1.jpg' alt='guide-1')
+        h3.guide__name Enrichetta Dumphry
+        p.guide__type Guide
+        p.guide__email edumphry4@delicious.com
+      .guide__card
+        img.guide__img(src='./img/guides/guide-2.jpg' alt='guide-1')
+        h3.guide__name Falito Drayn
+        p.guide__type Guide
+        p.guide__email fdraynf@biglobe.ne.jp
+      .guide__card
+        img.guide__img(src='./img/guides/guide-3.jpg' alt='guide-1')
+        h3.guide__name Rochette Holleran
+        p.guide__type Lead Guide
+        p.guide__email rhollerang@dell.com
