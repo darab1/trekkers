@@ -18,12 +18,8 @@
     "guides": ["5e667765fc13ae49c8000003", "5e667765fc13ae49c8000004"],
     "numberOfRatings": 12,
     "averageOfRatings": 4.8,
-    "coverImage": "cover-image-1",
-    "images": [
-      "olympus-tour-1-1.jpg",
-      "olympus-tour-1-2.jpg",
-      "olympus-tour-1-3.jpg"
-    ],
+    "coverImage": "olympus-cover.jpg",
+    "images": ["olympus-1.jpg", "olympus-2.jpg", "olympus-3.jpg"],
     "locationOfDeparture": {
       "name": "Gortsia",
       "type": "Point",
@@ -72,12 +68,8 @@
     "guides": ["5e667765fc13ae49c8000009"],
     "numberOfRatings": 8,
     "averageOfRatings": 4.5,
-    "coverImage": "cover-image-2",
-    "images": [
-      "crete-tour-1-1.jpg",
-      "crete-tour-1-2.jpg",
-      "crete-tour-1-3.jpg"
-    ],
+    "coverImage": "crete-cover.jpg",
+    "images": ["crete-1.jpg", "crete-2.jpg", "crete-3.jpg"],
     "locationOfDeparture": {
       "name": "Kentriki Agora",
       "type": "Point",
@@ -128,12 +120,8 @@
     "guides": ["5e667765fc13ae49c8000005", "5e667765fc13ae49c8000009"],
     "numberOfRatings": 5,
     "averageOfRatings": 4.7,
-    "coverImage": "cover-image-3",
-    "images": [
-      "pyrenees-tour-1-1.jpg",
-      "pyrenees-tour-1-2.jpg",
-      "pyrenees-tour-1-3.jpg"
-    ],
+    "coverImage": "pyrenees-cover.jpg",
+    "images": ["pyrenees-1.jpg", "pyrenees-2.jpg", "pyrenees-3.jpg"],
     "locationOfDeparture": {
       "name": "Bujaruelo Refugee",
       "type": "Point",
@@ -195,12 +183,8 @@
     "guides": ["5e667765fc13ae49c800000b", "5e667765fc13ae49c800000f"],
     "numberOfRatings": 12,
     "averageOfRatings": 4.8,
-    "coverImage": "cover-image-4",
-    "images": [
-      "iceland-tour-1-1.jpg",
-      "iceland-tour-1-2.jpg",
-      "iceland-tour-1-3.jpg"
-    ],
+    "coverImage": "iceland-cover.jpg",
+    "images": ["iceland-1.jpg", "iceland-2.jpg", "iceland-3.jpg"],
     "locationOfDeparture": {
       "name": "Hlemmur Square Hotel",
       "type": "Point",
@@ -258,12 +242,8 @@
     "guides": ["5e667765fc13ae49c8000010", "5e667765fc13ae49c8000011"],
     "numberOfRatings": 6,
     "averageOfRatings": 4.7,
-    "coverImage": "cover-image-5",
-    "images": [
-      "elbrus-tour-1-1.jpg",
-      "elbrus-tour-1-2.jpg",
-      "elbrus-tour-1-3.jpg"
-    ],
+    "coverImage": "elbrus-cover.jpg",
+    "images": ["elbrus-1.jpg", "elbrus-2.jpg", "elbrus-3.jpg"],
     "locationOfDeparture": {
       "name": "Snezhniy Bars Cheget  Hotel",
       "type": "Point",
