@@ -185,7 +185,7 @@ a, a:link, a:visited {
       margin-left: 0; } }
 
 .hero {
-  background-image: linear-gradient(to bottom, rgba(88, 10, 148, 0.3), rgba(135, 25, 225, 0.4)), url("../img/hero.jpg");
+  background-image: linear-gradient(to bottom, rgba(88, 10, 148, 0.3), rgba(135, 25, 225, 0.4)), url("../img/homepage/hero.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -475,7 +475,7 @@ a, a:link, a:visited {
   grid-row: 7 / 8;
   grid-column: full-start / full-end;
   background-color: #7d7d7d;
-  background-image: linear-gradient(to right, rgba(88, 10, 148, 0.3), rgba(135, 25, 225, 0.4)), url("../img/review2.jpg");
+  background-image: linear-gradient(to right, rgba(88, 10, 148, 0.3), rgba(135, 25, 225, 0.4)), url("../img/homepage/review-cover.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -721,14 +721,21 @@ a, a:link, a:visited {
 .hero-tour {
   grid-row: 2 / 3;
   grid-column: 1 / -1;
-  background-image: linear-gradient(to bottom, rgba(88, 10, 148, 0.3), rgba(135, 25, 225, 0.4)), url(../../img/tour-page/hero_tour.jpg);
+  /* background-image: linear-gradient(to bottom, rgba(88, 10, 148, 0.3), rgba(135, 25, 225, 0.4)), url(../../img/tour-page/hero_tour.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: fixed; */
   display: flex;
   justify-content: center;
   align-items: center; }
+
+.hero-tour__img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
   .hero-tour-wrapper {
     width: 500px;
     min-width: 300px;
