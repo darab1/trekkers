@@ -66,17 +66,17 @@ block content
   //- GALLERY SECTION  
   section.gallery
     figure.gallery__item.gallery__item--1.darken
-      img.gallery__img(src='img/gallery-home/gallery-1.jpg' alt='Gallery image 1')
+      img.gallery__img(src='img/homepage/gallery-1.jpg' alt='Gallery image 1')
     figure.gallery__item.gallery__item--2.darken
-      img.gallery__img(src='img/gallery-home/gallery-2.jpg' alt='Gallery image 2')
+      img.gallery__img(src='img/homepage/gallery-2.jpg' alt='Gallery image 2')
     figure.gallery__item.gallery__item--3.darken
-      img.gallery__img(src='img/gallery-home/gallery-3.jpg' alt='Gallery image 3')
+      img.gallery__img(src='img/homepage/gallery-3.jpg' alt='Gallery image 3')
     figure.gallery__item.gallery__item--4.darken
-      img.gallery__img(src='img/gallery-home/gallery-4.jpg' alt='Gallery image 4')
+      img.gallery__img(src='img/homepage/gallery-4.jpg' alt='Gallery image 4')
     figure.gallery__item.gallery__item--5.darken
-      img.gallery__img(src='img/gallery-home/gallery-5.jpg' alt='Gallery image 5')
+      img.gallery__img(src='img/homepage/gallery-5.jpg' alt='Gallery image 5')
     figure.gallery__item.gallery__item--6.darken
-      img.gallery__img(src='img/gallery-home/gallery-6.jpg' alt='Gallery image 6')
+      img.gallery__img(src='img/homepage/gallery-6.jpg' alt='Gallery image 6')
 
   //- TOUR SECTION    
   section.tours.padding-lr
@@ -85,65 +85,25 @@ block content
 
       each tour in tours
         .tour__card
-          img.tour__img(src='./img/tour-cards/olympus.jpg' alt=`${tour.name}`)
+          img.tour__img(src=`./img/tours/${tour.name.toLowerCase()}/${tour.coverImage}` alt=`${tour.name}`)
           h4.tour__name= tour.name
           .tour__difficulty
             svg.tour__icon
               use(xlink:href='img/icons/tour-cards/sprite.svg#difficulty')
-            p medium
+            p= tour.difficulty
           .tour__duration
             svg.tour__icon
               use(xlink:href='img/icons/tour-cards/sprite.svg#duration')
-            p 2 days
+            p= `${tour.durationInDays} days`
           .tour__max-size
             svg.tour__icon
               use(xlink:href='img/icons/tour-cards/sprite.svg#person')
-            p 10 people
+            p= `${tour.maxGroupSize} people`
           .tour__price
             svg.tour__icon
               use(xlink:href='img/icons/tour-cards/sprite.svg#price')
-            p 250 &euro;
+            p= `${tour.price}`
           a.btn.tour__btn(href='') Details
-      //- .tour__card
-      //-   img.tour__img(src='./img/tour-cards/crete.jpg' alt='Crete Landscape')
-      //-   h4.tour__name Crete Trekking
-      //-   .tour__difficulty
-      //-     svg.tour__icon
-      //-       use(xlink:href='img/icons/tour-cards/sprite.svg#difficulty')
-      //-     p medium
-      //-   .tour__duration
-      //-     svg.tour__icon
-      //-       use(xlink:href='img/icons/tour-cards/sprite.svg#duration')
-      //-     p 4 days
-      //-   .tour__max-size
-      //-     svg.tour__icon
-      //-       use(xlink:href='img/icons/tour-cards/sprite.svg#person')
-      //-     p 8 people
-      //-   .tour__price
-      //-     svg.tour__icon
-      //-       use(xlink:href='img/icons/tour-cards/sprite.svg#price')
-      //-     p 500 &euro;
-      //-   a.btn.tour__btn(href='') Details
-      //- .tour__card
-      //-   img.tour__img(src='./img/tour-cards/pyrenees.jpg' alt='Pyrenees Mountains')
-      //-   h4.tour__name Pyrenees Trekking
-      //-   .tour__difficulty
-      //-     svg.tour__icon
-      //-       use(xlink:href='img/icons/tour-cards/sprite.svg#difficulty')
-      //-     p medium
-      //-   .tour__duration
-      //-     svg.tour__icon
-      //-       use(xlink:href='img/icons/tour-cards/sprite.svg#duration')
-      //-     p 5 days
-      //-   .tour__max-size
-      //-     svg.tour__icon
-      //-       use(xlink:href='img/icons/tour-cards/sprite.svg#person')
-      //-     p 9 people
-      //-   .tour__price
-      //-     svg.tour__icon
-      //-       use(xlink:href='img/icons/tour-cards/sprite.svg#price')
-      //-     p 1000 &euro;
-      //-   a.btn.tour__btn(href='') Details
     a.btn.btn__more
       span.btn__more-text More Tours
       svg.btn__more-icon
@@ -161,18 +121,11 @@ block content
   section.guides.padding-lr
     h2.guides__heading Some Of Our Guides
     .guides__card-wrapper
-      .guide__card
-        img.guide__img(src='./img/guides/guide-1.jpg' alt='guide-1')
-        h3.guide__name Enrichetta Dumphry
-        p.guide__type Guide
-        p.guide__email edumphry4@delicious.com
-      .guide__card
-        img.guide__img(src='./img/guides/guide-2.jpg' alt='guide-1')
-        h3.guide__name Falito Drayn
-        p.guide__type Guide
-        p.guide__email fdraynf@biglobe.ne.jp
-      .guide__card
-        img.guide__img(src='./img/guides/guide-3.jpg' alt='guide-1')
-        h3.guide__name Rochette Holleran
-        p.guide__type Lead Guide
-        p.guide__email rhollerang@dell.com
+
+      each guide in guides
+        .guide__card
+          img.guide__img(src=`./img/users/${guide.photo}` alt=`${guide.fullName}`)
+          h3.guide__name= guide.fullName
+          p.guide__type= guide.role
+          p.guide__email= guide.email
+        

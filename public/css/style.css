@@ -556,14 +556,16 @@ a, a:link, a:visited {
   font-weight: 700; }
 
 .guide__type {
-  color: #525252;
+  color: #147D64;
   margin-bottom: 12px;
-  font-size: 18px;
-  font-weight: 500; }
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
 
 .guide__email {
   color: #616161;
-  font-size: 14px; }
+  font-size: 12px; }
 
 .login {
   background-color: #f2ecfe;
