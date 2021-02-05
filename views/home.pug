@@ -103,12 +103,12 @@ block content
             svg.tour__icon
               use(xlink:href='img/icons/tour-cards/sprite.svg#price')
             p= `${tour.price}`
-          a.btn.tour__btn(href='') Details
-    a.btn.btn__more
+          a.btn.tour__btn(href=`/tours/${tour.slug}`) Details
+    a.btn.btn__more(href='')
       span.btn__more-text More Tours
       svg.btn__more-icon
         use(xlink:href='./img/icons/arrows/sprite.svg#arrow-thin')
-
+  
   //- REVIEW SECTION
   section.review.padding-lr
     .review-wrapper

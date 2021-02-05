@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const tourSchema = new mongoose.Schema(
   {
@@ -107,7 +108,8 @@ const tourSchema = new mongoose.Schema(
         dayOfTour: Number,
         address: String
       }
-    ]
+    ],
+    slug: String
   },
   {
     toJSON: { virtuals: true },
@@ -119,13 +121,19 @@ const tourSchema = new mongoose.Schema(
 tourSchema.index({ price: 1, averageOfRatings: -1 });
 tourSchema.index({ locationOfDeparture: '2dsphere' });
 // You don't have a slug in your tourSchema
-// tourSchema.index({ slug: 1 });
+tourSchema.index({ slug: 1 });
 
 // Create a virtual field called reviews on tour document
 tourSchema.virtual('reviews', {
   ref: 'Review',
   foreignField: 'tour',
   localField: '_id'
+});
+
+// Create a slug for the tour-details page.
+tourSchema.pre('save', function(next) {
+  this.slug = slugify(this.name, { lower: true });
+  next();
 });
 
 //****************** */
