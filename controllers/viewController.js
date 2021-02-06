@@ -16,8 +16,16 @@ exports.getHomepage = catchAsyncErrors(async (req, res) => {
   });
 });
 
-exports.getTourDetails = (req, res) => {
-  res.status(200).render('tour-details', {
-    title: 'Olympus Trekking'
+exports.getTourDetails = catchAsyncErrors(async (req, res) => {
+  // 1) Get the requested tour
+  const tour = await Tour.findOne({ slug: req.params.slug }).populate({
+    path: 'reviews',
+    fields: 'review rating user'
   });
-};
+  console.log(tour);
+  console.log(tour.reviews);
+  res.status(200).render('tour-details', {
+    title: 'Olympus Trekking',
+    tour
+  });
+});

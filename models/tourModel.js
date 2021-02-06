@@ -81,7 +81,8 @@ const tourSchema = new mongoose.Schema(
     },
     guides: [
       {
-        type: mongoose.Schema.ObjectId,
+        // type: mongoose.Schema.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
       }
     ],
@@ -140,10 +141,19 @@ tourSchema.pre('save', function(next) {
 // QUERY MIDDLEWARE
 //****************** */
 
+// Pre hooks, for populating the guides and reviews(virtual) fields
 tourSchema.pre(/^find/, function(next) {
   this.populate({ path: 'guides', select: '-__v' });
   next();
 });
+
+// tourSchema.pre(/^find/, function(next) {
+//   this.populate({
+//     path: 'reviews',
+//     fields: 'review rating user'
+//   });
+//   next();
+// });
 
 const Tour = mongoose.model('Tour', tourSchema);
 

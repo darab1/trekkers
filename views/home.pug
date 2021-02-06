@@ -39,7 +39,7 @@ block content
     .features-wrapper
       .feature
         svg.feature__icon
-          use(xlink:href='img/icons/features/sprite.svg#destination')
+          use(xlink:href='/img/icons/features/sprite.svg#destination')
         h3.feature__heading Beautiful Destinations
         p.feature__text
           | Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos a accusantium assumenda
@@ -47,7 +47,7 @@ block content
           | quis, totam dolorem.
       .feature
         svg.feature__icon
-          use(xlink:href='img/icons/features/sprite.svg#guide')
+          use(xlink:href='/img/icons/features/sprite.svg#guide')
         h3.feature__heading A Team Of Experts
         p.feature__text
           | Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos a accusantium assumenda
@@ -55,7 +55,7 @@ block content
           | quis, totam dolorem.
       .feature
         svg.feature__icon
-          use(xlink:href='img/icons/features/sprite.svg#condition')
+          use(xlink:href='/img/icons/features/sprite.svg#condition')
         h3.feature__heading In Every condition
         p.feature__text
           | Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos a accusantium assumenda
@@ -66,17 +66,17 @@ block content
   //- GALLERY SECTION  
   section.gallery
     figure.gallery__item.gallery__item--1.darken
-      img.gallery__img(src='img/homepage/gallery-1.jpg' alt='Gallery image 1')
+      img.gallery__img(src='/img/homepage/gallery-1.jpg' alt='Gallery image 1')
     figure.gallery__item.gallery__item--2.darken
-      img.gallery__img(src='img/homepage/gallery-2.jpg' alt='Gallery image 2')
+      img.gallery__img(src='/img/homepage/gallery-2.jpg' alt='Gallery image 2')
     figure.gallery__item.gallery__item--3.darken
-      img.gallery__img(src='img/homepage/gallery-3.jpg' alt='Gallery image 3')
+      img.gallery__img(src='/img/homepage/gallery-3.jpg' alt='Gallery image 3')
     figure.gallery__item.gallery__item--4.darken
-      img.gallery__img(src='img/homepage/gallery-4.jpg' alt='Gallery image 4')
+      img.gallery__img(src='/img/homepage/gallery-4.jpg' alt='Gallery image 4')
     figure.gallery__item.gallery__item--5.darken
-      img.gallery__img(src='img/homepage/gallery-5.jpg' alt='Gallery image 5')
+      img.gallery__img(src='/img/homepage/gallery-5.jpg' alt='Gallery image 5')
     figure.gallery__item.gallery__item--6.darken
-      img.gallery__img(src='img/homepage/gallery-6.jpg' alt='Gallery image 6')
+      img.gallery__img(src='/img/homepage/gallery-6.jpg' alt='Gallery image 6')
 
   //- TOUR SECTION    
   section.tours.padding-lr
@@ -89,21 +89,21 @@ block content
           h4.tour__name= tour.name
           .tour__difficulty
             svg.tour__icon
-              use(xlink:href='img/icons/tour-cards/sprite.svg#difficulty')
+              use(xlink:href='/img/icons/tour-cards/sprite.svg#difficulty')
             p= tour.difficulty
           .tour__duration
             svg.tour__icon
-              use(xlink:href='img/icons/tour-cards/sprite.svg#duration')
+              use(xlink:href='/img/icons/tour-cards/sprite.svg#duration')
             p= `${tour.durationInDays} days`
           .tour__max-size
             svg.tour__icon
-              use(xlink:href='img/icons/tour-cards/sprite.svg#person')
+              use(xlink:href='/img/icons/tour-cards/sprite.svg#person')
             p= `${tour.maxGroupSize} people`
           .tour__price
             svg.tour__icon
-              use(xlink:href='img/icons/tour-cards/sprite.svg#price')
+              use(xlink:href='/img/icons/tour-cards/sprite.svg#price')
             p= `${tour.price}`
-          a.btn.tour__btn(href=`/tours/${tour.slug}`) Details
+          a.btn.tour__btn(href=`/tour-details/${tour.slug}`) Details
     a.btn.btn__more(href='')
       span.btn__more-text More Tours
       svg.btn__more-icon
