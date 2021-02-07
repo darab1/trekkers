@@ -11,10 +11,8 @@ block content
   section.hero-tour
     img.hero-tour__img(src=`../img/tours/${tour.name.toLowerCase()}/${tour.coverImage}` alt=`tour.name`)
     .hero-tour-wrapper
-      h1.hero-tour__heading
-        | Olympus
-        br
-        |  Trekking
+      h1.hero-tour__heading= tour.name
+
   // --------------
   // DESCRIPTION & DETAILS SECTION
   // --------------
@@ -24,30 +22,9 @@ block content
         .description-wrapper
           h2.description__heading
             | Description
-          p.description__text
-            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam molestias ipsum, est, suscipit
-            | consequatur
-            | laborum quia repudiandae, sed sint mollitia adipisci eaque. Eius ipsa, deleniti beatae quis, sunt natus
-            | debitis,
-            | totam velit maiores fugiat explicabo non molestias voluptatem. Expedita, in assumenda inventore officia,
-            | culpa
-            | obcaecati ullam minus corporis eos vitae quas? Aliquam doloribus ab, vero odit
-            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam molestias ipsum, est, suscipit
-            | consequatur
-            | laborum quia repudiandae, sed sint mollitia adipisci eaque. Eius ipsa, deleniti beatae quis, sunt natus
-            | debitis,
-            | totam velit maiores fugiat explicabo non molestias voluptatem. Expedita, in assumenda inventore officia
-            | culpa.
-          p.description__text
-            | Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos repudiandae qui autem ratione
-            | consectetur dolore mollitia cumque, placeat maiores corrupti iusto inventore at debitis accusamus
-            | architecto amet eum optio doloremque consequatur fuga labore voluptates nam. In, facilis. Reprehenderit
-            | exercitationem consequuntur amet necessitatibus.
-            | Expedita, in assumenda inventore officia
-            | culpa.In, facilis. Reprehenderit
-            | exercitationem consequuntur amet necessitatibus.
-            | Expedita, in assumenda inventore officia
-            | culpa.
+          p.description__text= tour.description
+          p.description__text= tour.description
+      //-ABOUT SECTION
       .about-box
         h3.details-tour__heading
           | About this tour
@@ -58,8 +35,7 @@ block content
                 use(xlink:href='../img/icons/tour-details/sprite.svg#starting-date')
               h5.details-tour__subheading
                 | Starting Date
-            p.details-tour__text
-              | 05 June 2021
+            p.details-tour__text= tour.startDates[0].toLocaleString('en-us', {weekday: 'long', month: 'long', year: 'numeric', day: 'numeric'})
           .details-tour-wrapper
             .details-tour__subheading-wrapper
               svg.details-tour__icon
