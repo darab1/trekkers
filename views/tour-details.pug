@@ -4,4 +4,205 @@ block variables
   - var containerClassName='container-tour'
 
 block content
-  h1 Tour details page.
+
+  // --------------
+  // HERO SECTION
+  // --------------
+  section.hero-tour
+    img.hero-tour__img(src=`../img/tours/${tour.name.toLowerCase()}/${tour.coverImage}` alt=`tour.name`)
+    .hero-tour-wrapper
+      h1.hero-tour__heading
+        | Olympus
+        br
+        |  Trekking
+  // --------------
+  // DESCRIPTION & DETAILS SECTION
+  // --------------
+  section.details-tour
+    .grid-wrapper
+      .description-box
+        .description-wrapper
+          h2.description__heading
+            | Description
+          p.description__text
+            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam molestias ipsum, est, suscipit
+            | consequatur
+            | laborum quia repudiandae, sed sint mollitia adipisci eaque. Eius ipsa, deleniti beatae quis, sunt natus
+            | debitis,
+            | totam velit maiores fugiat explicabo non molestias voluptatem. Expedita, in assumenda inventore officia,
+            | culpa
+            | obcaecati ullam minus corporis eos vitae quas? Aliquam doloribus ab, vero odit
+            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam molestias ipsum, est, suscipit
+            | consequatur
+            | laborum quia repudiandae, sed sint mollitia adipisci eaque. Eius ipsa, deleniti beatae quis, sunt natus
+            | debitis,
+            | totam velit maiores fugiat explicabo non molestias voluptatem. Expedita, in assumenda inventore officia
+            | culpa.
+          p.description__text
+            | Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos repudiandae qui autem ratione
+            | consectetur dolore mollitia cumque, placeat maiores corrupti iusto inventore at debitis accusamus
+            | architecto amet eum optio doloremque consequatur fuga labore voluptates nam. In, facilis. Reprehenderit
+            | exercitationem consequuntur amet necessitatibus.
+            | Expedita, in assumenda inventore officia
+            | culpa.In, facilis. Reprehenderit
+            | exercitationem consequuntur amet necessitatibus.
+            | Expedita, in assumenda inventore officia
+            | culpa.
+      .about-box
+        h3.details-tour__heading
+          | About this tour
+        .grid-auto-fit
+          .details-tour-wrapper
+            .details-tour__subheading-wrapper
+              svg.details-tour__icon
+                use(xlink:href='../img/icons/tour-details/sprite.svg#starting-date')
+              h5.details-tour__subheading
+                | Starting Date
+            p.details-tour__text
+              | 05 June 2021
+          .details-tour-wrapper
+            .details-tour__subheading-wrapper
+              svg.details-tour__icon
+                use(xlink:href='../img/icons/tour-details/sprite.svg#duration')
+              h5.details-tour__subheading
+                | Duration In Days
+            p.details-tour__text
+              | 2 days
+          .details-tour-wrapper
+            .details-tour__subheading-wrapper
+              svg.details-tour__icon
+                use(xlink:href='../img/icons/tour-details/sprite.svg#group')
+              h5.details-tour__subheading
+                | Group Size
+            p.details-tour__text
+              | 10 participants
+          .details-tour-wrapper
+            .details-tour__subheading-wrapper
+              svg.details-tour__icon
+                use(xlink:href='../img/icons/tour-details/sprite.svg#difficulty')
+              h5.details-tour__subheading
+                | Difficulty
+            p.details-tour__text
+              | Medium
+          .details-tour-wrapper
+            .details-tour__subheading-wrapper
+              svg.details-tour__icon
+                use(xlink:href='../img/icons/tour-details/sprite.svg#rating-star')
+              h5.details-tour__subheading
+                | Rating
+            p.details-tour__text
+              | 4.8 out of 23 ratings
+          .details-tour-wrapper
+            .details-tour__subheading-wrapper
+              svg.details-tour__icon
+                use(xlink:href='../img/icons/tour-details/sprite.svg#guide')
+              h5.details-tour__subheading
+                | Number Of Guides
+            p.details-tour__text
+              | 2
+  // --------------
+  // GALLERY SECTION
+  // --------------
+  section.gallery-tour
+    figure.gallery-tour__item.gallery-tour__item--1
+      img.gallery-tour__img(src='../img/tours/olympus trekking/olympus-1.jpg' alt='Gallery image 1')
+    figure.gallery-tour__item.gallery-tour__item--2
+      img.gallery-tour__img(src='../img/tours/olympus trekking/olympus-2.jpg' alt='Gallery image 2')
+    figure.gallery-tour__item.gallery-tour__item--3
+      img.gallery-tour__img(src='../img/tours/olympus trekking/olympus-3.jpg' alt='Gallery image 3')
+  // --------------
+  // MAP SECTION
+  // --------------
+  section.map-tour
+    | Map
+  // --------------
+  // REVIEWS SECTION
+  // --------------
+  section.reviews
+    .reviews__cards-wrapper
+      .review__card
+        img.review__photo(src='../img/users/user-2.jpg' alt='User Avatar 1')
+        h5.review__heading
+          | Langston Goter
+        p.review__text
+          | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae natus aliquid, est vero explicabo eligendi
+          | quibusdam impedit, ex doloremque eius facere, facilis temporibus. Commodi magni accusantium consequatur
+          | velit quaerat incidunt.
+        .review__rating
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+      .review__card
+        img.review__photo(src='../img/users/user-1.jpg' alt='User Avatar 2')
+        h5.review__heading
+          | Didi Nern
+        p.review__text
+          | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae natus aliquid, est vero explicabo eligendi
+          | quibusdam impedit, ex doloremque eius facere, facilis temporibus. Commodi magni accusantium consequatur
+          | velit quaerat incidunt.
+        .review__rating
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+      .review__card
+        img.review__photo(src='../img/users/user-11.jpg' alt='User Avatar 2')
+        h5.review__heading
+          | Bliss Otter
+        p.review__text
+          | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae natus aliquid, est vero explicabo eligendi
+          | quibusdam impedit, ex doloremque eius facere, facilis temporibus. Commodi magni accusantium consequatur
+          | velit quaerat incidunt.
+        .review__rating
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+      .review__card
+        img.review__photo(src='../img/users/user-14.jpg' alt='User Avatar 4')
+        h5.review__heading
+          | Harrie Rowley
+        p.review__text
+          | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae natus aliquid, est vero explicabo eligendi
+          | quibusdam impedit, ex doloremque eius facere, facilis temporibus. Commodi magni accusantium consequatur
+          | velit quaerat incidunt.
+        .review__rating
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+          svg.review__star
+            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+  // --------------
+  // BOOK TOUR SECTION
+  // --------------
+  section.book-tour
+    .book-tour-wrapper
+      p.book-tour__text
+        span From
+        span 250&euro;
+        span per person
+      button.book-tour__btn(type='submit') Book Now
