@@ -143,17 +143,20 @@ tourSchema.pre('save', function(next) {
 
 // Pre hooks, for populating the guides and reviews(virtual) fields
 tourSchema.pre(/^find/, function(next) {
-  this.populate({ path: 'guides', select: '-__v' });
+  this.populate({
+    path: 'guides',
+    select: '-__v'
+  });
   next();
 });
 
-// tourSchema.pre(/^find/, function(next) {
-//   this.populate({
-//     path: 'reviews',
-//     fields: 'review rating user'
-//   });
-//   next();
-// });
+tourSchema.pre(/^find/, function(next) {
+  this.populate({
+    path: 'reviews',
+    select: 'review rating user'
+  });
+  next();
+});
 
 const Tour = mongoose.model('Tour', tourSchema);
 

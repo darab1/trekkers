@@ -3,19 +3,41 @@ extends index
 block variables
   - var containerClassName='container-tour'
 
+block append head
+  script(src='/javascript/mapbox.js')
+
+mixin tourDetails(icon, subheading, text)
+  .details-tour-wrapper
+    .details-tour__subheading-wrapper
+      svg.details-tour__icon
+        use(xlink:href=`../img/icons/tour-details/sprite.svg#${icon}`)
+      h5.details-tour__subheading= subheading
+    p.details-tour__text= text
+
+mixin reviewCard(review)
+  .review__card
+    img.review__photo(src=`../img/users/${review.user.photo}` alt=`User ${review.user.fullName}`)
+    h5.review__heading= review.user.fullName
+    p.review__text= review.review
+    .review__rating
+      each star in [1,2,3,4,5]
+        svg.review__star(class= `review__star--${review.rating >= star ? 'full' : 'empty'}`)
+          use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
+
+    
 block content
 
-  // --------------
-  // HERO SECTION
-  // --------------
+  //---------------
+  //- HERO SECTION
+  //---------------
   section.hero-tour
     img.hero-tour__img(src=`../img/tours/${tour.name.toLowerCase()}/${tour.coverImage}` alt=`tour.name`)
     .hero-tour-wrapper
       h1.hero-tour__heading= tour.name
 
-  // --------------
-  // DESCRIPTION & DETAILS SECTION
-  // --------------
+  //- --------------
+  //- DESCRIPTION & DETAILS SECTION
+  //- --------------
   section.details-tour
     .grid-wrapper
       .description-box
@@ -24,161 +46,52 @@ block content
             | Description
           p.description__text= tour.description
           p.description__text= tour.description
+
+      //-------------   
       //-ABOUT SECTION
       .about-box
         h3.details-tour__heading
           | About this tour
         .grid-auto-fit
-          .details-tour-wrapper
-            .details-tour__subheading-wrapper
-              svg.details-tour__icon
-                use(xlink:href='../img/icons/tour-details/sprite.svg#starting-date')
-              h5.details-tour__subheading
-                | Starting Date
-            p.details-tour__text= tour.startDates[0].toLocaleString('en-us', {weekday: 'long', month: 'long', year: 'numeric', day: 'numeric'})
-          .details-tour-wrapper
-            .details-tour__subheading-wrapper
-              svg.details-tour__icon
-                use(xlink:href='../img/icons/tour-details/sprite.svg#duration')
-              h5.details-tour__subheading
-                | Duration In Days
-            p.details-tour__text
-              | 2 days
-          .details-tour-wrapper
-            .details-tour__subheading-wrapper
-              svg.details-tour__icon
-                use(xlink:href='../img/icons/tour-details/sprite.svg#group')
-              h5.details-tour__subheading
-                | Group Size
-            p.details-tour__text
-              | 10 participants
-          .details-tour-wrapper
-            .details-tour__subheading-wrapper
-              svg.details-tour__icon
-                use(xlink:href='../img/icons/tour-details/sprite.svg#difficulty')
-              h5.details-tour__subheading
-                | Difficulty
-            p.details-tour__text
-              | Medium
-          .details-tour-wrapper
-            .details-tour__subheading-wrapper
-              svg.details-tour__icon
-                use(xlink:href='../img/icons/tour-details/sprite.svg#rating-star')
-              h5.details-tour__subheading
-                | Rating
-            p.details-tour__text
-              | 4.8 out of 23 ratings
-          .details-tour-wrapper
-            .details-tour__subheading-wrapper
-              svg.details-tour__icon
-                use(xlink:href='../img/icons/tour-details/sprite.svg#guide')
-              h5.details-tour__subheading
-                | Number Of Guides
-            p.details-tour__text
-              | 2
-  // --------------
-  // GALLERY SECTION
-  // --------------
+
+          - const startingDate = tour.startDates[0].toLocaleString('en-us', {weekday: 'long', month: 'long', year: 'numeric', day: 'numeric'})
+          +tourDetails('starting-date', 'Starting Date', startingDate)
+          +tourDetails('duration', 'Duration In Days', `${tour.durationInDays} days`)
+          +tourDetails('group', 'Group Size', `${tour.maxGroupSize} participants`)
+          +tourDetails('difficulty', 'Difficulty', tour.difficulty)
+          +tourDetails('rating-star', 'Rating', `${tour.averageOfRatings} (${tour.numberOfRatings})`)
+          +tourDetails('guide', 'Number Of Guides', tour.guides.length)
+
+  //- --------------
+  //- GALLERY SECTION
+  //- --------------
   section.gallery-tour
-    figure.gallery-tour__item.gallery-tour__item--1
-      img.gallery-tour__img(src='../img/tours/olympus trekking/olympus-1.jpg' alt='Gallery image 1')
-    figure.gallery-tour__item.gallery-tour__item--2
-      img.gallery-tour__img(src='../img/tours/olympus trekking/olympus-2.jpg' alt='Gallery image 2')
-    figure.gallery-tour__item.gallery-tour__item--3
-      img.gallery-tour__img(src='../img/tours/olympus trekking/olympus-3.jpg' alt='Gallery image 3')
-  // --------------
-  // MAP SECTION
-  // --------------
+
+    each image, index in tour.images
+      figure(class=`gallery-tour__item gallery-tour__item--${index + 1}`)
+        img.gallery-tour__img(src=`../img/tours/${tour.name.toLowerCase()}/${image}` alt=`Gallery image ${index + 1}`)
+
+  //- --------------
+  //- MAP SECTION
+  //- --------------
   section.map-tour
     | Map
-  // --------------
-  // REVIEWS SECTION
-  // --------------
+  //- --------------
+  //- REVIEWS SECTION
+  //- --------------
   section.reviews
     .reviews__cards-wrapper
-      .review__card
-        img.review__photo(src='../img/users/user-2.jpg' alt='User Avatar 1')
-        h5.review__heading
-          | Langston Goter
-        p.review__text
-          | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae natus aliquid, est vero explicabo eligendi
-          | quibusdam impedit, ex doloremque eius facere, facilis temporibus. Commodi magni accusantium consequatur
-          | velit quaerat incidunt.
-        .review__rating
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-      .review__card
-        img.review__photo(src='../img/users/user-1.jpg' alt='User Avatar 2')
-        h5.review__heading
-          | Didi Nern
-        p.review__text
-          | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae natus aliquid, est vero explicabo eligendi
-          | quibusdam impedit, ex doloremque eius facere, facilis temporibus. Commodi magni accusantium consequatur
-          | velit quaerat incidunt.
-        .review__rating
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-      .review__card
-        img.review__photo(src='../img/users/user-11.jpg' alt='User Avatar 2')
-        h5.review__heading
-          | Bliss Otter
-        p.review__text
-          | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae natus aliquid, est vero explicabo eligendi
-          | quibusdam impedit, ex doloremque eius facere, facilis temporibus. Commodi magni accusantium consequatur
-          | velit quaerat incidunt.
-        .review__rating
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-      .review__card
-        img.review__photo(src='../img/users/user-14.jpg' alt='User Avatar 4')
-        h5.review__heading
-          | Harrie Rowley
-        p.review__text
-          | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae natus aliquid, est vero explicabo eligendi
-          | quibusdam impedit, ex doloremque eius facere, facilis temporibus. Commodi magni accusantium consequatur
-          | velit quaerat incidunt.
-        .review__rating
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-          svg.review__star
-            use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-  // --------------
-  // BOOK TOUR SECTION
-  // --------------
+
+      each review in tour.reviews
+        +reviewCard(review)
+
+  //- --------------
+  //- BOOK TOUR SECTION
+  //- --------------
   section.book-tour
     .book-tour-wrapper
       p.book-tour__text
         span From
-        span 250&euro;
+        span= `${tour.price}€`
         span per person
       button.book-tour__btn(type='submit') Book Now
