@@ -19,6 +19,10 @@ exports.getHomepage = catchAsyncErrors(async (req, res) => {
 exports.getTourDetails = catchAsyncErrors(async (req, res) => {
   // 1) Get the requested tour
   const tour = await Tour.findOne({ slug: req.params.slug });
+  console.log(tour);
+  console.log('===============');
+  console.log(tour.reviews);
+  console.log('===============/n===============');
 
   res.status(200).render('tour-details', {
     title: `${tour.name} Tour`,

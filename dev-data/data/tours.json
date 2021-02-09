@@ -32,21 +32,21 @@
         "name": "Petrostrouga Refuge",
         "type": "Point",
         "coordinates": [22.413208, 40.1097],
-        "dayOfTour": 1
+        "day": 1
       },
       {
         "_id": "5e67c38ffc13ae4a56000001",
         "name": "Giosos Apostolidis Refuge",
         "type": "Point",
         "coordinates": [22.361545, 40.095174],
-        "dayOfTour": 2
+        "day": 2
       },
       {
         "_id": "5e67c38ffc13ae4a56000002",
         "name": "Olympus - Mytikas peak ",
         "type": "Point",
         "coordinates": [22.358058, 40.086179],
-        "dayOfTour": 3
+        "day": 3
       }
     ]
   },
@@ -82,28 +82,28 @@
         "name": "Samarias Canyon",
         "type": "Point",
         "coordinates": [23.961202, 35.2409],
-        "dayOfTour": 1
+        "day": 1
       },
       {
         "_id": "5e68b129fc13ae5238000002",
         "name": "΅White Mountains",
         "type": "Point",
         "coordinates": [24.029859, 35.297997],
-        "dayOfTour": 2
+        "day": 2
       },
       {
         "_id": "5e68b129fc13ae5238000003",
         "name": "Aradenas Canyon",
         "type": "Point",
         "coordinates": [24.037244, 35.225246],
-        "dayOfTour": 3
+        "day": 3
       },
       {
         "_id": "5e68b129fc13ae5238000004",
         "name": "Sfakia",
         "type": "Point",
         "coordinates": [24.139591, 35.200161],
-        "dayOfTour": 4
+        "day": 4
       }
     ]
   },
@@ -134,35 +134,35 @@
         "name": "Gîte Le Gypaète",
         "type": "Point",
         "coordinates": [-0.010841, 42.73622],
-        "dayOfTour": 1
+        "day": 1
       },
       {
         "_id": "5e68c407fc13ae4f13000001",
         "name": "Espuguettes Refugee",
         "type": "Point",
         "coordinates": [0.012264, 42.719995],
-        "dayOfTour": 2
+        "day": 2
       },
       {
         "_id": "5e68c407fc13ae4f13000002",
         "name": "Pineta Refugee",
         "type": "Point",
         "coordinates": [0.103739, 42.669284],
-        "dayOfTour": 3
+        "day": 3
       },
       {
         "_id": "5e68c407fc13ae4f13000003",
         "name": "Goriz Refugee",
         "type": "Point",
         "coordinates": [0.016003, 42.667478],
-        "dayOfTour": 4
+        "day": 4
       },
       {
         "_id": "5e68c407fc13ae4f13000004",
         "name": "Hotel Bujaruelo Ordesa",
         "type": "Point",
         "coordinates": [-0.11071, 42.629302],
-        "dayOfTour": 5
+        "day": 5
       }
     ]
   },
@@ -197,35 +197,35 @@
         "name": "Fjallabak National Park",
         "type": "Point",
         "coordinates": [-19.140486, 64.035309],
-        "dayOfTour": 1
+        "day": 1
       },
       {
         "_id": "5e68c879fc13ae1a6200000c",
         "name": "Waterfalls Of North Iceland",
         "type": "Point",
         "coordinates": [-19.988556, 63.61576],
-        "dayOfTour": 2
+        "day": 2
       },
       {
         "_id": "5e68c879fc13ae1a6200000d",
         "name": "Skaftafell National Park",
         "type": "Point",
         "coordinates": [-16.974889, 64.070231],
-        "dayOfTour": 3
+        "day": 3
       },
       {
         "_id": "5e68c879fc13ae1a6200000e",
         "name": "Askja Volcano",
         "type": "Point",
         "coordinates": [-16.748399, 65.011343],
-        "dayOfTour": 4
+        "day": 4
       },
       {
         "_id": "5e68c879fc13ae1a6200000f",
         "name": "Husavik Whale Watching",
         "type": "Point",
         "coordinates": [-17.343516, 66.046331],
-        "dayOfTour": 5
+        "day": 5
       }
     ]
   },
@@ -256,28 +256,28 @@
         "name": "Cheget Mountain",
         "type": "Point",
         "coordinates": [42.497747, 43.240857],
-        "dayOfTour": 1
+        "day": 1
       },
       {
         "_id": "5e68c879fc13ae1a6200000c",
         "name": "Terskol",
         "type": "Point",
         "coordinates": [42.453846, 43.34697],
-        "dayOfTour": 2
+        "day": 2
       },
       {
         "_id": "5e68c879fc13ae1a6200000d",
         "name": "Sedlovina El'brusa",
         "type": "Point",
         "coordinates": [42.446957, 43.348823],
-        "dayOfTour": 3
+        "day": 3
       },
       {
         "_id": "5e68c879fc13ae1a6200000e",
         "name": "Elbrus Peak",
         "type": "Point",
         "coordinates": [42.445307, 43.350118],
-        "dayOfTour": 4
+        "day": 4
       }
     ]
   }

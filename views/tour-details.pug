@@ -1,30 +1,13 @@
 extends index
+include _mixin-tour-details
 
 block variables
   - var containerClassName='container-tour'
 
 block append head
-  script(src='/javascript/mapbox.js')
+  script(src='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.js')
+  link(href='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.css' rel='stylesheet')
 
-mixin tourDetails(icon, subheading, text)
-  .details-tour-wrapper
-    .details-tour__subheading-wrapper
-      svg.details-tour__icon
-        use(xlink:href=`../img/icons/tour-details/sprite.svg#${icon}`)
-      h5.details-tour__subheading= subheading
-    p.details-tour__text= text
-
-mixin reviewCard(review)
-  .review__card
-    img.review__photo(src=`../img/users/${review.user.photo}` alt=`User ${review.user.fullName}`)
-    h5.review__heading= review.user.fullName
-    p.review__text= review.review
-    .review__rating
-      each star in [1,2,3,4,5]
-        svg.review__star(class= `review__star--${review.rating >= star ? 'full' : 'empty'}`)
-          use(xlink:href='../img/icons/review-cards/sprite.svg#star-full')
-
-    
 block content
 
   //---------------
@@ -75,7 +58,7 @@ block content
   //- MAP SECTION
   //- --------------
   section.map-tour
-    | Map
+    #map(data-tour-locations=`${JSON.stringify(tour.locations)}`)
   //- --------------
   //- REVIEWS SECTION
   //- --------------
