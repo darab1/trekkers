@@ -1214,9 +1214,16 @@ a:visited {
 .map-tour {
   grid-row: 5 / 6;
   grid-column: full-start / full-end;
-  background-color: #66d6ad;
   display: grid;
-  grid-template-rows: 100%;
+  grid-template-rows: 100%; 
+}
+
+.location-pin {
+  height: 32px;
+  width: 32px;
+  background-image: url('../img/icons/tour-details/location-pin.png');
+  background-size: cover; 
+  cursor: pointer;
 }
 
 .reviews {
