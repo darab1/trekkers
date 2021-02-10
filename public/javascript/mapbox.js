@@ -11,7 +11,7 @@ mapboxgl.accessToken =
 
 var map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/darab8/ckkwrg6hw56qa17qdh6fdpj4u',
+  style: 'mapbox://styles/darab8/ckkwrg6hw56qa17qdh6fdpj4u?optimize=true',
   scrollZoom: false
 });
 

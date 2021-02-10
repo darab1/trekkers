@@ -68,7 +68,7 @@ exports.login = catchAsyncErrors(async (req, res, next) => {
   // Check if user exists, if he doesn't move forward, if he does call isLoginPasswordCorrect and compare password with  user.password using bcrypt
   if (!user || !(await user.isPasswordCorrect(password, user.password))) {
     return next(
-      new AppError('Email or password was incorrect, try again!', 401)
+      new AppError('Email or password was incorrect, please try again!', 401)
     );
   }
 
@@ -87,6 +87,8 @@ exports.preventUnauthorizedAccess = catchAsyncErrors(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
   }
 
   if (!token) {

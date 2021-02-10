@@ -6,6 +6,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -45,7 +46,8 @@ const limiter = rateLimit({
 app.use('/api', limiter);
 
 // Extract the entire body portion of an incoming request stream and expose it on req.body
-app.use(express.json({ limit: '10kb' }));
+app.use(express.json({ limit: '50kb' }));
+app.use(cookieParser());
 
 // Sanitize user-supplied data to prevent MongoDB Operaton Injection
 app.use(mongoSanitize());
@@ -55,6 +57,11 @@ app.use(xss());
 
 // Protect against HTTP Parameter Pollution attacks
 app.use(hpp({ whitelist: ['duration', 'price', 'difficulty'] }));
+
+app.use((req, res, next) => {
+  console.log(req.cookies);
+  next();
+});
 
 /********/
 // ROUTES
