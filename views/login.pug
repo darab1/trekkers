@@ -1,0 +1,20 @@
+extends index
+
+block variables
+  - var containerClassName='container-login'
+
+block content
+  section.login
+    form.login__form(action='')
+      h3.login__heading Log In
+      .login__email-wrapper
+        label.label.label__email(for='email')
+          | Email
+        input#email.input.input__email(type='email' name='email' required='')
+      .login__password-wrapper
+        label.label.label__password(for='password') Password
+        input#password.input.input__password(type='password' name='password' required='')
+      button.btn.login__btn(type='submit')
+        | Log In
+      a.forgot-password
+        | Forgot Password?
