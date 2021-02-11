@@ -7,7 +7,11 @@ header.header
         | Home
       a(href='#')
         | Tours
-      a(href='/login')
-        | Log In
-      a(href='./pages/signup.html')
-        | Sign Up
+      if user
+        a(href='#')
+          | Log out
+      else
+        a(href='/login')
+          | Log In
+        a(href='./pages/signup.html')
+          | Sign Up

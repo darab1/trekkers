@@ -144,7 +144,7 @@ exports.userLoginStatus = catchAsyncErrors(async (req, res, next) => {
 
     // Save current user document to req.user
     res.locals.user = currentUser;
-    next();
+    return next();
   }
 
   next();

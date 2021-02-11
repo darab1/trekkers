@@ -11,8 +11,7 @@ mapboxgl.accessToken =
 
 var map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/darab8/ckkwrg6hw56qa17qdh6fdpj4u?optimize=true',
-  scrollZoom: false
+  style: 'mapbox://styles/darab8/ckkwrg6hw56qa17qdh6fdpj4u?optimize=true'
 });
 
 const bounds = new mapboxgl.LngLatBounds();
@@ -34,6 +33,8 @@ tourLocations.forEach(location => {
     .addTo(map);
 
   bounds.extend(location.coordinates);
+
+  map.scrollZoom.disable();
 });
 
 map.fitBounds(bounds, {
@@ -44,3 +45,6 @@ map.fitBounds(bounds, {
     right: 50
   }
 });
+
+// Scroll to the top of the tour-details page
+window.scrollTo(0, 0);
