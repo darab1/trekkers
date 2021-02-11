@@ -38,12 +38,12 @@ block content
         .grid-auto-fit
 
           - const startingDate = tour.startDates[0].toLocaleString('en-us', {weekday: 'long', month: 'long', year: 'numeric', day: 'numeric'})
-          +tourDetails('starting-date', 'Starting Date', startingDate)
-          +tourDetails('duration', 'Duration In Days', `${tour.durationInDays} days`)
-          +tourDetails('group', 'Group Size', `${tour.maxGroupSize} participants`)
-          +tourDetails('difficulty', 'Difficulty', tour.difficulty)
-          +tourDetails('rating-star', 'Rating', `${tour.averageOfRatings} (${tour.numberOfRatings})`)
-          +tourDetails('guide', 'Number Of Guides', tour.guides.length)
+            +tourDetails('date', 'Starting Date', startingDate)
+            +tourDetails('duration', 'Duration In Days', `${tour.durationInDays} days`)
+            +tourDetails('users', 'Group Size', `${tour.maxGroupSize} participants`)
+            +tourDetails('difficulty', 'Difficulty', tour.difficulty)
+            +tourDetails('star', 'Rating', `${tour.averageOfRatings} (${tour.numberOfRatings})`)
+            +tourDetails('users', 'Number Of Guides', tour.guides.length)
 
   //- --------------
   //- GALLERY SECTION

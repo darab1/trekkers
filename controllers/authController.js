@@ -102,14 +102,14 @@ exports.preventUnauthorizedAccess = catchAsyncErrors(async (req, res, next) => {
   );
 
   // 3) Check if the user still exists
-  const user = await User.findById(decodedPayload.id);
+  const currentUser = await User.findById(decodedPayload.id);
 
-  if (!user) {
+  if (!currentUser) {
     return next(new AppError("We can't find a user with this token", 401));
   }
 
   // 4) Check if the user changed the password after the token was issued
-  if (user.isPassChangedAfterIssuedJWT(decodedPayload.iat)) {
+  if (currentUser.isPassChangedAfterIssuedJWT(decodedPayload.iat)) {
     return next(
       new AppError(
         'Password changed after json web token was issued, please log in again in order to access this route',
@@ -118,8 +118,35 @@ exports.preventUnauthorizedAccess = catchAsyncErrors(async (req, res, next) => {
     );
   }
 
-  // Save current user document to req.user
-  req.user = user;
+  // Save currentUser document to req.user
+  req.user = currentUser;
+  next();
+});
+
+// Check if user is logged in or not in order to display the correct header navbar
+exports.userLoginStatus = catchAsyncErrors(async (req, res, next) => {
+  if (req.cookies.jwt) {
+    const decodedPayload = await promisify(jwt.verify)(
+      req.cookies.jwt,
+      process.env.JWT_SECRET
+    );
+
+    // 3) Check if the user still exists
+    const currentUser = await User.findById(decodedPayload.id);
+    if (!currentUser) {
+      return next();
+    }
+
+    // 4) Check if the user changed the password after the token was issued
+    if (currentUser.isPassChangedAfterIssuedJWT(decodedPayload.iat)) {
+      return next();
+    }
+
+    // Save current user document to req.user
+    res.locals.user = currentUser;
+    next();
+  }
+
   next();
 });
 
