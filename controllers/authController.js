@@ -76,8 +76,19 @@ exports.login = catchAsyncErrors(async (req, res, next) => {
 });
 
 //*****************
-//PROTECT ROUTES FROM UNAUTHORIZED ACCESS
+// LOGOUT
 //*****************
+exports.logout = (req, res) => {
+  res.cookie('jwt', 'logging user out...', {
+    expires: new Date(Date.now() + 5 * 1000),
+    httpOnly: true
+  });
+  res.status(200).json({ status: 'success' });
+};
+
+//***************************************
+//PROTECT ROUTES FROM UNAUTHORIZED ACCESS
+//***************************************
 
 exports.preventUnauthorizedAccess = catchAsyncErrors(async (req, res, next) => {
   // 1) Get the token from body.headers and check if it's there
@@ -124,31 +135,35 @@ exports.preventUnauthorizedAccess = catchAsyncErrors(async (req, res, next) => {
 });
 
 // Check if user is logged in or not in order to display the correct header navbar
-exports.userLoginStatus = catchAsyncErrors(async (req, res, next) => {
+exports.userLoginStatus = async (req, res, next) => {
   if (req.cookies.jwt) {
-    const decodedPayload = await promisify(jwt.verify)(
-      req.cookies.jwt,
-      process.env.JWT_SECRET
-    );
+    try {
+      const decodedPayload = await promisify(jwt.verify)(
+        req.cookies.jwt,
+        process.env.JWT_SECRET
+      );
 
-    // 3) Check if the user still exists
-    const currentUser = await User.findById(decodedPayload.id);
-    if (!currentUser) {
+      // 3) Check if the user still exists
+      const currentUser = await User.findById(decodedPayload.id);
+      if (!currentUser) {
+        return next();
+      }
+
+      // 4) Check if the user changed the password after the token was issued
+      if (currentUser.isPassChangedAfterIssuedJWT(decodedPayload.iat)) {
+        return next();
+      }
+
+      // Save current user document to req.user
+      res.locals.user = currentUser;
+      return next();
+    } catch (error) {
       return next();
     }
-
-    // 4) Check if the user changed the password after the token was issued
-    if (currentUser.isPassChangedAfterIssuedJWT(decodedPayload.iat)) {
-      return next();
-    }
-
-    // Save current user document to req.user
-    res.locals.user = currentUser;
-    return next();
   }
 
   next();
-});
+};
 
 exports.restrictAccessTo = (...roles) => {
   return (req, res, next) => {

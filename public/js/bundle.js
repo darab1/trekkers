@@ -14171,7 +14171,67 @@ var displayMap = function displayMap(tourLocations) {
 };
 
 exports.displayMap = displayMap;
-},{}],"index.js":[function(require,module,exports) {
+},{}],"logout.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.logout = void 0;
+
+var _axios = _interopRequireDefault(require("axios"));
+
+var _sweetalert = _interopRequireDefault(require("sweetalert"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var logout = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    var response;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return (0, _axios.default)({
+              method: 'GET',
+              url: 'http://127.0.0.1:8080/api/v1/users/logout'
+            });
+
+          case 3:
+            response = _context.sent;
+            if (response.data.status === 'success') location = location;
+            _context.next = 11;
+            break;
+
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+            console.log(_context.t0.response);
+            (0, _sweetalert.default)('Oops!', 'There was an error, please try to log out again!', 'error', {
+              timer: 4000
+            });
+
+          case 11:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 7]]);
+  }));
+
+  return function logout() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+exports.logout = logout;
+},{"axios":"../../node_modules/axios/index.js","sweetalert":"../../node_modules/sweetalert/dist/sweetalert.min.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 require("core-js/stable");
@@ -14182,10 +14242,13 @@ var _login = require("./login");
 
 var _mapbox = require("./mapbox");
 
+var _logout = require("./logout");
+
 /* eslint-disable node/no-unsupported-features/es-syntax */
 // Select DOM elements
 var mapBox = document.getElementById('map');
-var loginForm = document.querySelector('.login__form'); // Select DOM values
+var loginForm = document.querySelector('.login__form');
+var logoutBtn = document.querySelector('.btn-logout'); // Select DOM values
 // Check if DOM element exists, if it does execute function.
 // check if mapBox element exists
 
@@ -14202,7 +14265,14 @@ if (loginForm) {
     (0, _login.login)(email, password);
   });
 }
-},{"core-js/stable":"../../node_modules/core-js/stable/index.js","regenerator-runtime/runtime":"../../node_modules/regenerator-runtime/runtime.js","./login":"login.js","./mapbox":"mapbox.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    (0, _logout.logout)();
+  });
+}
+},{"core-js/stable":"../../node_modules/core-js/stable/index.js","regenerator-runtime/runtime":"../../node_modules/regenerator-runtime/runtime.js","./login":"login.js","./mapbox":"mapbox.js","./logout":"logout.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

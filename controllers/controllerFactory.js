@@ -1,13 +1,13 @@
-const catchAsyncErrors = require("./../utilities/catchAsyncErrors");
-const AppError = require("./../utilities/appError");
-const QueryOptions = require("../utilities/queryOptions");
+const catchAsyncErrors = require('./../utilities/catchAsyncErrors');
+const AppError = require('./../utilities/appError');
+const QueryOptions = require('../utilities/queryOptions');
 
 exports.createController = Model =>
   catchAsyncErrors(async (req, res, next) => {
     const document = await Model.create(req.body);
 
     res.status(201).json({
-      status: "Success!",
+      status: 'success',
       data: {
         data: document
       }
@@ -22,11 +22,11 @@ exports.getOneController = (Model, populateOptions) =>
     const document = await query;
 
     if (!document) {
-      next(new AppError("No document found with that ID", 404));
+      next(new AppError('No document found with that ID', 404));
     }
 
     res.status(200).json({
-      status: "Success!",
+      status: 'success',
       data: {
         data: document
       }
@@ -48,7 +48,7 @@ exports.getAllController = Model =>
     const document = await features.query;
 
     res.status(200).json({
-      status: "Success!",
+      status: 'success',
       results: document.length,
       data: {
         data: document
@@ -64,11 +64,11 @@ exports.updateController = Model =>
     });
 
     if (!document) {
-      return next(new AppError("No document found with that ID", 404));
+      return next(new AppError('No document found with that ID', 404));
     }
 
     res.status(200).json({
-      status: "Success!",
+      status: 'success',
       data: {
         data: document
       }
@@ -80,11 +80,11 @@ exports.deleteController = Model =>
     const document = await Model.findByIdAndDelete(req.params.id);
 
     if (!document) {
-      return next(new AppError("No document found with that ID", 404));
+      return next(new AppError('No document found with that ID', 404));
     }
 
     res.status(204).json({
-      status: "Success",
+      status: 'success',
       data: null
     });
   });

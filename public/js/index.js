@@ -4,10 +4,12 @@ import 'regenerator-runtime/runtime';
 
 import { login } from './login';
 import { displayMap } from './mapbox';
+import { logout } from './logout';
 
 // Select DOM elements
 const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.login__form');
+const logoutBtn = document.querySelector('.btn-logout');
 
 // Select DOM values
 
@@ -25,5 +27,12 @@ if (loginForm) {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     login(email, password);
+  });
+}
+
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', e => {
+    e.preventDefault();
+    logout();
   });
 }
