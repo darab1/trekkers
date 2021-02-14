@@ -32,6 +32,7 @@
     "pug": "^3.0.0",
     "regenerator-runtime": "^0.13.7",
     "slugify": "^1.4.6",
+    "sweetalert": "^2.1.2",
     "validator": "^12.2.0",
     "xss-clean": "^0.1.1"
   },

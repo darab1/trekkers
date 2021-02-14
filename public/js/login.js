@@ -1,5 +1,6 @@
 /* eslint-disable */
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export const login = async (email, password) => {
   try {
@@ -13,12 +14,19 @@ export const login = async (email, password) => {
     });
 
     if (response.data.status === 'success') {
-      alert('Logged in successfully!');
+      swal({
+        title: 'Welcome Again!',
+        text: 'Login was successful',
+        icon: 'success'
+      });
       window.setTimeout(() => {
         location.assign('/');
-      }, 1500);
+      }, 2000);
     }
   } catch (e) {
-    alert(e.response.data.message);
+    swal('Oops', 'Incorrect email or password, please try again!', 'error', {
+      timer: 4000
+    });
+    console.log(e.response.data.message);
   }
 };

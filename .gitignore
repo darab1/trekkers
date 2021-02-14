@@ -3,3 +3,6 @@ node_modules/
 
 #ignore config.env file
 config.env
+
+#ignore cache files
+.cache/

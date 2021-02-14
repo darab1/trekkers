@@ -1706,3 +1706,16 @@ a:visited {
   height: 1px;
   width: 100%;
 }
+
+/* SWEET ALERT STYLES */
+.swal-button--confirm {
+  background-color: hsl(268, 82%, 60%);
+}
+
+.swal-button--confirm:hover {
+  background-color: hsl(262, 100%, 78%);
+}
+
+.swal-overlay {
+  background-color: hsla(262, 100%, 78%, 0.45);
+}
