@@ -1,0 +1,10 @@
+extends index 
+
+block variables
+  - var containerClassName='container-error'
+
+block content 
+  main.main 
+    .error-wrapper
+      h1.status-code= statusCode
+      p.error-message= message

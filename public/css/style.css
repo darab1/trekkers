@@ -120,6 +120,30 @@ a:visited {
   }
 }
 
+.container-error {
+  display: grid;
+  grid-template-rows: 8vh 81vh 11vh;
+  grid-template-columns: [full-start] 1fr [center-start] repeat(8, [col-start] minmax(min-content, 8.75rem) [col-end]) [center-end] 1fr [full-end];
+}
+
+@media (max-width: 859px) {
+  .container-error {
+    grid-template-rows: min-content 75vh min-content;
+  }
+}
+
+@media (max-width: 639px) {
+  .container-error {
+    grid-template-rows: min-content 85vh min-content;
+  }
+}
+
+@media (max-width: 499px) {
+  .container-error {
+    grid-template-rows: min-content 70vh min-content;
+  }
+}
+
 .header {
   grid-row: 1 / 2;
   grid-column: full-start / full-end;
@@ -1705,6 +1729,43 @@ a:visited {
   margin: 50px 0;
   height: 1px;
   width: 100%;
+}
+
+/*************/
+/*ERROR PAGE*/
+/*************/
+
+.main {
+  grid-column: 1 / -1;
+  grid-row: 2 / 3;
+  background-image: url('../img/bg-error-3.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.error-wrapper {
+  width: 500px;
+  text-align: center;
+  /* color: #7A0ECC; */
+  color: #F0B429;
+}
+
+.status-code {
+  font-size: 165px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 14px;
+  opacity: 0.8;
+}
+
+.error-message {
+  font-size: 30px;
+  font-weight: 500;
+  opacity: 0.9;
 }
 
 /* SWEET ALERT STYLES */

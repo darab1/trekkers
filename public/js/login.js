@@ -15,7 +15,7 @@ export const login = async (email, password) => {
 
     if (response.data.status === 'success') {
       swal({
-        title: 'Welcome Again!',
+        title: 'Welcome to Trekkers!',
         text: 'Login was successful',
         icon: 'success'
       });

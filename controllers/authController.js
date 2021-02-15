@@ -24,6 +24,7 @@ const createThenSendToken = (user, res, statusCode, message) => {
     httpOnly: true
   };
 
+  // This if ensures that we need to be in an https connection in order to be able to login in production mode
   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 
   res.cookie('jwt', jsonWebToken, cookieOptions);

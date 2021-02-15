@@ -14095,7 +14095,7 @@ var login = /*#__PURE__*/function () {
 
             if (response.data.status === 'success') {
               (0, _sweetalert.default)({
-                title: 'Welcome Again!',
+                title: 'Welcome to Trekkers!',
                 text: 'Login was successful',
                 icon: 'success'
               });
