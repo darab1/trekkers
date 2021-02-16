@@ -132,6 +132,7 @@ exports.preventUnauthorizedAccess = catchAsyncErrors(async (req, res, next) => {
 
   // Save currentUser document to req.user
   req.user = currentUser;
+  res.locals.user = currentUser;
   next();
 });
 

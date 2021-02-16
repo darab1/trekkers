@@ -1,0 +1,72 @@
+extends index 
+
+mixin navListItem(active, link, icon, text)
+  li.user-dashboard__nav-list-item
+    a(class= `user-dashboard__nav-list-link ${active ? 'user-dashboard__nav--active' : ''}` href=`${link}`)
+      svg.user-dashboard__icon
+        use(xlink:href=`../img/icons/user-account/sprite.svg#${icon}`)
+      |                 #{text}
+
+block variables 
+  - var containerClassName = 'container-user-account'
+
+block content 
+  main.main-user-account
+    // dashboard container
+    .user-dashboard
+      // nav conteainer
+      nav.user-dashboard__nav
+        h3.user-dashboard__heading User Profile
+        ul.user-dashboard__nav-list
+          +navListItem(true, '#', 'user', 'User Info')
+          +navListItem(false, '#', 'heart', 'Favorite Tours')
+          +navListItem(false, '#', 'calendar', 'Bookings')
+          +navListItem(false, '#', 'rating', 'Reviews')
+      
+      .user-dashboard__content
+        .user-dashboard__form-wrapper
+          form.form.form__user-info(action='')
+            .form__group.form__group-photo
+              img.form__user-photo(src=`/../img/users/${user.photo}` alt='User avatar')
+              h4.form__user-name= user.fullName
+              input#avatar.form__upload-photo(type='file' accept='image/*' name='avatar')
+              label.form__group-photo-label(for='avatar') Change profile photo
+            // fullname
+            .form__group.form__group-fullname
+              label.form__fullname-label(for='fullname')
+                | Fullname
+              input#fullname.form__fullname-input(type='text' name='fullname' value=`${user.fullName}` required='' minlength='4')
+            // email
+            .form__group.form__group-email
+              label.form__email-label(for='email')
+                | Email
+              input#email.form__email-input(type='email' name='email' value=`${user.email}`)
+            // Save changes button
+            button.btn.btn__save-changes(type='submit')
+              | Save Changes
+          // end of user-info form
+        .hr-line &nbsp;
+        //- <hr class="hr-line">
+        // Save Changed Password
+        .user-dashboard__form-wrapper
+          form.form.form__change-password(action='')
+            h3.form__heading Change Password
+            // current password
+            .form__group.form__group-password-current
+              label.form__password-current-label(for='password-current')
+                | Current Password
+              input#password-current.form__password-current-input(type='password' name='password-current')
+            // new password
+            .form__group.form__group-password-new
+              label.form__password-new-label(for='password-new')
+                | New Password
+              input#password-new.form__password-new-input(type='password' name='password-new')
+            // confirm new password
+            .form__group.form__group-password-confirm
+              label.form__password-confirm-label(for='password-confirm')
+                | Confirm New Password
+              input#password-confirm.form__password-confirm-input(type='password' name='password-confirm')
+            // save password button
+            button.btn.btn__save-password(type='submit')
+              | Save Password
+    //- user-dashboard end
