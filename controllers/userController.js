@@ -1,6 +1,7 @@
 const User = require('./../models/userModel');
 const catchAsyncErrors = require('./../utilities/catchAsyncErrors');
 const controllerFactory = require('./../controllers/controllerFactory');
+const AppError = require('../utilities/appError');
 
 const filterBodyObj = function(bodyObj, ...allowedFields) {
   const filteredObj = {};
@@ -22,15 +23,15 @@ exports.getMyAccountData = (req, res, next) => {
 //****************** */
 exports.updateMyAccountData = catchAsyncErrors(async (req, res, next) => {
   // 1) Check if user is trying to change his password and passwordConfirm
-  // if (req.body.password || req.body.passwordConfirm) {
-  //   return next(
-  //     new AppError(
-  //       "You can't change your password from here. Please choose the correct route.",
-  //       400
-  //     )
-  //   );
-  // }
-
+  if (req.body.password || req.body.passwordConfirm) {
+    return next(
+      new AppError(
+        "You can't change your password from here. Please choose the password form.",
+        400
+      )
+    );
+  }
+  console.log(req.user);
   // 2) Filter all the properties that the user cannot update
   const filteredBodyObject = filterBodyObj(req.body, 'fullName', 'email');
 

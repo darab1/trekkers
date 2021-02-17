@@ -5,11 +5,13 @@ import 'regenerator-runtime/runtime';
 import { login } from './login';
 import { displayMap } from './mapbox';
 import { logout } from './logout';
+import { updateUserData } from './updateUserData';
 
 // Select DOM elements
 const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.login__form');
 const logoutBtn = document.querySelector('.btn-logout');
+const userInfoForm = document.querySelector('.form__user-info');
 
 // Select DOM values
 
@@ -34,5 +36,15 @@ if (logoutBtn) {
   logoutBtn.addEventListener('click', e => {
     e.preventDefault();
     logout();
+  });
+}
+
+if (userInfoForm) {
+  userInfoForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const fullName = document.getElementById('fullName').value;
+    const email = document.getElementById('email').value;
+    console.log(fullName, email);
+    updateUserData(fullName, email);
   });
 }

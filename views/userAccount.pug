@@ -25,24 +25,24 @@ block content
       
       .user-dashboard__content
         .user-dashboard__form-wrapper
-          form.form.form__user-info(action='')
+          form.form.form__user-info
             .form__group.form__group-photo
               img.form__user-photo(src=`/../img/users/${user.photo}` alt='User avatar')
               h4.form__user-name= user.fullName
               input#avatar.form__upload-photo(type='file' accept='image/*' name='avatar')
               label.form__group-photo-label(for='avatar') Change profile photo
-            // fullname
+            //- fullname
             .form__group.form__group-fullname
-              label.form__fullname-label(for='fullname')
+              label.form__fullname-label(for='fullName')
                 | Fullname
-              input#fullname.form__fullname-input(type='text' name='fullname' value=`${user.fullName}` required='' minlength='4')
-            // email
+              input#fullName.form__fullname-input(type='text' name='fullName' value=`${user.fullName}` required='' minlength='4')
+            //- email
             .form__group.form__group-email
               label.form__email-label(for='email')
                 | Email
               input#email.form__email-input(type='email' name='email' value=`${user.email}`)
             // Save changes button
-            button.btn.btn__save-changes(type='submit')
+            button.btn.btn__save-changes
               | Save Changes
           // end of user-info form
         .hr-line &nbsp;
