@@ -12,12 +12,8 @@ const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.login__form');
 const logoutBtn = document.querySelector('.btn-logout');
 const userInfoForm = document.querySelector('.form__user-info');
+const changePasswordForm = document.querySelector('.form__change-password');
 
-// Select DOM values
-
-// Check if DOM element exists, if it does execute function.
-
-// check if mapBox element exists
 if (mapBox) {
   const tourLocations = JSON.parse(mapBox.dataset.tourLocations);
   displayMap(tourLocations);
@@ -44,7 +40,27 @@ if (userInfoForm) {
     e.preventDefault();
     const fullName = document.getElementById('fullName').value;
     const email = document.getElementById('email').value;
-    console.log(fullName, email);
-    updateUserData(fullName, email);
+    updateUserData({ fullName, email }, 'data');
+  });
+}
+
+if (changePasswordForm) {
+  changePasswordForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const currentPassword = document.getElementById('password-current').value;
+    const newPassword = document.getElementById('password-new').value;
+    const confirmNewPassword = document.getElementById('password-confirm')
+      .value;
+
+    // wait until the password updates...
+    await updateUserData(
+      { currentPassword, newPassword, confirmNewPassword },
+      'password'
+    );
+
+    // ...and then clear the input fields.
+    document.getElementById('password-current').innerHTML = '';
+    document.getElementById('password-new').innerHTML = '';
+    document.getElementById('password-confirm').innerHTML = '';
   });
 }
