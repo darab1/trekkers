@@ -59,7 +59,7 @@ app.use(xss());
 app.use(hpp({ whitelist: ['duration', 'price', 'difficulty'] }));
 
 app.use((req, res, next) => {
-  console.log(req.cookies);
+  // console.log(req.cookies);
   next();
 });
 

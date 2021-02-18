@@ -10,9 +10,17 @@ export const logout = async () => {
     });
 
     if (response.data.status === 'success') {
+      swal(
+        'LOGGING OUT...',
+        'You will be redirected to the homepage.',
+        'success',
+        {
+          timer: 2000
+        }
+      );
       window.setTimeout(() => {
         location.assign('/');
-      }, 1500);
+      }, 2000);
     }
   } catch (error) {
     console.log(error.response);

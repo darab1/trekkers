@@ -27,10 +27,10 @@ block content
         .user-dashboard__form-wrapper
           form.form.form__user-info
             .form__group.form__group-photo
-              img.form__user-photo(src=`/../img/users/${user.photo}` alt='User avatar')
+              img.form__user-photo(src=`/../img/users/${user.photo}` alt='User photo')
               h4.form__user-name= user.fullName
-              input#avatar.form__upload-photo(type='file' accept='image/*' name='avatar')
-              label.form__group-photo-label(for='avatar') Change profile photo
+              input#photo.form__upload-photo(type='file' accept='image/*' name='photo')
+              label.form__group-photo-label(for='photo') Change profile photo
             //- fullname
             .form__group.form__group-fullname
               label.form__fullname-label(for='fullName')

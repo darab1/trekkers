@@ -22,6 +22,9 @@ exports.getMyAccountData = (req, res, next) => {
 // UPDATE MY ACCOUNT DATA
 //****************** */
 exports.updateMyAccountData = catchAsyncErrors(async (req, res, next) => {
+  console.log(req.file);
+  console.log(req.body);
+
   // 1) Check if user is trying to change his password and passwordConfirm
   if (req.body.password || req.body.passwordConfirm) {
     return next(
