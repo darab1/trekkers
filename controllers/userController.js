@@ -1,3 +1,4 @@
+const multer = require('multer');
 const User = require('./../models/userModel');
 const catchAsyncErrors = require('./../utilities/catchAsyncErrors');
 const controllerFactory = require('./../controllers/controllerFactory');
@@ -17,6 +18,40 @@ exports.getMyAccountData = (req, res, next) => {
   req.params.id = req.user.id;
   next();
 };
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/img/users');
+  },
+  filename: (req, file, cb) => {
+    const filename = `${req.user.fullName
+      .split(' ')
+      .join('-')
+      .toLowerCase()}-${req.user.id}-${Date.now()}-trekkers.${
+      file.mimetype.split('/')[1]
+    }`;
+    cb(null, filename);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(
+      new AppError(
+        'The file you try to upload is not an image, only images are allowed!',
+        400
+      ),
+      false
+    );
+  }
+};
+
+// Upload user photo using the multer package
+const upload = multer({ storage, fileFilter });
+
+exports.uploadUserPhoto = upload.single('photo');
 
 //****************** */
 // UPDATE MY ACCOUNT DATA
@@ -47,7 +82,7 @@ exports.updateMyAccountData = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     status: 'success',
-    message: 'User account has been updated',
+    message: 'User account data have been updated',
     user: updatedUser
   });
 });
