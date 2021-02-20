@@ -1,4 +1,5 @@
 const multer = require('multer');
+const sharp = require('sharp');
 const User = require('./../models/userModel');
 const catchAsyncErrors = require('./../utilities/catchAsyncErrors');
 const controllerFactory = require('./../controllers/controllerFactory');
@@ -19,20 +20,22 @@ exports.getMyAccountData = (req, res, next) => {
   next();
 };
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'public/img/users');
-  },
-  filename: (req, file, cb) => {
-    const filename = `${req.user.fullName
-      .split(' ')
-      .join('-')
-      .toLowerCase()}-${req.user.id}-${Date.now()}-trekkers.${
-      file.mimetype.split('/')[1]
-    }`;
-    cb(null, filename);
-  }
-});
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, 'public/img/users');
+//   },
+//   filename: (req, file, cb) => {
+//     const filename = `${req.user.fullName
+//       .split(' ')
+//       .join('-')
+//       .toLowerCase()}-${req.user.id.slice(-5)}-${Date.now()}-trekkers.${
+//       file.mimetype.split('/')[1]
+//     }`;
+//     cb(null, filename);
+//   }
+// });
+
+const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image')) {
@@ -52,6 +55,24 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({ storage, fileFilter });
 
 exports.uploadUserPhoto = upload.single('photo');
+
+exports.resizeUserPhoto = (req, res, next) => {
+  if (!req.file) return next();
+
+  // when we save our photo as a buffer the filename property isn't defined, so we define it here in order to be able to use it in the updateMyAccountData
+  req.file.filename = `${req.user.fullName
+    .split(' ')
+    .join('-')
+    .toLowerCase()}-${req.user.id.slice(-5)}-${Date.now()}-trekkers.jpeg`;
+
+  sharp(req.file.buffer)
+    .resize(450, 450)
+    .sharpen()
+    .toFormat('jpeg')
+    .toFile(`public/img/users/${req.file.filename}`);
+
+  next();
+};
 
 //****************** */
 // UPDATE MY ACCOUNT DATA

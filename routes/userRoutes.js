@@ -24,6 +24,7 @@ router.get(
 router.patch(
   '/updateMyAccountData',
   userController.uploadUserPhoto,
+  userController.resizeUserPhoto,
   userController.updateMyAccountData
 );
 router.delete('/deleteMyAccount', userController.deleteMyAccount);
