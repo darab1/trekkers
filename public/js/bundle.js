@@ -14365,12 +14365,12 @@ if (logoutBtn) {
 if (userInfoForm) {
   userInfoForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    var fullName = document.getElementById('fullName').value;
-    var email = document.getElementById('email').value;
-    (0, _updateUserData.updateUserData)({
-      fullName: fullName,
-      email: email
-    }, 'data');
+    var formData = new FormData();
+    formData.append('fullName', document.getElementById('fullName').value);
+    formData.append('email', document.getElementById('email').value);
+    formData.append('photo', document.getElementById('photo').files[0]);
+    console.log(formData);
+    (0, _updateUserData.updateUserData)(formData, 'data');
   });
 }
 

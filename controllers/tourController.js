@@ -1,4 +1,5 @@
-// Import the tour model
+const multer = require('multer');
+const sharp = require('sharp');
 const Tour = require('./../models/tourModel');
 const catchAsyncErrors = require('./../utilities/catchAsyncErrors');
 const AppError = require('./../utilities/appError');
@@ -9,6 +10,35 @@ exports.aliasCheapestTours = (req, res, next) => {
   req.query.sort = 'price';
   req.query.fields =
     'fullName, price, difficulty, maxGroupSize, durationInDays, startDates';
+  next();
+};
+
+const storage = multer.memoryStorage();
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(
+      new AppError(
+        'The file you try to upload is not an image, only images are allowed!',
+        400
+      ),
+      false
+    );
+  }
+};
+
+// Upload user photo using the multer package
+const upload = multer({ storage, fileFilter });
+
+exports.uploadTourImages = upload.fields([
+  { name: 'coverImage', maxCount: 1 },
+  { name: 'images', maxCount: 3 }
+]);
+
+exports.resizeTourImages = (req, res, next) => {
+  console.log(req.files);
   next();
 };
 
