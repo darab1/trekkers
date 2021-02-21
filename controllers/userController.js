@@ -56,7 +56,7 @@ const upload = multer({ storage, fileFilter });
 
 exports.uploadUserPhoto = upload.single('photo');
 
-exports.resizeUserPhoto = (req, res, next) => {
+exports.processUserPhoto = catchAsyncErrors(async (req, res, next) => {
   if (!req.file) return next();
 
   // when we save our photo as a buffer the filename property isn't defined, so we define it here in order to be able to use it in the updateMyAccountData
@@ -65,14 +65,14 @@ exports.resizeUserPhoto = (req, res, next) => {
     .join('-')
     .toLowerCase()}-${req.user.id.slice(-5)}-${Date.now()}-trekkers.jpeg`;
 
-  sharp(req.file.buffer)
+  await sharp(req.file.buffer)
     .resize(450, 450)
     .sharpen()
     .toFormat('jpeg')
     .toFile(`public/img/users/${req.file.filename}`);
 
   next();
-};
+});
 
 //****************** */
 // UPDATE MY ACCOUNT DATA

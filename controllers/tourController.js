@@ -37,10 +37,50 @@ exports.uploadTourImages = upload.fields([
   { name: 'images', maxCount: 3 }
 ]);
 
-exports.resizeTourImages = (req, res, next) => {
+exports.processTourImages = catchAsyncErrors(async (req, res, next) => {
   console.log(req.files);
+  if (!req.files.coverImage && !req.files.images) return next();
+
+  const tour = await Tour.findById(req.params.id);
+
+  //add coverImage property to req.body because in the updateController of controllerFactory.js we use the req.body data to update a document, so we need
+  // coverImage in order to update the coverImage field value of our db data.
+  req.body.coverImage = `${tour.name
+    .split(' ')
+    .join('-')
+    .toLowerCase()}-${tour.id.slice(-5)}-${Date.now()}-cover.jpeg`;
+
+  // process the coverImage
+  await sharp(req.files.coverImage[0].buffer)
+    .resize(2000, 1300)
+    .sharpen()
+    .toFormat('jpeg')
+    .toFile(
+      `public/img/tours/${tour.name.toLowerCase()}/${req.body.coverImage}`
+    );
+
+  // PROCESS THE IMAGES
+  // create an images property inside the body object in order to be able to update the images field in the database later
+  req.body.images = [];
+
+  await Promise.all(
+    req.files.images.map(async (file, index) => {
+      const filename = `${tour.name
+        .split(' ')
+        .join('-')
+        .toLowerCase()}-${tour.id.slice(-5)}-${Date.now()}-${index + 1}.jpeg`;
+
+      req.body.images.push(filename);
+
+      await sharp(file.buffer)
+        .resize(1600, 1200)
+        .sharpen()
+        .toFormat('jpeg')
+        .toFile(`public/img/tours/${tour.name.toLowerCase()}/${filename}`);
+    })
+  );
   next();
-};
+});
 
 exports.getTour = controllerFactory.getOneController(Tour, { path: 'reviews' });
 exports.getAllTours = controllerFactory.getAllController(Tour);
