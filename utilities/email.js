@@ -1,21 +1,54 @@
 const nodemailer = require('nodemailer');
+const pug = require('pug');
+const htmlToText = require('html-to-text');
 
-const sendEmail = async options => {
-  const transporter = nodemailer.createTransport({
-    host: process.env.MAILTRAP_HOST,
-    port: process.env.MAILTRAP_PORT,
-    auth: {
-      user: process.env.MAILTRAP_USER,
-      pass: process.env.MAILTRAP_PASS
+module.exports = class Email {
+  constructor(user, url) {
+    this.firstName = user.fullName.split(' ')[0];
+    this.to = user.email;
+    this.url = url;
+    this.from = `Dimitris Arabatzis <${process.env.EMAIL_FROM}>`;
+  }
+
+  createTransporter() {
+    // send emails using sendgrid when we 're in production
+    if (process.env.NODE_ENV === 'production') {
+      return 1;
     }
-  });
 
-  await transporter.sendMail({
-    from: '"Dimitris Arabatzis" <dimitris@outlook.com>',
-    to: options.email,
-    subject: options.subject,
-    text: options.message
-  });
+    // send emails using mailtrap when we 're in develoopment
+    return nodemailer.createTransport({
+      host: process.env.MAILTRAP_HOST,
+      port: process.env.MAILTRAP_PORT,
+      auth: {
+        user: process.env.MAILTRAP_USER,
+        pass: process.env.MAILTRAP_PASS
+      }
+    });
+  }
+
+  async sendEmail(template, subject) {
+    const html = pug.renderFile(
+      `${__dirname}/../views/emails/${template}.pug`,
+      {
+        firstName: this.firstName,
+        url: this.url,
+        subject
+      }
+    );
+
+    await this.createTransporter().sendMail({
+      from: this.from,
+      to: this.to,
+      subject,
+      html,
+      text: htmlToText(html, {
+        wordwrap: 120
+      })
+    });
+  }
+
+  async sendWelcome() {
+    await this.sendEmail('welcome', 'Welcome to Trekkers!');
+  }
 };
-
-module.exports = sendEmail;
