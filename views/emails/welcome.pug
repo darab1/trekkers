@@ -1,0 +1,18 @@
+extends indexEmail 
+
+block content 
+  p Welcome to Trekkers #{firstName},
+  p
+    | We're so glad you decided to join us. In Trekkers you'll find trekking tours that take place
+    | in the most beautiful places in the world! 
+  p If you can't wait to see what we have in store for you click on the link below and see for yourself.
+    table.btn.btn-primary(role='presentation' border='0' cellpadding='0' cellspacing='0')
+      tbody
+        tr
+          td(align='left')
+            table(role='presentation' border='0' cellpadding='0' cellspacing='0')
+              tbody
+                tr
+                  td
+                    a(href=`${url}` target='_blank') Go Explore
+    p Thank you and we're excited to have you! Happy trekking!

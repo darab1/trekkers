@@ -4,7 +4,7 @@ const crypto = require('crypto');
 const User = require('./../models/userModel');
 const catchAsyncErrors = require('./../utilities/catchAsyncErrors');
 const AppError = require('./../utilities/appError');
-const sendEmail = require('./../utilities/email');
+const Email = require('./../utilities/email');
 
 // Function for signing the token, it only need one parameter, the id
 const signToken = id => {
@@ -50,6 +50,10 @@ exports.signup = catchAsyncErrors(async (req, res, next) => {
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm
   });
+
+  const url = `${req.protocol}://${req.get('host')}/`;
+  console.log(url);
+  await new Email(newUser, url).sendWelcome();
 
   createThenSendToken(newUser, res, 201, 'New user signed up');
 });
@@ -199,11 +203,11 @@ exports.forgotMyPassword = catchAsyncErrors(async (req, res, next) => {
   const message = `You recently requested to reset your password for your Yeti Tours account. Click the link below to reset it. \n ${resetURL}  \nIf you did not request a password reset, please ignore this email. This password reset is only valid for the next 20 minutes.`;
 
   try {
-    await sendEmail({
-      email: user.email,
-      subject: 'Request for password reset',
-      message
-    });
+    // await sendEmail({
+    //   email: user.email,
+    //   subject: 'Request for password reset',
+    //   message
+    // });
 
     res.status(200).json({
       status: 'success',
