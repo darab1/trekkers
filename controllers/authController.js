@@ -195,19 +195,13 @@ exports.forgotMyPassword = catchAsyncErrors(async (req, res, next) => {
   const passwordResetToken = user.generatePasswordResetToken();
   user.save({ validateBeforeSave: false });
 
-  // 3) Send it to user's email
-  const resetURL = `${req.protocol}://${req.get(
-    'host'
-  )}/api/v1/users/resetPassword/${passwordResetToken}`;
-
-  const message = `You recently requested to reset your password for your Yeti Tours account. Click the link below to reset it. \n ${resetURL}  \nIf you did not request a password reset, please ignore this email. This password reset is only valid for the next 20 minutes.`;
-
+  // 3) Send reset password to user
   try {
-    // await sendEmail({
-    //   email: user.email,
-    //   subject: 'Request for password reset',
-    //   message
-    // });
+    const resetURL = `${req.protocol}://${req.get(
+      'host'
+    )}/api/v1/users/resetPassword/${passwordResetToken}`;
+
+    await new Email(user, resetURL).sendResetPassword();
 
     res.status(200).json({
       status: 'success',

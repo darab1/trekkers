@@ -50,4 +50,8 @@ module.exports = class Email {
   async sendWelcome() {
     await this.sendEmail('welcome', 'Welcome to Trekkers!');
   }
+
+  async sendResetPassword() {
+    await this.sendEmail('resetPassword', 'Forgotten Password Reset');
+  }
 };
