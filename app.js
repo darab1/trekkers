@@ -12,6 +12,7 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
+const bookingRouter = require('./routes/bookingRoutes');
 
 const AppError = require('./utilities/appError');
 const globalErrorController = require('./controllers/errorController');
@@ -72,6 +73,7 @@ app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
+app.use('/api/v1/bookings', bookingRouter);
 
 // Middleware for handling unhandled routes, instead of the html message shown in Postman
 app.all('*', (req, res, next) => {

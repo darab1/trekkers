@@ -7,6 +7,7 @@ block variables
 block append head
   script(src='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.js')
   link(href='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.css' rel='stylesheet')
+  script(src='https://js.stripe.com/v3/')
 
 block content
 
@@ -77,4 +78,8 @@ block content
         span From
         span= `${tour.price}€`
         span per person
-      button.book-tour__btn(type='submit') Book Now
+
+      if(user)
+        button#checkout-button.book-tour__btn(data-tour-id=`${tour.id}`) Book Now
+      else 
+        a.book-tour__btn(href='/login') Login to book you tour!
