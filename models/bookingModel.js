@@ -5,7 +5,7 @@ const bookingSchema = new mongoose.Schema({
     type: Number,
     require: [true, 'A booking must have a price']
   },
-  issuedAt: {
+  createAt: {
     type: Date,
     default: Date.now()
   },
@@ -24,7 +24,7 @@ const bookingSchema = new mongoose.Schema({
 bookingSchema.pre(/^find/, function(next) {
   this.populate('user').populate({
     path: 'tour',
-    select: 'name difficulty durationInDays'
+    select: 'name price difficulty durationInDays '
   });
   next();
 });
