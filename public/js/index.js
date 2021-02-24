@@ -6,6 +6,7 @@ import { login } from './login';
 import { displayMap } from './mapbox';
 import { logout } from './logout';
 import { updateUserData } from './updateUserData';
+import { bookTour } from './stripePayments';
 
 // Select DOM elements
 const mapBox = document.getElementById('map');
@@ -13,6 +14,7 @@ const loginForm = document.querySelector('.login__form');
 const logoutBtn = document.querySelector('.btn-logout');
 const userInfoForm = document.querySelector('.form__user-info');
 const changePasswordForm = document.querySelector('.form__change-password');
+const bookTourBtn = document.getElementById('checkout-button');
 
 if (mapBox) {
   const tourLocations = JSON.parse(mapBox.dataset.tourLocations);
@@ -67,5 +69,16 @@ if (changePasswordForm) {
     document.getElementById('password-current').innerHTML = '';
     document.getElementById('password-new').innerHTML = '';
     document.getElementById('password-confirm').innerHTML = '';
+  });
+}
+
+if (bookTourBtn) {
+  bookTourBtn.addEventListener('click', e => {
+    e.preventDefault();
+    bookTourBtn.innerHTML = 'Checkout...';
+    const { tourId } = bookTourBtn.dataset;
+    console.log(tourId);
+    bookTour(tourId);
+    // e.target.innerHTML = 'Book Now';
   });
 }

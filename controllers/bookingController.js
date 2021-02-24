@@ -6,7 +6,7 @@ const controllerFactory = require('../controllers/controllerFactory');
 const catchAsyncErrors = require('../utilities/catchAsyncErrors');
 
 exports.createCheckoutSession = catchAsyncErrors(async (req, res, next) => {
-  const tour = await Tour.findById(req.params.tourID);
+  const tour = await Tour.findById(req.params.tourId);
   console.log(tour);
   // CREATE STRIPE CHECKOUT SESSION
   const session = await stripe.checkout.sessions.create({
@@ -21,7 +21,7 @@ exports.createCheckoutSession = catchAsyncErrors(async (req, res, next) => {
       }
     ],
     customer_email: req.user.email,
-    client_reference_id: req.params.tourID,
+    client_reference_id: req.params.tourId,
     success_url: `${req.protocol}://${req.get('host')}/`,
     cancel_url: `${req.protocol}://${req.get('host')}/tour-details/${tour.slug}`
   });
