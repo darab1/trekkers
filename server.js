@@ -8,10 +8,10 @@ process.on('uncaughtException', err => {
   process.exit(1);
 });
 
-const app = require('./app');
-
 // Read the environment variables from config.env
 dotenv.config({ path: './config.env' });
+
+const app = require('./app');
 
 //Create a DB constant which contains the connection string to your database
 const DB = process.env.DATABASE_CONNECTION_STRING.replace(

@@ -1,8 +1,8 @@
 const multer = require('multer');
 const sharp = require('sharp');
-const User = require('./../models/userModel');
-const catchAsyncErrors = require('./../utilities/catchAsyncErrors');
-const controllerFactory = require('./../controllers/controllerFactory');
+const User = require('../models/userModel');
+const catchAsyncErrors = require('../utilities/catchAsyncErrors');
+const controllerFactory = require('../controllers/controllerFactory');
 const AppError = require('../utilities/appError');
 
 const filterBodyObj = function(bodyObj, ...allowedFields) {
@@ -19,21 +19,6 @@ exports.getMyAccountData = (req, res, next) => {
   req.params.id = req.user.id;
   next();
 };
-
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, 'public/img/users');
-//   },
-//   filename: (req, file, cb) => {
-//     const filename = `${req.user.fullName
-//       .split(' ')
-//       .join('-')
-//       .toLowerCase()}-${req.user.id.slice(-5)}-${Date.now()}-trekkers.${
-//       file.mimetype.split('/')[1]
-//     }`;
-//     cb(null, filename);
-//   }
-// });
 
 const storage = multer.memoryStorage();
 

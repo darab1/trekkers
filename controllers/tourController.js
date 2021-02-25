@@ -1,9 +1,9 @@
 const multer = require('multer');
 const sharp = require('sharp');
-const Tour = require('./../models/tourModel');
-const catchAsyncErrors = require('./../utilities/catchAsyncErrors');
-const AppError = require('./../utilities/appError');
-const controllerFactory = require('./../controllers/controllerFactory');
+const Tour = require('../models/tourModel');
+const catchAsyncErrors = require('../utilities/catchAsyncErrors');
+const AppError = require('../utilities/appError');
+const controllerFactory = require('../controllers/controllerFactory');
 
 exports.aliasCheapestTours = (req, res, next) => {
   req.query.limit = 5;

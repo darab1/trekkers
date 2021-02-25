@@ -18,10 +18,7 @@ export const bookTour = async tourId => {
     swal(
       'Checkout Error!',
       `Sorry, we couldn't process your request for booking the tour! Please try again later.`,
-      'error',
-      {
-        timer: 4000
-      }
+      'error'
     );
   }
 };

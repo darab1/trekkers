@@ -31,6 +31,7 @@ router.delete('/deleteMyAccount', userController.deleteMyAccount);
 
 router.use(authController.restrictAccessTo('admin'));
 
+// GET ALL USERS, CREATE A USER
 router
   .route('/')
   .get(userController.getAllUsers)

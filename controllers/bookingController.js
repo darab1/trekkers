@@ -1,10 +1,15 @@
-const stripe = require('stripe')(
-  'sk_test_51I3kB2CCmdQckf5rZLnbPYez5aH6B9GuE0uGkqUxdpky6rSGnzGV97zaD4ZFvTD3yeOU8mT9ohaE2Sdb2vwBq4x700MXHU83UC'
-);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const Tour = require('../models/tourModel');
 const Booking = require('../models/bookingModel');
 const controllerFactory = require('../controllers/controllerFactory');
 const catchAsyncErrors = require('../utilities/catchAsyncErrors');
+
+// BASIC CRUD FUNCTIONALITIES
+exports.createBooking = controllerFactory.createController(Booking);
+exports.getBooking = controllerFactory.getOneController(Booking);
+exports.getAllBookings = controllerFactory.getAllController(Booking);
+exports.updateBooking = controllerFactory.updateController(Booking);
+exports.deleteBooking = controllerFactory.deleteController(Booking);
 
 exports.createCheckoutSession = catchAsyncErrors(async (req, res, next) => {
   const tour = await Tour.findById(req.params.tourId);

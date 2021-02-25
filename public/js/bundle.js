@@ -14366,9 +14366,7 @@ var bookTour = /*#__PURE__*/function () {
             _context.prev = 10;
             _context.t0 = _context["catch"](1);
             console.log(_context.t0);
-            (0, _sweetAlert.default)('Checkout Error!', "Sorry, we couldn't process your request for booking the tour! Please try again later.", 'error', {
-              timer: 4000
-            });
+            (0, _sweetAlert.default)('Checkout Error!', "Sorry, we couldn't process your request for booking the tour! Please try again later.", 'error');
 
           case 14:
           case "end":
