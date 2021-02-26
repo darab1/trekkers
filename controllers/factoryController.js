@@ -1,5 +1,5 @@
-const catchAsyncErrors = require('./../utilities/catchAsyncErrors');
-const AppError = require('./../utilities/appError');
+const catchAsyncErrors = require('../utilities/catchAsyncErrors');
+const AppError = require('../utilities/appError');
 const QueryOptions = require('../utilities/queryOptions');
 
 exports.createController = Model =>

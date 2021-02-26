@@ -1,15 +1,15 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const Tour = require('../models/tourModel');
 const Booking = require('../models/bookingModel');
-const controllerFactory = require('../controllers/controllerFactory');
+const factoryController = require('./factoryController');
 const catchAsyncErrors = require('../utilities/catchAsyncErrors');
 
 // BASIC CRUD FUNCTIONALITIES
-exports.createBooking = controllerFactory.createController(Booking);
-exports.getBooking = controllerFactory.getOneController(Booking);
-exports.getAllBookings = controllerFactory.getAllController(Booking);
-exports.updateBooking = controllerFactory.updateController(Booking);
-exports.deleteBooking = controllerFactory.deleteController(Booking);
+exports.createBooking = factoryController.createController(Booking);
+exports.getBooking = factoryController.getOneController(Booking);
+exports.getAllBookings = factoryController.getAllController(Booking);
+exports.updateBooking = factoryController.updateController(Booking);
+exports.deleteBooking = factoryController.deleteController(Booking);
 
 exports.createCheckoutSession = catchAsyncErrors(async (req, res, next) => {
   const tour = await Tour.findById(req.params.tourId);
@@ -22,6 +22,12 @@ exports.createCheckoutSession = catchAsyncErrors(async (req, res, next) => {
         description: tour.summary,
         amount: tour.price * 100,
         currency: 'eur',
+        // images: [`${tour.coverImage}`],
+        images: [
+          `${req.protocol}://${req.get(
+            'host'
+          )}/img/tours/${tour.name.toLowerCase()}/${tour.coverImage}`
+        ],
         quantity: 1
       }
     ],
@@ -33,7 +39,12 @@ exports.createCheckoutSession = catchAsyncErrors(async (req, res, next) => {
     cancel_url: `${req.protocol}://${req.get('host')}/tour-details/${tour.slug}`
   });
 
-  console.log(session);
+  console.log(`sessionObject: ${session}`);
+  console.log(
+    `coverImage: ${req.protocol}://${req.get(
+      'host'
+    )}/img/tours/${tour.name.toLowerCase()}/${tour.coverImage}`
+  );
 
   res.status(200).json({
     status: 'success',

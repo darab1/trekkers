@@ -2,7 +2,7 @@ const multer = require('multer');
 const sharp = require('sharp');
 const User = require('../models/userModel');
 const catchAsyncErrors = require('../utilities/catchAsyncErrors');
-const controllerFactory = require('../controllers/controllerFactory');
+const factoryController = require('./factoryController');
 const AppError = require('../utilities/appError');
 
 const filterBodyObj = function(bodyObj, ...allowedFields) {
@@ -112,7 +112,7 @@ exports.createUser = async (req, res) => {
   });
 };
 
-exports.getUser = controllerFactory.getOneController(User);
-exports.getAllUsers = controllerFactory.getAllController(User);
-exports.updateUser = controllerFactory.updateController(User);
-exports.deleteUser = controllerFactory.deleteController(User);
+exports.getUser = factoryController.getOneController(User);
+exports.getAllUsers = factoryController.getAllController(User);
+exports.updateUser = factoryController.updateController(User);
+exports.deleteUser = factoryController.deleteController(User);

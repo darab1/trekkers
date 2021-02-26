@@ -1,5 +1,5 @@
 const Review = require('../models/reviewModel');
-const controllerFactory = require('../controllers/controllerFactory');
+const factoryController = require('./factoryController');
 
 exports.populateTourAndUserFields = (req, res, next) => {
   if (!req.body.tour) req.body.tour = req.params.tourID;
@@ -7,8 +7,8 @@ exports.populateTourAndUserFields = (req, res, next) => {
   next();
 };
 
-exports.getReview = controllerFactory.getOneController(Review);
-exports.getAllReviews = controllerFactory.getAllController(Review);
-exports.createReview = controllerFactory.createController(Review);
-exports.updateReview = controllerFactory.updateController(Review);
-exports.deleteReview = controllerFactory.deleteController(Review);
+exports.getReview = factoryController.getOneController(Review);
+exports.getAllReviews = factoryController.getAllController(Review);
+exports.createReview = factoryController.createController(Review);
+exports.updateReview = factoryController.updateController(Review);
+exports.deleteReview = factoryController.deleteController(Review);

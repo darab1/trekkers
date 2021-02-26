@@ -32,7 +32,7 @@ mongoose
 
 const port = process.env.PORT;
 const server = app.listen(port, () => {
-  console.log(`Yeti Tours is running on port ${port}`);
+  console.log(`Trekkers is running on port ${port}`);
 });
 
 process.on('unhandledRejection', err => {

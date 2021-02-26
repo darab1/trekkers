@@ -3,7 +3,7 @@ const sharp = require('sharp');
 const Tour = require('../models/tourModel');
 const catchAsyncErrors = require('../utilities/catchAsyncErrors');
 const AppError = require('../utilities/appError');
-const controllerFactory = require('../controllers/controllerFactory');
+const factoryController = require('./factoryController');
 
 exports.aliasCheapestTours = (req, res, next) => {
   req.query.limit = 5;
@@ -43,7 +43,7 @@ exports.processTourImages = catchAsyncErrors(async (req, res, next) => {
 
   const tour = await Tour.findById(req.params.id);
 
-  //add coverImage property to req.body because in the updateController of controllerFactory.js we use the req.body data to update a document, so we need
+  //add coverImage property to req.body because in the updateController of factoryController.js we use the req.body data to update a document, so we need
   // coverImage in order to update the coverImage field value of our db data.
   req.body.coverImage = `${tour.name
     .split(' ')
@@ -82,11 +82,11 @@ exports.processTourImages = catchAsyncErrors(async (req, res, next) => {
   next();
 });
 
-exports.getTour = controllerFactory.getOneController(Tour, { path: 'reviews' });
-exports.getAllTours = controllerFactory.getAllController(Tour);
-exports.createTour = controllerFactory.createController(Tour);
-exports.updateTour = controllerFactory.updateController(Tour);
-exports.deleteTour = controllerFactory.deleteController(Tour);
+exports.getTour = factoryController.getOneController(Tour, { path: 'reviews' });
+exports.getAllTours = factoryController.getAllController(Tour);
+exports.createTour = factoryController.createController(Tour);
+exports.updateTour = factoryController.updateController(Tour);
+exports.deleteTour = factoryController.deleteController(Tour);
 
 exports.getToursWithinCertainRange = catchAsyncErrors(
   async (req, res, next) => {

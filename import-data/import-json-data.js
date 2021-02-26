@@ -5,9 +5,9 @@
 const mongoose = require('mongoose');
 const fs = require('fs');
 const dotenv = require('dotenv');
-const Tour = require('./../../models/tourModel');
-const User = require('./../../models/userModel');
-const Review = require('./../../models/reviewModel');
+const Tour = require('../models/tourModel');
+const User = require('../models/userModel');
+const Review = require('../models/reviewModel');
 
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours.json`, 'utf-8'));
 const users = JSON.parse(fs.readFileSync(`${__dirname}/users.json`, 'utf-8'));
@@ -31,7 +31,7 @@ mongoose
   })
   .then(() =>
     console.log(
-      'Connection with yetiTours DB was successful from import-json-data'
+      'Connection with trekkers DB was successful from import-json-data'
     )
   );
 
