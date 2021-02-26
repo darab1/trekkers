@@ -14352,28 +14352,27 @@ var bookTour = /*#__PURE__*/function () {
 
           case 4:
             session = _context.sent;
-            console.log(session);
-            _context.next = 8;
+            _context.next = 7;
             return stripe.redirectToCheckout({
               sessionId: session.data.session.id
             });
 
-          case 8:
-            _context.next = 14;
+          case 7:
+            _context.next = 13;
             break;
 
-          case 10:
-            _context.prev = 10;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context["catch"](1);
             console.log(_context.t0);
             (0, _sweetAlert.default)('Checkout Error!', "Sorry, we couldn't process your request for booking the tour! Please try again later.", 'error');
 
-          case 14:
+          case 13:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[1, 10]]);
+    }, _callee, null, [[1, 9]]);
   }));
 
   return function bookTour(_x) {
@@ -14439,7 +14438,6 @@ if (userInfoForm) {
     formData.append('fullName', document.getElementById('fullName').value);
     formData.append('email', document.getElementById('email').value);
     formData.append('photo', document.getElementById('photo').files[0]);
-    console.log(formData);
     (0, _updateUserData.updateUserData)(formData, 'data');
   });
 }
@@ -14489,7 +14487,6 @@ if (bookTourBtn) {
     e.preventDefault();
     bookTourBtn.innerHTML = 'Checkout...';
     var tourId = bookTourBtn.dataset.tourId;
-    console.log(tourId);
     (0, _stripePayments.bookTour)(tourId); // e.target.innerHTML = 'Book Now';
   });
 }

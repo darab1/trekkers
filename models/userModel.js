@@ -97,7 +97,6 @@ userSchema.methods.isPassChangedAfterIssuedJWT = function(JWTIssuedAt) {
       this.passwordChangedAt / 1000,
       10
     );
-    console.log({ JWTIssuedAt }, passwordChangedAtTimestamp);
     return passwordChangedAtTimestamp > JWTIssuedAt;
   }
 
@@ -113,7 +112,6 @@ userSchema.methods.generatePasswordResetToken = function() {
     .createHash('sha256')
     .update(passwordResetToken)
     .digest('hex');
-  console.log({ passwordResetToken }, this.passwordResetTokenDB);
 
   this.passwordResetTokenExpiresAt = Date.now() + 20 * 60 * 1000; // add 20 minutes to Date.now()
 

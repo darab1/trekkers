@@ -7,6 +7,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -59,10 +60,8 @@ app.use(xss());
 // Protect against HTTP Parameter Pollution attacks
 app.use(hpp({ whitelist: ['duration', 'price', 'difficulty'] }));
 
-app.use((req, res, next) => {
-  // console.log(req.cookies);
-  next();
-});
+// compress text and json before sending them as a response to the user
+app.use(compression());
 
 /********/
 // ROUTES

@@ -81,8 +81,6 @@ const sendProdError = (err, req, res) => {
 const renderProdErrorPage = (err, req, res) => {
   //An operational error, it's ok to send some details to the client
   if (err.isOperational) {
-    console.log('we are inside the operational error page rendering...');
-    console.log(err);
     res.status(err.statusCode).render('error', {
       statusCode: err.statusCode,
       message: err.message

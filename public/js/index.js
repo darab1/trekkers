@@ -45,7 +45,6 @@ if (userInfoForm) {
     formData.append('fullName', document.getElementById('fullName').value);
     formData.append('email', document.getElementById('email').value);
     formData.append('photo', document.getElementById('photo').files[0]);
-    console.log(formData);
 
     updateUserData(formData, 'data');
   });
@@ -77,7 +76,6 @@ if (bookTourBtn) {
     e.preventDefault();
     bookTourBtn.innerHTML = 'Checkout...';
     const { tourId } = bookTourBtn.dataset;
-    console.log(tourId);
     bookTour(tourId);
     // e.target.innerHTML = 'Book Now';
   });
