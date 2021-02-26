@@ -7,8 +7,8 @@ export const updateUserData = async (userData, typeOfData) => {
   try {
     const url =
       typeOfData === 'data'
-        ? 'http://127.0.0.1:8080/api/v1/users/updateMyAccountData'
-        : 'http://127.0.0.1:8080/api/v1/users/updateMyPassword';
+        ? '/api/v1/users/updateMyAccountData'
+        : '/api/v1/users/updateMyPassword';
     const response = await axios({
       method: 'PATCH',
       url,
