@@ -28,7 +28,7 @@ mongoose
     useCreateIndex: true,
     useFindAndModify: false
   })
-  .then(() => console.log('Connection with yetiTours DB was succesful'));
+  .then(() => console.log('Connection with trekkers DB was succesful'));
 
 const port = process.env.PORT;
 const server = app.listen(port, () => {

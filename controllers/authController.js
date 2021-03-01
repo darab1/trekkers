@@ -170,6 +170,9 @@ exports.userLoginStatus = async (req, res, next) => {
   next();
 };
 
+//***************************************
+// RESTRICT ACCESS TO CERTAIN USER ROLES
+//***************************************
 exports.restrictAccessTo = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {

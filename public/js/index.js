@@ -3,8 +3,9 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
 import { login } from './login';
-import { displayMap } from './mapbox';
 import { logout } from './logout';
+import { signup } from './signup';
+import { displayMap } from './mapbox';
 import { updateUserData } from './updateUserData';
 import { bookTour } from './stripePayments';
 
@@ -12,6 +13,8 @@ import { bookTour } from './stripePayments';
 const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.login__form');
 const logoutBtn = document.querySelector('.btn-logout');
+const signupForm = document.querySelector('.signup__form');
+const checkbox = document.getElementById('checkbox-password');
 const userInfoForm = document.querySelector('.form__user-info');
 const changePasswordForm = document.querySelector('.form__change-password');
 const bookTourBtn = document.getElementById('checkout-button');
@@ -78,5 +81,33 @@ if (bookTourBtn) {
     const { tourId } = bookTourBtn.dataset;
     bookTour(tourId);
     // e.target.innerHTML = 'Book Now';
+  });
+}
+
+if (checkbox) {
+  checkbox.addEventListener('click', () => {
+    const password = document.querySelector('.input__password--signup');
+    const passwordConfirm = document.querySelector(
+      '.input__password-confirm--signup'
+    );
+    if (password.type === 'password' || passwordConfirm.type === 'password') {
+      password.type = 'text';
+      passwordConfirm.type = 'text';
+    } else {
+      password.type = 'password';
+      passwordConfirm.type = 'password';
+    }
+  });
+}
+
+if (signupForm) {
+  signupForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const fullName = document.getElementById('fullName').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const passwordConfirm = document.getElementById('passwordConfirm').value;
+
+    signup(fullName, email, password, passwordConfirm);
   });
 }

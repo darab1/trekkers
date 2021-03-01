@@ -39,6 +39,13 @@ exports.getLoginPage = (req, res) => {
   });
 };
 
+// Pass this function to the locals object along with the signup template
+exports.getSignupPage = (req, res) => {
+  res.status(200).render('signup', {
+    title: 'Signup'
+  });
+};
+
 exports.getUserAccount = (req, res) => {
   res.status(200).render('userAccount', {
     title: 'My Account'

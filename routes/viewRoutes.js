@@ -21,6 +21,12 @@ router.get(
   authController.userLoginStatus,
   viewController.getLoginPage
 );
+
+router.get(
+  '/signup',
+  authController.userLoginStatus,
+  viewController.getSignupPage
+);
 router.get(
   '/user-account',
   authController.preventUnauthorizedAccess,

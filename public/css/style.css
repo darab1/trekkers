@@ -965,6 +965,20 @@ a:visited {
   margin-bottom: 20px;
 }
 
+.input__password--signup {
+  margin-bottom: 24px;
+}
+
+.input__password-confirm--signup {
+  margin-bottom: 8px;
+}
+
+.checkbox-password-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #9446ED;
+}
+
 .signup__btn {
   margin-bottom: 20px;
   padding: 10px 48px;
