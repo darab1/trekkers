@@ -51,3 +51,12 @@ exports.getUserAccount = (req, res) => {
     title: 'My Account'
   });
 };
+
+exports.getAllToursPage = catchAsyncErrors(async (req, res) => {
+  const tours = await Tour.find();
+
+  res.status(200).render('allTours', {
+    title: 'All Tours',
+    tours
+  });
+});

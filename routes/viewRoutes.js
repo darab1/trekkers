@@ -32,4 +32,11 @@ router.get(
   authController.preventUnauthorizedAccess,
   viewController.getUserAccount
 );
+
+router.get(
+  '/all-tours',
+  authController.userLoginStatus,
+  viewController.getAllToursPage
+);
+
 module.exports = router;

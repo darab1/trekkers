@@ -1,0 +1,31 @@
+extends index 
+
+block variables
+  - var containerClassName='container-all-tours'
+
+block content
+  section.all-tours.padding-lr
+    h2.tours__heading All Tours
+    .tours__card-wrapper
+
+      each tour in tours
+        .tour__card
+          img.tour__img(src=`./img/tours/${tour.name.toLowerCase()}/${tour.coverImage}` alt=`${tour.name}`)
+          h4.tour__name= tour.name
+          .tour__difficulty
+            svg.tour__icon
+              use(xlink:href='/img/icons/tour-cards/sprite.svg#difficulty')
+            p= tour.difficulty
+          .tour__duration
+            svg.tour__icon
+              use(xlink:href='/img/icons/tour-cards/sprite.svg#duration')
+            p= `${tour.durationInDays} days`
+          .tour__max-size
+            svg.tour__icon
+              use(xlink:href='/img/icons/tour-cards/sprite.svg#person')
+            p= `${tour.maxGroupSize} people`
+          .tour__price
+            svg.tour__icon
+              use(xlink:href='/img/icons/tour-cards/sprite.svg#price')
+            p= `${tour.price}`
+          a.btn.tour__btn(href=`/tour-details/${tour.slug}`) Details
