@@ -185,6 +185,11 @@ exports.restrictAccessTo = (...roles) => {
   };
 };
 
+// TODO: Change forgotMyPassword -> resetMyPassword and resetMyPassword -> createNewPassword, also don't forget to change these names in all the other places that you use them(in Postman too!)
+
+//********************************************************************
+// RUNS WHEN A USER SUBMITS HIS/HERS EMAIL IN THE FORGOT PASSWORD FORM
+//********************************************************************
 exports.forgotMyPassword = catchAsyncErrors(async (req, res, next) => {
   // 1) Get user based on POSTed email
   const user = await User.findOne({ email: req.body.email });
@@ -196,6 +201,8 @@ exports.forgotMyPassword = catchAsyncErrors(async (req, res, next) => {
   // 2) Generate the random reset token
   const passwordResetToken = user.generatePasswordResetToken();
   user.save({ validateBeforeSave: false });
+
+  // TODO: in resetURL change resetPassword to createNewPassword if you change the name of the resetMyPassword function below
 
   // 3) Send reset password to user
   try {

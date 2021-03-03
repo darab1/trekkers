@@ -103,6 +103,7 @@ userSchema.methods.isPassChangedAfterIssuedJWT = function(JWTIssuedAt) {
   return false;
 };
 
+// TODO: Change passwordResetToken -> newPasswordResetToken and in the update function also, and this.passwordResetTokenDB -> this.passwordResetToken and change the last one in the userSchema also and in authController.js in passwordResetToken function in the catch block
 //********************************************************************** */s
 // Generate 2 password reset tokens
 userSchema.methods.generatePasswordResetToken = function() {
@@ -113,7 +114,8 @@ userSchema.methods.generatePasswordResetToken = function() {
     .update(passwordResetToken)
     .digest('hex');
 
-  this.passwordResetTokenExpiresAt = Date.now() + 20 * 60 * 1000; // add 20 minutes to Date.now()
+  // add 20 minutes to Date.now()
+  this.passwordResetTokenExpiresAt = Date.now() + 20 * 60 * 1000;
 
   return passwordResetToken;
 };

@@ -5,7 +5,7 @@ block variables
 
 block content
   section.login
-    form.login__form(action='')
+    form.login__form()
       h3.login__heading Log In
       .login__email-wrapper
         label.label.label__email(for='email')
@@ -16,5 +16,5 @@ block content
         input#password.input.input__password(type='password' name='password' autocomplete='current-password' required='')
       button.btn.login__btn(type='submit')
         | Log In
-      a.forgot-password
+      a.forgot-password(href='/reset-password')
         | Forgot Password?

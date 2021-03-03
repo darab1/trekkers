@@ -27,6 +27,13 @@ router.get(
   authController.userLoginStatus,
   viewController.getSignupPage
 );
+
+router.get(
+  '/reset-password',
+  authController.userLoginStatus,
+  viewController.getResetPasswordPage
+);
+
 router.get(
   '/user-account',
   authController.preventUnauthorizedAccess,

@@ -46,6 +46,13 @@ exports.getSignupPage = (req, res) => {
   });
 };
 
+// RENDER RESET PASSWORD PAGE
+exports.getResetPasswordPage = (req, res) => {
+  res.status(200).render('resetPassword', {
+    title: 'Reset Your Password'
+  });
+};
+
 exports.getUserAccount = (req, res) => {
   res.status(200).render('userAccount', {
     title: 'My Account'
