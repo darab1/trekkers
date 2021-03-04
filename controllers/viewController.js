@@ -67,3 +67,11 @@ exports.getAllToursPage = catchAsyncErrors(async (req, res) => {
     tours
   });
 });
+
+exports.getCreateNewPasswordPage = (req, res, next) => {
+  console.log(`token: ${req.params.token}`);
+  res.status(200).render('createNewPassword', {
+    title: 'Create New Password',
+    token: req.params.token
+  });
+};
