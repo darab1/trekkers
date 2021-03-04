@@ -14462,7 +14462,90 @@ var bookTour = /*#__PURE__*/function () {
 }();
 
 exports.bookTour = bookTour;
-},{"axios":"../../node_modules/axios/index.js","sweetAlert":"../../node_modules/sweetAlert/dist/sweetalert.min.js"}],"index.js":[function(require,module,exports) {
+},{"axios":"../../node_modules/axios/index.js","sweetAlert":"../../node_modules/sweetAlert/dist/sweetalert.min.js"}],"resetPassword.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.resetPassword = void 0;
+
+var _axios = _interopRequireDefault(require("axios"));
+
+var _sweetalert = _interopRequireDefault(require("sweetalert"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var resetPassword = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(email) {
+    var response;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            console.log("data:".concat(email));
+            _context.next = 4;
+            return (0, _axios.default)({
+              method: 'POST',
+              url: 'http://127.0.0.1:8080/api/v1/users/forgotMyPassword',
+              data: {
+                email: email
+              }
+            });
+
+          case 4:
+            response = _context.sent;
+            console.log(response);
+
+            if (response.data.status === 'success') {
+              (0, _sweetalert.default)({
+                title: 'We sent you an email!',
+                text: 'Please check your email to create a new password',
+                icon: 'success'
+              });
+              window.setTimeout(function () {
+                location.assign('/');
+              }, 3000);
+            }
+
+            _context.next = 13;
+            break;
+
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](0);
+            // console.log(e.response.data.message);
+            // console.log(e.response);
+            console.log(_context.t0);
+
+            if (_context.t0.response.data.status === 'fail') {
+              (0, _sweetalert.default)({
+                title: 'Invalid Email',
+                text: 'There is no user with the email you provided, please use a valid email!',
+                icon: 'error'
+              });
+            }
+
+          case 13:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 9]]);
+  }));
+
+  return function resetPassword(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+exports.resetPassword = resetPassword;
+},{"axios":"../../node_modules/axios/index.js","sweetalert":"../../node_modules/sweetalert/dist/sweetalert.min.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 require("core-js/stable");
@@ -14481,6 +14564,8 @@ var _updateUserData = require("./updateUserData");
 
 var _stripePayments = require("./stripePayments");
 
+var _resetPassword = require("./resetPassword");
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -14488,12 +14573,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 // Select DOM elements
 var mapBox = document.getElementById('map');
 var loginForm = document.querySelector('.login__form');
-var logoutBtn = document.querySelector('.btn-logout');
 var signupForm = document.querySelector('.signup__form');
-var checkbox = document.getElementById('checkbox-password');
 var userInfoForm = document.querySelector('.form__user-info');
-var changePasswordForm = document.querySelector('.form__change-password');
+var resetPasswordForm = document.querySelector('.reset-password__form');
+var logoutBtn = document.querySelector('.btn-logout');
 var bookTourBtn = document.getElementById('checkout-button');
+var checkbox = document.getElementById('checkbox-password');
+var changePasswordForm = document.querySelector('.form__change-password');
 
 if (mapBox) {
   var tourLocations = JSON.parse(mapBox.dataset.tourLocations);
@@ -14601,7 +14687,16 @@ if (signupForm) {
     (0, _signup.signup)(fullName, email, password, passwordConfirm);
   });
 }
-},{"core-js/stable":"../../node_modules/core-js/stable/index.js","regenerator-runtime/runtime":"../../node_modules/regenerator-runtime/runtime.js","./login":"login.js","./logout":"logout.js","./signup":"signup.js","./mapbox":"mapbox.js","./updateUserData":"updateUserData.js","./stripePayments":"stripePayments.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+if (resetPasswordForm) {
+  resetPasswordForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('email').value;
+    console.log(email);
+    (0, _resetPassword.resetPassword)(email);
+  });
+}
+},{"core-js/stable":"../../node_modules/core-js/stable/index.js","regenerator-runtime/runtime":"../../node_modules/regenerator-runtime/runtime.js","./login":"login.js","./logout":"logout.js","./signup":"signup.js","./mapbox":"mapbox.js","./updateUserData":"updateUserData.js","./stripePayments":"stripePayments.js","./resetPassword":"resetPassword.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

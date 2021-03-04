@@ -81,7 +81,7 @@ userSchema.pre(/^find/, function(next) {
 // INSTANCE METHODS
 //************************
 
-// Compare login password with the password saved in the DB
+// Compare login/current password with the password saved in the DB
 userSchema.methods.isPasswordCorrect = async function(
   loginPassword,
   userSchemaPassword

@@ -188,7 +188,7 @@ exports.restrictAccessTo = (...roles) => {
 // TODO: Change forgotMyPassword -> resetMyPassword and resetMyPassword -> createNewPassword, also don't forget to change these names in all the other places that you use them(in Postman too!)
 
 //********************************************************************
-// RUNS WHEN A USER SUBMITS HIS/HERS EMAIL IN THE FORGOT PASSWORD FORM
+// RUNS WHEN A USER SUBMITS HIS/HER EMAIL IN THE RESET PASSWORD FORM
 //********************************************************************
 exports.forgotMyPassword = catchAsyncErrors(async (req, res, next) => {
   // 1) Get user based on POSTed email
@@ -212,6 +212,8 @@ exports.forgotMyPassword = catchAsyncErrors(async (req, res, next) => {
 
     await new Email(user, resetURL).sendResetPassword();
 
+    console.log('email was  sent!');
+
     res.status(200).json({
       status: 'success',
       message: "The reset password token was sent to the client's email"
@@ -230,6 +232,9 @@ exports.forgotMyPassword = catchAsyncErrors(async (req, res, next) => {
   }
 });
 
+//***********************************
+// CREATE A NEW PASSWORD AND PASSWORD CONFIRM
+//***********************************
 exports.resetMyPassword = catchAsyncErrors(async (req, res, next) => {
   // 1) Find user based on the password reset token
   const encryptedToken = crypto
@@ -239,54 +244,56 @@ exports.resetMyPassword = catchAsyncErrors(async (req, res, next) => {
 
   const user = await User.findOne({
     passwordResetTokenDB: encryptedToken,
-    passwordResetTokenExpiresAt: { $gt: Date.now() }
+    passwordResetTokenExpiresAt: {
+      $gt: Date.now() // why greater than Date.now()???
+    }
   });
 
-  // 2) If there is a user with that token create new password
   if (!user) {
     return next(
       new AppError('There is no user associated with that token', 404)
     );
   }
-
+  // 2) If there is a user with that token create new password
   user.password = req.body.password;
   user.passwordConfirm = req.body.passwordConfirm;
   user.passwordResetTokenDB = undefined;
   user.passwordResetTokenExpiresAt = undefined;
 
-  // 3) Run pre hook for modifying passwordChangedAt property in DB
-
+  // 3) Run the 2 pre save middleware/hooks from userModel.js and then save the user document with the change passwords.
   await user.save();
 
   // 4) Create jwt and send it to the user
   createThenSendToken(user, res, 201, 'Password reset was succesful');
 });
 
+//***********************************
+// CHANGES PASSWORD FROM USER ACCOUNT
+//***********************************
 exports.updateMyPassword = catchAsyncErrors(async (req, res, next) => {
-  // 1) Get user from collection
   const user = await User.findById(req.user._id).select('+password');
 
   if (!user) {
     return next(new AppError('There is no user found with that id', 404));
   }
-  // 2) Check if POSTed current password is correct
+  // Check if current password is the same as the one saved in the database
   const isPassCorrect = await user.isPasswordCorrect(
     req.body.currentPassword,
     user.password
   );
-  // 3) If so, update password
+
   if (!isPassCorrect) {
     return next(
       new AppError('Invalid password, please use the correct password', 401)
     );
   }
 
+  // 3) If so, update password
   user.password = req.body.newPassword;
   user.passwordConfirm = req.body.confirmNewPassword;
 
   await user.save();
 
-  // 4) Log user in, send JWT
-
+  // 4) Log user in and send JWT
   createThenSendToken(user, res, 200, 'Your password was successfully updated');
 });

@@ -8,16 +8,18 @@ import { signup } from './signup';
 import { displayMap } from './mapbox';
 import { updateUserData } from './updateUserData';
 import { bookTour } from './stripePayments';
+import { resetPassword } from './resetPassword';
 
 // Select DOM elements
 const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.login__form');
-const logoutBtn = document.querySelector('.btn-logout');
 const signupForm = document.querySelector('.signup__form');
-const checkbox = document.getElementById('checkbox-password');
 const userInfoForm = document.querySelector('.form__user-info');
-const changePasswordForm = document.querySelector('.form__change-password');
+const resetPasswordForm = document.querySelector('.reset-password__form');
+const logoutBtn = document.querySelector('.btn-logout');
 const bookTourBtn = document.getElementById('checkout-button');
+const checkbox = document.getElementById('checkbox-password');
+const changePasswordForm = document.querySelector('.form__change-password');
 
 if (mapBox) {
   const tourLocations = JSON.parse(mapBox.dataset.tourLocations);
@@ -109,5 +111,14 @@ if (signupForm) {
     const passwordConfirm = document.getElementById('passwordConfirm').value;
 
     signup(fullName, email, password, passwordConfirm);
+  });
+}
+
+if (resetPasswordForm) {
+  resetPasswordForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    console.log(email);
+    resetPassword(email);
   });
 }

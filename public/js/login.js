@@ -19,6 +19,7 @@ export const login = async (email, password) => {
         text: 'You successfully logged in.',
         icon: 'success'
       });
+
       window.setTimeout(() => {
         location.assign('/');
       }, 2000);
