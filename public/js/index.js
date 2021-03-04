@@ -115,10 +115,14 @@ if (signupForm) {
 }
 
 if (resetPasswordForm) {
-  resetPasswordForm.addEventListener('submit', e => {
+  resetPasswordForm.addEventListener('submit', async e => {
     e.preventDefault();
+
     const email = document.getElementById('email').value;
-    console.log(email);
-    resetPassword(email);
+    const resetBtn = document.querySelector('.reset-password__btn');
+
+    resetBtn.innerHTML = 'Sending email...';
+    await resetPassword(email);
+    resetBtn.innerHTML = 'Send instructions';
   });
 }

@@ -14488,8 +14488,7 @@ var resetPassword = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            console.log("data:".concat(email));
-            _context.next = 4;
+            _context.next = 3;
             return (0, _axios.default)({
               method: 'POST',
               url: 'http://127.0.0.1:8080/api/v1/users/forgotMyPassword',
@@ -14498,9 +14497,8 @@ var resetPassword = /*#__PURE__*/function () {
               }
             });
 
-          case 4:
+          case 3:
             response = _context.sent;
-            console.log(response);
 
             if (response.data.status === 'success') {
               (0, _sweetalert.default)({
@@ -14513,15 +14511,13 @@ var resetPassword = /*#__PURE__*/function () {
               }, 3000);
             }
 
-            _context.next = 13;
+            _context.next = 11;
             break;
 
-          case 9:
-            _context.prev = 9;
+          case 7:
+            _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            // console.log(e.response.data.message);
-            // console.log(e.response);
-            console.log(_context.t0);
+            console.log(_context.t0.data);
 
             if (_context.t0.response.data.status === 'fail') {
               (0, _sweetalert.default)({
@@ -14531,12 +14527,12 @@ var resetPassword = /*#__PURE__*/function () {
               });
             }
 
-          case 13:
+          case 11:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 9]]);
+    }, _callee, null, [[0, 7]]);
   }));
 
   return function resetPassword(_x) {
@@ -14689,12 +14685,35 @@ if (signupForm) {
 }
 
 if (resetPasswordForm) {
-  resetPasswordForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var email = document.getElementById('email').value;
-    console.log(email);
-    (0, _resetPassword.resetPassword)(email);
-  });
+  resetPasswordForm.addEventListener('submit', /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
+      var email, resetBtn;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              e.preventDefault();
+              email = document.getElementById('email').value;
+              resetBtn = document.querySelector('.reset-password__btn');
+              resetBtn.innerHTML = 'Sending email...';
+              _context2.next = 6;
+              return (0, _resetPassword.resetPassword)(email);
+
+            case 6:
+              resetBtn.innerHTML = 'Send instructions';
+
+            case 7:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }());
 }
 },{"core-js/stable":"../../node_modules/core-js/stable/index.js","regenerator-runtime/runtime":"../../node_modules/regenerator-runtime/runtime.js","./login":"login.js","./logout":"logout.js","./signup":"signup.js","./mapbox":"mapbox.js","./updateUserData":"updateUserData.js","./stripePayments":"stripePayments.js","./resetPassword":"resetPassword.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
