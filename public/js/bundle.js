@@ -14506,9 +14506,6 @@ var resetPassword = /*#__PURE__*/function () {
                 text: 'Please check your email to create a new password',
                 icon: 'success'
               });
-              window.setTimeout(function () {
-                location.assign('/');
-              }, 3000);
             }
 
             _context.next = 11;

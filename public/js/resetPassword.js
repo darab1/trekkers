@@ -16,10 +16,6 @@ export const resetPassword = async email => {
         text: 'Please check your email to create a new password',
         icon: 'success'
       });
-
-      window.setTimeout(() => {
-        location.assign('/');
-      }, 3000);
     }
   } catch (e) {
     console.log(e.data);

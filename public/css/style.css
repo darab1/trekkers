@@ -1004,16 +1004,19 @@ a:visited {
   margin-bottom: 24px;
 }
 
-.signup__password-wrapper {
+.signup__password-wrapper,
+.create-new-password-wrapper {
   margin-left: 30px;
   margin-bottom: 20px;
 }
 
-.input__password--signup {
+.input__password--signup,
+.input__password--create-new-password {
   margin-bottom: 24px;
 }
 
-.input__password-confirm--signup {
+.input__password-confirm--signup,
+.input__password-confirm--create-new-password {
   margin-bottom: 8px;
 }
 
