@@ -14519,7 +14519,7 @@ var resetPassword = /*#__PURE__*/function () {
             if (_context.t0.response.data.status === 'fail') {
               (0, _sweetalert.default)({
                 title: 'Invalid Email',
-                text: 'There is no user with the email you provided, please use a valid email!',
+                text: 'There is no user associated with the email you just provided, please enter a valid email!',
                 icon: 'error'
               });
             }
@@ -14538,6 +14538,85 @@ var resetPassword = /*#__PURE__*/function () {
 }();
 
 exports.resetPassword = resetPassword;
+},{"axios":"../../node_modules/axios/index.js","sweetalert":"../../node_modules/sweetalert/dist/sweetalert.min.js"}],"createNewPassword.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createNewPassword = void 0;
+
+var _axios = _interopRequireDefault(require("axios"));
+
+var _sweetalert = _interopRequireDefault(require("sweetalert"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var createNewPassword = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(password, passwordConfirm, token) {
+    var response;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return (0, _axios.default)({
+              method: 'PATCH',
+              url: "http://127.0.0.1:8080/api/v1/users/resetMyPassword/".concat(token),
+              data: {
+                password: password,
+                passwordConfirm: passwordConfirm,
+                token: token
+              }
+            });
+
+          case 3:
+            response = _context.sent;
+
+            if (response.data.status === 'success') {
+              (0, _sweetalert.default)({
+                title: 'Good Job!',
+                text: 'You successfully changed your password',
+                icon: 'success'
+              });
+              window.setTimeout(function () {
+                location.assign('/');
+              }, 3000);
+            }
+
+            _context.next = 11;
+            break;
+
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+            console.log(_context.t0.response);
+
+            if (_context.t0.response.data.message.endsWith('Passwords do not match')) {
+              (0, _sweetalert.default)('Passwords do not match!', 'Please use the same password for both password and confirm password fields.', 'error');
+            } else if (_context.t0.response.data.message === 'The new password must be different from the previous one.') {
+              (0, _sweetalert.default)('Invalid Password!', 'The new password must be different from the one you are trying to reset, please try entering a different password.', 'error');
+            }
+
+          case 11:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 7]]);
+  }));
+
+  return function createNewPassword(_x, _x2, _x3) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+exports.createNewPassword = createNewPassword;
 },{"axios":"../../node_modules/axios/index.js","sweetalert":"../../node_modules/sweetalert/dist/sweetalert.min.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -14559,6 +14638,8 @@ var _stripePayments = require("./stripePayments");
 
 var _resetPassword = require("./resetPassword");
 
+var _createNewPassword = require("./createNewPassword");
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -14573,6 +14654,7 @@ var logoutBtn = document.querySelector('.btn-logout');
 var bookTourBtn = document.getElementById('checkout-button');
 var checkbox = document.getElementById('checkbox-password');
 var changePasswordForm = document.querySelector('.form__change-password');
+var createNewPasswordForm = document.querySelector('.create-new-password__form');
 
 if (mapBox) {
   var tourLocations = JSON.parse(mapBox.dataset.tourLocations);
@@ -14657,8 +14739,8 @@ if (bookTourBtn) {
 
 if (checkbox) {
   checkbox.addEventListener('click', function () {
-    var password = document.querySelector('.input__password--signup');
-    var passwordConfirm = document.querySelector('.input__password-confirm--signup');
+    var password = document.querySelector('.input__password');
+    var passwordConfirm = document.querySelector('.input__password-confirm');
 
     if (password.type === 'password' || passwordConfirm.type === 'password') {
       password.type = 'text';
@@ -14697,9 +14779,10 @@ if (resetPasswordForm) {
               return (0, _resetPassword.resetPassword)(email);
 
             case 6:
+              document.querySelector('.reset-password__input').value = '';
               resetBtn.innerHTML = 'Send instructions';
 
-            case 7:
+            case 8:
             case "end":
               return _context2.stop();
           }
@@ -14712,7 +14795,20 @@ if (resetPasswordForm) {
     };
   }());
 }
-},{"core-js/stable":"../../node_modules/core-js/stable/index.js","regenerator-runtime/runtime":"../../node_modules/regenerator-runtime/runtime.js","./login":"login.js","./logout":"logout.js","./signup":"signup.js","./mapbox":"mapbox.js","./updateUserData":"updateUserData.js","./stripePayments":"stripePayments.js","./resetPassword":"resetPassword.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+if (createNewPasswordForm) {
+  createNewPasswordForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var resetPasswordBtn = document.querySelector('.reset-password__btn');
+    var token = resetPasswordBtn.dataset.token;
+    var password = document.getElementById('password').value;
+    var passwordConfirm = document.getElementById('passwordConfirm').value;
+    (0, _createNewPassword.createNewPassword)(password, passwordConfirm, token); // resetPasswordBtn.innerHTML = 'Reset Password';
+    // document.getElementById('.password').innerHTML = '';
+    // document.getElementById('.passwordConfirm').innerHTML = '';
+  });
+}
+},{"core-js/stable":"../../node_modules/core-js/stable/index.js","regenerator-runtime/runtime":"../../node_modules/regenerator-runtime/runtime.js","./login":"login.js","./logout":"logout.js","./signup":"signup.js","./mapbox":"mapbox.js","./updateUserData":"updateUserData.js","./stripePayments":"stripePayments.js","./resetPassword":"resetPassword.js","./createNewPassword":"createNewPassword.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

@@ -23,7 +23,7 @@ export const resetPassword = async email => {
       swal({
         title: 'Invalid Email',
         text:
-          'There is no user with the email you provided, please use a valid email!',
+          'There is no user associated with the email you just provided, please enter a valid email!',
         icon: 'error'
       });
     }

@@ -245,7 +245,7 @@ exports.resetMyPassword = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findOne({
     passwordResetTokenDB: encryptedToken,
     passwordResetTokenExpiresAt: {
-      $gt: Date.now() // why greater than Date.now()???
+      $gt: Date.now()
     }
   });
 
@@ -254,7 +254,21 @@ exports.resetMyPassword = catchAsyncErrors(async (req, res, next) => {
       new AppError('There is no user associated with that token', 404)
     );
   }
-  // 2) If there is a user with that token create new password
+
+  const isPassCorrect = await user.isPasswordCorrect(
+    req.body.password,
+    user.password
+  );
+
+  if (isPassCorrect) {
+    return next(
+      new AppError(
+        'The new password must be different from the previous one.',
+        400
+      )
+    );
+  }
+
   user.password = req.body.password;
   user.passwordConfirm = req.body.passwordConfirm;
   user.passwordResetTokenDB = undefined;

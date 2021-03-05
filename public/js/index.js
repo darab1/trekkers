@@ -9,6 +9,7 @@ import { displayMap } from './mapbox';
 import { updateUserData } from './updateUserData';
 import { bookTour } from './stripePayments';
 import { resetPassword } from './resetPassword';
+import { createNewPassword } from './createNewPassword';
 
 // Select DOM elements
 const mapBox = document.getElementById('map');
@@ -20,6 +21,9 @@ const logoutBtn = document.querySelector('.btn-logout');
 const bookTourBtn = document.getElementById('checkout-button');
 const checkbox = document.getElementById('checkbox-password');
 const changePasswordForm = document.querySelector('.form__change-password');
+const createNewPasswordForm = document.querySelector(
+  '.create-new-password__form'
+);
 
 if (mapBox) {
   const tourLocations = JSON.parse(mapBox.dataset.tourLocations);
@@ -88,10 +92,8 @@ if (bookTourBtn) {
 
 if (checkbox) {
   checkbox.addEventListener('click', () => {
-    const password = document.querySelector('.input__password--signup');
-    const passwordConfirm = document.querySelector(
-      '.input__password-confirm--signup'
-    );
+    const password = document.querySelector('.input__password');
+    const passwordConfirm = document.querySelector('.input__password-confirm');
     if (password.type === 'password' || passwordConfirm.type === 'password') {
       password.type = 'text';
       passwordConfirm.type = 'text';
@@ -123,6 +125,23 @@ if (resetPasswordForm) {
 
     resetBtn.innerHTML = 'Sending email...';
     await resetPassword(email);
+    document.querySelector('.reset-password__input').value = '';
     resetBtn.innerHTML = 'Send instructions';
+  });
+}
+
+if (createNewPasswordForm) {
+  createNewPasswordForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const resetPasswordBtn = document.querySelector('.reset-password__btn');
+    const { token } = resetPasswordBtn.dataset;
+    const password = document.getElementById('password').value;
+    const passwordConfirm = document.getElementById('passwordConfirm').value;
+
+    createNewPassword(password, passwordConfirm, token);
+
+    // resetPasswordBtn.innerHTML = 'Reset Password';
+    // document.getElementById('.password').innerHTML = '';
+    // document.getElementById('.passwordConfirm').innerHTML = '';
   });
 }
