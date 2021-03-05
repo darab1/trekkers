@@ -212,8 +212,6 @@ exports.forgotMyPassword = catchAsyncErrors(async (req, res, next) => {
 
     await new Email(user, resetURL).sendResetPassword();
 
-    console.log('email was  sent!');
-
     res.status(200).json({
       status: 'success',
       message: "The reset password token was sent to the client's email"

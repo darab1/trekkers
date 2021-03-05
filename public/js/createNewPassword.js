@@ -6,11 +6,11 @@ export const createNewPassword = async (password, passwordConfirm, token) => {
   try {
     const response = await axios({
       method: 'PATCH',
-      url: `http://127.0.0.1:8080/api/v1/users/resetMyPassword/${token}`,
+      // url: `http://127.0.0.1:8080/api/v1/users/resetMyPassword/${token}`,
+      url: `/api/v1/users/resetMyPassword/${token}`,
       data: {
         password,
-        passwordConfirm,
-        token
+        passwordConfirm
       }
     });
 
@@ -40,6 +40,14 @@ export const createNewPassword = async (password, passwordConfirm, token) => {
       swal(
         'Invalid Password!',
         'The new password must be different from the one you are trying to reset, please try entering a different password.',
+        'error'
+      );
+    } else if (
+      e.response.data.message === 'There is no user associated with that token'
+    ) {
+      swal(
+        'Password Reset Token Expired!',
+        'Please make another request to reset your password.',
         'error'
       );
     }

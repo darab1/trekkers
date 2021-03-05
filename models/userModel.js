@@ -115,7 +115,7 @@ userSchema.methods.generatePasswordResetToken = function() {
     .digest('hex');
 
   // add 20 minutes to Date.now()
-  this.passwordResetTokenExpiresAt = Date.now() + 20 * 60 * 1000;
+  this.passwordResetTokenExpiresAt = Date.now() + 10 * 60 * 1000;
 
   return passwordResetToken;
 };

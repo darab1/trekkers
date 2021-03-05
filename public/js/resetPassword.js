@@ -6,7 +6,8 @@ export const resetPassword = async email => {
   try {
     const response = await axios({
       method: 'POST',
-      url: 'http://127.0.0.1:8080/api/v1/users/forgotMyPassword',
+      // url: 'http://127.0.0.1:8080/api/v1/users/forgotMyPassword',
+      url: '/api/v1/users/forgotMyPassword',
       data: { email }
     });
 

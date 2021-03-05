@@ -21,7 +21,7 @@ class QueryOptions {
 
   sort() {
     if (this.queryObject.sort) {
-      console.log(this.queryObject);
+      // console.log(this.queryObject);
 
       const sortStr = this.queryObject.sort.split(',').join(' ');
       this.query = this.query.sort(sortStr);

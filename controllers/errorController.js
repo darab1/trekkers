@@ -112,8 +112,6 @@ module.exports = (err, req, res, next) => {
     let error = { ...err };
     error.message = err.message;
 
-    console.log(`error message : ${error.message}`);
-    console.log(`err message : ${err.message}`);
     if (error.name === 'CastError') error = handleCastErrorDB(error);
     if (error.code === 11000) error = handleDuplicateFieldsDB(error);
     if (error.name === 'ValidationError') error = handleValidationError(error);
@@ -123,7 +121,6 @@ module.exports = (err, req, res, next) => {
     if (req.originalUrl.startsWith('/api')) {
       sendProdError(error, req, res);
     } else {
-      console.log('renderProdErrorPage is about to be called...');
       renderProdErrorPage(error, req, res);
     }
   }
