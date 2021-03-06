@@ -42,3 +42,12 @@ process.on('unhandledRejection', err => {
     process.exit(1);
   });
 });
+
+process.on('SIGTERM', () => {
+  console.log(
+    'SIGTERM Signal Emitted! Shuting down the server after all the pending requests have been handled...'
+  );
+  server.close(() => {
+    console.log('Server shut down!');
+  });
+});

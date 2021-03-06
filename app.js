@@ -22,6 +22,8 @@ const globalErrorController = require('./controllers/errorController');
 
 const app = express();
 
+app.enable('allow proxy');
+
 //Set PUG VIEW ENGINE
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));

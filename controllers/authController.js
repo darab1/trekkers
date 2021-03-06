@@ -14,28 +14,24 @@ const signToken = id => {
 };
 
 // Create and send token via cookie
-const createThenSendToken = (user, res, statusCode, message) => {
+const createThenSendToken = (user, statusCode, message, req, res) => {
   const jsonWebToken = signToken(user._id);
 
-  const cookieOptions = {
+  res.cookie('jwt', jsonWebToken, {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
-    httpOnly: true
-  };
-
-  // This if ensures that we need to be in an https connection in order to be able to login in production mode
-  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
-
-  res.cookie('jwt', jsonWebToken, cookieOptions);
+    httpOnly: true,
+    secure: req.secure || req.headers['x-forwarded-proto'] === 'https'
+  });
 
   // Don't show password in the response object
   user.password = undefined;
 
   res.status(statusCode).json({
     status: 'success',
-    message: message,
-    user: user,
+    message,
+    user,
     token: jsonWebToken
   });
 };
@@ -54,7 +50,7 @@ exports.signup = catchAsyncErrors(async (req, res, next) => {
   const url = `${req.protocol}://${req.get('host')}/`;
   await new Email(newUser, url).sendWelcome();
 
-  createThenSendToken(newUser, res, 201, 'New user signed up');
+  createThenSendToken(newUser, 201, 'New user signed up', req, res);
 });
 
 // *********************
@@ -76,7 +72,7 @@ exports.login = catchAsyncErrors(async (req, res, next) => {
     );
   }
 
-  createThenSendToken(user, res, 200, 'User successfully logged in');
+  createThenSendToken(user, 200, 'User successfully logged in', req, res);
 });
 
 //*****************
@@ -276,7 +272,7 @@ exports.resetMyPassword = catchAsyncErrors(async (req, res, next) => {
   await user.save();
 
   // 4) Create jwt and send it to the user
-  createThenSendToken(user, res, 201, 'Password reset was succesful');
+  createThenSendToken(user, 201, 'Password reset was succesful', req, res);
 });
 
 //***********************************
@@ -307,5 +303,11 @@ exports.updateMyPassword = catchAsyncErrors(async (req, res, next) => {
   await user.save();
 
   // 4) Log user in and send JWT
-  createThenSendToken(user, res, 200, 'Your password was successfully updated');
+  createThenSendToken(
+    user,
+    200,
+    'Your password was successfully updated',
+    req,
+    res
+  );
 });
