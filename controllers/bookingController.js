@@ -1,6 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const Tour = require('../models/tourModel');
 const Booking = require('../models/bookingModel');
+const User = require('../models/userModel');
 const factoryController = require('./factoryController');
 const catchAsyncErrors = require('../utilities/catchAsyncErrors');
 
@@ -22,7 +23,6 @@ exports.createCheckoutSession = catchAsyncErrors(async (req, res, next) => {
         description: tour.summary,
         amount: tour.price * 100,
         currency: 'eur',
-        // images: [`${tour.coverImage}`],
         images: [
           `${req.protocol}://${req.get(
             'host'
@@ -33,18 +33,9 @@ exports.createCheckoutSession = catchAsyncErrors(async (req, res, next) => {
     ],
     customer_email: req.user.email,
     client_reference_id: req.params.tourId,
-    success_url: `${req.protocol}://${req.get('host')}/?price=${
-      tour.price
-    }&user=${req.user.id}&tour=${req.params.tourId}`,
+    success_url: `${req.protocol}://${req.get('host')}`,
     cancel_url: `${req.protocol}://${req.get('host')}/tour-details/${tour.slug}`
   });
-
-  console.log(`sessionObject: ${session}`);
-  console.log(
-    `coverImage: ${req.protocol}://${req.get(
-      'host'
-    )}/img/tours/${tour.name.toLowerCase()}/${tour.coverImage}`
-  );
 
   res.status(200).json({
     status: 'success',
@@ -54,11 +45,34 @@ exports.createCheckoutSession = catchAsyncErrors(async (req, res, next) => {
   next();
 });
 
-exports.createBookingWithCheckout = catchAsyncErrors(async (req, res, next) => {
-  const { price, user, tour } = req.query;
+const createBookingWithWebhooks = async session => {
+  const tour = session.client_reference_id;
+  const user = (await User.findOne({ email: session.customer_email })).id;
+  const price = session.amount_total / 100;
 
-  if (!price && !user && !tour) return next();
   await Booking.create({ price, user, tour });
+};
 
-  res.redirect(`${req.protocol}://${req.get('host')}/`);
-});
+exports.createCheckoutWithWebhooks = (req, res, next) => {
+  const stripeSignature = req.headers['stripe-signature'];
+  let stripeEvent;
+
+  try {
+    stripeEvent = stripe.webhooks.constructEvent(
+      req.body,
+      stripeSignature,
+      process.env.STRIPE_WEBHOOKS_SIGNING_SECRET
+    );
+  } catch (e) {
+    return res
+      .status(400)
+      .send(
+        `There was an error with creating a booking with stripe webhooks: ${e.message}`
+      );
+  }
+
+  if (stripeEvent.type === 'checkout.session.completed')
+    createBookingWithWebhooks(stripeEvent.data.object);
+
+  res.status(200).json({ status: 'success', received: true });
+};

@@ -18,6 +18,7 @@ const bookingRouter = require('./routes/bookingRoutes');
 
 const AppError = require('./utilities/appError');
 const globalErrorController = require('./controllers/errorController');
+const bookingController = require('./controllers/bookingController');
 
 // Require the user routers
 
@@ -51,6 +52,12 @@ const limiter = rateLimit({
 });
 
 app.use('/api', limiter);
+
+app.use(
+  '/stripe-webhooks-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.createCheckoutWithWebhooks
+);
 
 // Extract the entire body portion of an incoming request stream and expose it on req.body
 app.use(express.json({ limit: '50kb' }));
