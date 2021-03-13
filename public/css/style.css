@@ -101,19 +101,20 @@ a:visited {
 .container-tour {
   display: grid;
   /* grid-template-rows: 8vh 70vh repeat(6, min-content); */
-  grid-template-rows: 8vh 70vh repeat(2, min-content) 60vh repeat(3, min-content);
+  /* grid-template-rows: 8vh 70vh repeat(2, min-content) 60vh repeat(3, min-content); */
+  grid-template-rows: 8vh 70vh repeat(2, min-content) 60vh 400px repeat(2, min-content);
   grid-template-columns: [full-start] 1fr [center-start] repeat(8, [col-start] minmax(min-content, 8.75rem) [col-end]) [center-end] 1fr [full-end];
 }
 
 @media (max-width: 1144px) {
   .container-tour {
-    grid-template-rows: min-content 50vh repeat(2, min-content) 50vh repeat(3, min-content);
+    grid-template-rows: min-content 50vh repeat(2, min-content) 50vh 400px repeat(2, min-content);
   }
 }
 
 @media (max-width: 554px) {
   .container-tour {
-    grid-template-rows: min-content 25vh repeat(2, min-content) 40vh repeat(3, min-content);
+    grid-template-rows: min-content 25vh repeat(2, min-content) 40vh 400px repeat(2, min-content);
   }
 }
 
@@ -1371,6 +1372,7 @@ a:visited {
   grid-row: 6 / 7;
   grid-column: full-start / full-end;
   background-color: #690cb0;
+  overflow-y: scroll;
 }
 
 .reviews__cards-wrapper {

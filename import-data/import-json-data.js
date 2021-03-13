@@ -1,6 +1,6 @@
 //IMPORT/DELETE JSON FILE COMMANDS
-// node .\dev-data\data\import-json-data.js --import
-// node .\dev-data\data\import-json-data.js --delete
+// node .\import-data\import-json-data.js --import
+// node .\import-data\import-json-data.js --delete
 
 const mongoose = require('mongoose');
 const fs = require('fs');
