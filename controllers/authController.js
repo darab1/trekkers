@@ -171,6 +171,7 @@ exports.userLoginStatus = async (req, res, next) => {
 //***************************************
 exports.restrictAccessTo = (...roles) => {
   return (req, res, next) => {
+    console.log(req.user);
     if (!roles.includes(req.user.role)) {
       return next(
         new AppError('You do not have permission for this kind of action', 403)

@@ -1372,19 +1372,20 @@ a:visited {
   grid-row: 6 / 7;
   grid-column: full-start / full-end;
   background-color: #690cb0;
-  overflow-y: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .reviews__cards-wrapper {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
-  gap: 20px;
-  justify-content: center;
+  grid-auto-flow: column;
+  column-gap: 20px;
 }
 
 .review__card {
   padding: 24px;
+  width: 280px;
   height: 320px;
   background-color: white;
   border-radius: 35px;

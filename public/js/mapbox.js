@@ -14,6 +14,7 @@ export const displayMap = tourLocations => {
     const element = document.createElement('div');
     element.className = 'location-pin';
 
+    // Add markers to the map
     new mapboxgl.Marker({
       element: element,
       anchor: 'bottom'
@@ -21,6 +22,7 @@ export const displayMap = tourLocations => {
       .setLngLat(location.coordinates)
       .addTo(map);
 
+    // Add popup information for each marker
     new mapboxgl.Popup({ offset: 25 })
       .setLngLat(location.coordinates)
       .setHTML(`<p>Day ${location.day}: ${location.name}</p>`)

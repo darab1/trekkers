@@ -245,38 +245,38 @@
     "coverImage": "elbrus-cover.jpg",
     "images": ["elbrus-1.jpg", "elbrus-2.jpg", "elbrus-3.jpg"],
     "locationOfDeparture": {
-      "name": "Snezhniy Bars Cheget  Hotel",
+      "name": "Cheget Glade",
       "type": "Point",
-      "coordinates": [42.526731, 43.246521],
-      "address": "Polyana Cheget ,Terskol 361605 Поляна Чегет, Kabardino-Balkarian Republic, Russia, 361605"
+      "coordinates": [42.524262758972995, 43.24755743365127],
+      "address": "Поляна Чегет, Terskol, Kabardino-Balkarian Republic, Ρωσία, 361605"
     },
     "locations": [
       {
         "_id": "5e68c879fc13ae1a6200000b",
-        "name": "Cheget Mountain",
+        "name": "Azau",
         "type": "Point",
-        "coordinates": [42.497747, 43.240857],
+        "coordinates": [42.484093996615556, 43.26706026576174],
         "day": 1
       },
       {
         "_id": "5e68c879fc13ae1a6200000c",
-        "name": "Terskol",
+        "name": "Waterfall Devichy Kosy",
         "type": "Point",
-        "coordinates": [42.453846, 43.34697],
+        "coordinates": [42.49284872687294, 43.275559545387246],
         "day": 2
       },
       {
         "_id": "5e68c879fc13ae1a6200000d",
-        "name": "Sedlovina El'brusa",
+        "name": "Mount Elbrus",
         "type": "Point",
-        "coordinates": [42.446957, 43.348823],
+        "coordinates": [42.44547498960638, 43.31266544165883],
         "day": 3
       },
       {
         "_id": "5e68c879fc13ae1a6200000e",
         "name": "Elbrus Peak",
         "type": "Point",
-        "coordinates": [42.445307, 43.350118],
+        "coordinates": [42.44508817236192, 43.35475706912127],
         "day": 4
       }
     ]
