@@ -11,26 +11,26 @@ export const displayMap = tourLocations => {
   const bounds = new mapboxgl.LngLatBounds();
 
   tourLocations.forEach(location => {
-    const element = document.createElement('div');
-    element.className = 'location-pin';
-
-    // Add markers to the map
-    new mapboxgl.Marker({
-      element: element,
-      anchor: 'bottom'
-    })
-      .setLngLat(location.coordinates)
-      .addTo(map);
-
     // Add popup information for each marker
-    new mapboxgl.Popup({ offset: 25 })
+    const popup = new mapboxgl.Popup({ offset: 25 })
       .setLngLat(location.coordinates)
       .setHTML(`<p>Day ${location.day}: ${location.name}</p>`)
       .addTo(map);
 
-    bounds.extend(location.coordinates);
+    // Create DOM element for marker
+    const el = document.createElement('div');
+    el.className = 'location-pin';
 
-    map.scrollZoom.disable();
+    // Add markers to the map
+    new mapboxgl.Marker({
+      element: el,
+      anchor: 'bottom'
+    })
+      .setLngLat(location.coordinates)
+      .setPopup(popup)
+      .addTo(map);
+
+    bounds.extend(location.coordinates);
   });
 
   map.fitBounds(bounds, {
