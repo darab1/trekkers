@@ -133,7 +133,7 @@ a:visited {
 
 .container-all-tours {
   display: grid;
-  grid-template-rows: 8vh 81vh 11vh;
+  grid-template-rows: 8vh min-content 11vh;
   grid-template-columns: [full-start] 1fr [center-start] repeat(8, [col-start] minmax(min-content, 8.75rem) [col-end]) [center-end] 1fr [full-end];
 }
 
@@ -201,8 +201,8 @@ a:visited {
 }
 
 .header__logo {
-  width: 48px;
-  height: 48px;
+  width: 180px;
+  height: 46px;
   fill: white;
   flex: 0 0 auto;
 }
@@ -290,8 +290,8 @@ a:visited {
 }
 
 .footer__logo {
-  width: 48px;
-  height: 48px;
+  width: 180px;
+  height: 46px;
   fill: #690cb0;
   flex: 0 0 auto;
 }
@@ -331,20 +331,6 @@ a:visited {
 
 .footer__links a:not(:last-child) {
   margin-right: 10px;
-}
-
-.heading-logo {
-  margin-left: 18px;
-  color: #690cb0;
-  font-size: 30px;
-  font-family: "Lora", sans-serif;
-  font-weight: 700;
-}
-
-@media (max-width: 379px) {
-  .heading-logo {
-    margin-left: 0;
-  }
 }
 
 .hero {
@@ -1870,7 +1856,6 @@ a:visited {
 .error-wrapper {
   width: 500px;
   text-align: center;
-  /* color: #7A0ECC; */
   color: #F0B429;
 }
 
