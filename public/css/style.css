@@ -133,7 +133,7 @@ a:visited {
 
 .container-all-tours {
   display: grid;
-  grid-template-rows: 8vh min-content 11vh;
+  grid-template-rows: 8vh 81vh 11vh;
   grid-template-columns: [full-start] 1fr [center-start] repeat(8, [col-start] minmax(min-content, 8.75rem) [col-end]) [center-end] 1fr [full-end];
 }
 

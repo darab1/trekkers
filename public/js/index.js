@@ -139,9 +139,5 @@ if (createNewPasswordForm) {
     const passwordConfirm = document.getElementById('passwordConfirm').value;
 
     createNewPassword(password, passwordConfirm, token);
-
-    // resetPasswordBtn.innerHTML = 'Reset Password';
-    // document.getElementById('.password').innerHTML = '';
-    // document.getElementById('.passwordConfirm').innerHTML = '';
   });
 }
